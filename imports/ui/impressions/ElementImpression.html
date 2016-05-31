@@ -1,0 +1,48 @@
+<template name="ElementImpression">
+	<tr class="row-donnees">
+		<td>
+			{{gabarit}}
+		</td> 
+		<td>
+			{{marque}}
+		</td> 
+		<td>
+			{{modele}}
+		</td>
+		<td>
+			{{type}}
+		</td>
+		<td>
+			{{nombretoner}}
+		</td>
+		<td>
+			<input type="checkbox" name="active" checked="{{active}}" class="toggle-checked" />
+		</td>
+		<td>
+			<button type="button" class="glyphicon glyphicon-pencil" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}"></button>
+		</td>
+		<td>
+			<button class="glyphicon glyphicon-trash"></button>
+		</td>
+	</tr>
+
+	<div id="ModalEdit-{{_id}}" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modification d'un périphérique d'impression</h4>
+	      </div>
+	      <div class="modal-body">
+	      	{{> EditImpression}}
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="modalClose" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+	
+</template>

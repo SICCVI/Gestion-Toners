@@ -1,0 +1,78 @@
+/* CSS declarations go here */
+html, body {
+	margin:0;
+	padding:0;
+}
+
+#Page {
+	position:relative;
+}
+
+#Left-bar {
+	position:absolute;
+	left:0px;
+	width:220px;
+	height:100%;
+	background-color: yellow;
+}
+
+#Right-bar {
+	margin-left:220px;
+	padding-top:150px;
+}
+
+#SideMenu {
+	position:fixed;
+	padding: 10px;
+}
+
+#Header {
+	position:fixed;
+	z-index: 1;
+	left:220px;
+	top:0px;
+	right:0px;
+	height:75px;
+	background-color: red;
+	padding-left: 20px;
+}
+
+#Content {
+	padding-top: 80px;
+	padding-left: 240px;
+	padding-bottom: 20px;
+	padding-right: 20px;
+	background-color: lightblue;
+	height:auto;
+}
+
+#Footer {
+	height:40px;
+	padding-left: 240px;
+	background-color: red;
+	margin-top: -22px;
+}
+
+.table-donnees {
+	border: 1px solid black;
+	width: 100%;
+	margin-top: 10px;
+}
+
+.row-donnees {
+	border: 5px solid black;
+	background-color: lightgreen;
+	margin: 10px;
+	padding: 10px;
+}
+
+.insert-donnees {
+	border: 5px solid red;
+	background-color: green;
+	margin: 10px;
+	padding: 10px;
+}
+
+#selectmarque {
+	height: 34px;
+}
