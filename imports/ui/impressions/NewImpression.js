@@ -13,24 +13,22 @@ Template.NewImpression.events({
         const gabarit = target.gabarit.value;
         const marque = target.marque.value;
         const modele = target.modele.value;
-    	const type = target.type.value;
+    	const information = target.information.value;
         const nombretoner = Number(target.nombretoner.value);
         let active = false;
         if (target.active.value == "true") {
             active = true;
         }
-        Meteor.call('impressions.insert', gabarit, marque, modele, type, nombretoner, active);
+        Meteor.call('impressions.insert', gabarit, marque, modele, information, nombretoner, active);
         target.marque.value='';
         target.modele.value='';
-        target.type.value='';
+        target.information.value='';
         target.nombretoner.value='1';
         target.active.value='true';
         const nom = marque.toUpperCase();
-        console.log(nom + ' -- Nom de la marque à insérer en Uppercase.');
         const verification = Marques.find({nom: nom}, {limit: 1}).count()>0;
-        console.log(verification + ' -- Doublon détecté?');
         if (verification === true) {
-            throw new Meteor.Error('Cette marque existe déjà et ne sera donc pas inséré.');
+            throw new Meteor.Error('Cette marque existe déjà dans la collection et ne sera donc pas insérée.');
         }
         else {
             Meteor.call('marques.add', nom);

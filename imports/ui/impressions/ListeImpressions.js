@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Impressions } from '../../api/impressionsCollection.js';
-import { ReactiveVar } from 'meteor/reactive-var';
 
 import './ListeImpressions.html';
 import './ElementImpression.js';
@@ -18,7 +17,7 @@ Template.ListeImpressions.helpers({
 		return Impressions.find({});
 	},
 	totalCount() {
-  	return Impressions.find({ _id: {$ne: true }}).count();
+  		return Impressions.find({ _id: {$ne: true }}).count();
   },
 });
 

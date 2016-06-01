@@ -34,9 +34,9 @@
 			  <div class="col-lg-6">
 			    <div class="input-group">
 			    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
-			      	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque...">
+			    	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque...">
 			      	<div class="input-group-btn">
-				      	<select type="button" id="insert-selectmarque" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
+				      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
 			 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
 					        {{#each marques}}
 					          <option value="{{nom}}">{{nom}}</option>
@@ -53,8 +53,8 @@
 			</div>
 
 		    <div class="input-group">
-			  <span class="input-group-addon" id="sizing-addon2">Type</span>
-			  <input type="text" name="type" class="form-control" placeholder="Ajouter un type..." aria-describedby="sizing-addon2">
+			  <span class="input-group-addon" id="sizing-addon2">Information</span>
+			  <input type="text" name="information" class="form-control" placeholder="Ajouter une information..." aria-describedby="sizing-addon2">
 			</div>
 
  			<div class="row">

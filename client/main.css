@@ -8,15 +8,16 @@ html, body {
 	position:relative;
 }
 
-#Left-bar {
+#Left-part {
 	position:absolute;
 	left:0px;
 	width:220px;
 	height:100%;
+	min-height: 1000px;
 	background-color: yellow;
 }
 
-#Right-bar {
+#Right-part {
 	margin-left:220px;
 	padding-top:150px;
 }
@@ -44,6 +45,7 @@ html, body {
 	padding-right: 20px;
 	background-color: lightblue;
 	height:auto;
+	min-height: 1000px;
 }
 
 #Footer {
@@ -73,6 +75,6 @@ html, body {
 	padding: 10px;
 }
 
-#selectmarque {
+.input-group select {
 	height: 34px;
 }

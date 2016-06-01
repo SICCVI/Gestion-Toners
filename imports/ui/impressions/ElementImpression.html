@@ -10,7 +10,7 @@
 			{{modele}}
 		</td>
 		<td>
-			{{type}}
+			{{information}}
 		</td>
 		<td>
 			{{nombretoner}}
@@ -19,7 +19,11 @@
 			<input type="checkbox" name="active" checked="{{active}}" class="toggle-checked" />
 		</td>
 		<td>
-			<button type="button" class="glyphicon glyphicon-pencil" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}"></button>
+			{{ #if editMode}}
+			<button type="button" class="glyphicon glyphicon-lock" disabled></button>
+			{{else}}
+			<button type="button" class="glyphicon glyphicon-pencil toggle-editing" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}"></button>
+			{{ /if }}
 		</td>
 		<td>
 			<button class="glyphicon glyphicon-trash"></button>
@@ -38,11 +42,10 @@
 	      	{{> EditImpression}}
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="modalClose" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	        <button type="button" id="modalClose" class="btn btn-default toggle-editing" data-dismiss="modal">Fermer</button>
 	      </div>
 	    </div>
-
 	  </div>
 	</div>
-	
+
 </template>

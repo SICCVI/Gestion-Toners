@@ -25,9 +25,9 @@ ImpressionSchema = new SimpleSchema({
 		type: String,
 		label: "Modèle",
 	},
-	type: {
+	information: {
 		type: String,
-		label: "Type",
+		label: "Information",
 	},
   nombretoner: {
     type: Number,
@@ -38,9 +38,11 @@ ImpressionSchema = new SimpleSchema({
     type: Boolean,
     defaultValue: false,
     optional: true,
-    autoform: {
-      type: "hidden"
-    }
+  },
+  editMode: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true,
   },
 });
 
@@ -51,23 +53,23 @@ Meteor.methods({
     check(impressionId, String);
     Impressions.remove(impressionId);
   },
-  'impressions.insert'(gabarit, marque, modele, type, nombretoner, active) {
+  'impressions.insert'(gabarit, marque, modele, information, nombretoner, active) {
     check(gabarit, String);
     check(marque, String);
     check(modele, String);
-    check(type, String);
+    check(information, String);
     check(nombretoner, Number);
     check(active, Boolean);
     Impressions.insert({
-      gabarit, marque, modele, type, nombretoner, active,
+      gabarit, marque, modele, information, nombretoner, active,
     });
   },
-  'impressions.update'(impressionId, updateGabarit, updateMarque, updateModele, updateType, updateNombretoner, updateActive) {
+  'impressions.update'(impressionId, updateGabarit, updateMarque, updateModele, updateInformation, updateNombretoner, updateActive) {
     check(impressionId, String);
     check(updateGabarit, String);
     check(updateMarque, String);
     check(updateModele, String);
-    check(updateType, String);
+    check(updateInformation, String);
     check(updateNombretoner, Number);
     check(updateActive, Boolean);
     Impressions.update(impressionId, {
@@ -75,7 +77,7 @@ Meteor.methods({
       gabarit: updateGabarit,
       marque: updateMarque,
       modele: updateModele,
-      type: updateType,
+      type: updateInformation,
       nombretoner: updateNombretoner,
       active: updateActive
     }});
@@ -86,6 +88,14 @@ Meteor.methods({
     Impressions.update(impressionId, {
       $set: {
         active: !currentState
+      }});
+  },
+  'toggleEdit'(impressionId, currentState) {
+    check(impressionId, String);
+    check(currentState, Boolean);
+    Impressions.update(impressionId, {
+      $set: {
+        editMode: !currentState
       }});
   },
 });

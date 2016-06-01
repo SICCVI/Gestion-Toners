@@ -14,18 +14,18 @@ Template.EditImpression.events({
         const updateGabarit = target.gabarit.value;
         const updateMarque = target.marque.value;
         const updateModele = target.modele.value;
-    	const updateType = target.type.value;
+    	const updateInformation = target.information.value;
         const updateNombretoner = Number(target.nombretoner.value);
         let updateActive = false;
         if (target.active.value == "true") {
             updateActive = true;
         }
         const impressionId = this._id;
-        Meteor.call('impressions.update', impressionId, updateGabarit, updateMarque, updateModele, updateType, updateNombretoner, updateActive);
+        Meteor.call('impressions.update', impressionId, updateGabarit, updateMarque, updateModele, updateInformation, updateNombretoner, updateActive);
         const nom = updateMarque.toUpperCase();
         const verification = Marques.find({nom: nom}, {limit: 1}).count()>0;
         if (verification === true) {
-            console.log('Marque déjà existante dans la collection (ne sera pas de nouveau insérée).');
+            console.log('Marque déjà existante dans la collection et ne sera pas de nouveau insérée.');
         }
         else {
             Meteor.call('marques.add', nom);
