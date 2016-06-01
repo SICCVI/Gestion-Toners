@@ -8,41 +8,50 @@ html, body {
 	position:relative;
 }
 
-#Left-part {
+/*#Left-part {
 	position:absolute;
 	left:0px;
 	width:220px;
 	height:100%;
 	min-height: 1000px;
 	background-color: yellow;
-}
+}*/
 
-#Right-part {
+/*#Right-part {
 	margin-left:220px;
 	padding-top:150px;
-}
+}*/
 
-#SideMenu {
+/*#SideMenu {
 	position:fixed;
 	padding: 10px;
+}*/
+#menu-toggle {
+	position:fixed;
+	z-index: 999;
+	color: white;
+	margin: 10px;
+	font-size: 1.5em;
+}
+
+#menu-toggle .glyphicon:hover {
+	opacity: 0.7;
 }
 
 #Header {
 	position:fixed;
 	z-index: 1;
-	left:220px;
+	left:0px;
 	top:0px;
 	right:0px;
 	height:75px;
-	background-color: red;
-	padding-left: 20px;
+	background-color: black;
+	color: white;
+	padding-right: 20px;
+	text-align: right;
 }
 
 #Content {
-	padding-top: 80px;
-	padding-left: 240px;
-	padding-bottom: 20px;
-	padding-right: 20px;
 	background-color: lightblue;
 	height:auto;
 	min-height: 1000px;
@@ -50,9 +59,7 @@ html, body {
 
 #Footer {
 	height:40px;
-	padding-left: 240px;
 	background-color: red;
-	margin-top: -22px;
 }
 
 .table-donnees {
@@ -77,4 +84,8 @@ html, body {
 
 .input-group select {
 	height: 34px;
+}
+
+#sideMenuTitle {
+	color: white;
 }
