@@ -14,14 +14,9 @@ Template.EditImpression.events({
         const updateGabarit = target.gabarit.value;
         const updateMarque = target.marque.value;
         const updateModele = target.modele.value;
-    	const updateInformation = target.information.value;
         const updateNombretoner = Number(target.nombretoner.value);
-        let updateActive = false;
-        if (target.active.value == "true") {
-            updateActive = true;
-        }
         const impressionId = this._id;
-        Meteor.call('impressions.update', impressionId, updateGabarit, updateMarque, updateModele, updateInformation, updateNombretoner, updateActive);
+        Meteor.call('impressions.update', impressionId, updateGabarit, updateMarque, updateModele, updateNombretoner);
         const nom = updateMarque.toUpperCase();
         const verification = Marques.find({nom: nom}, {limit: 1}).count()>0;
         if (verification === true) {
@@ -30,7 +25,7 @@ Template.EditImpression.events({
         else {
             Meteor.call('marques.add', nom);
         }
-        document.getElementById('modalClose').click();
+        document.getElementById('modalClose-'+this._id).click();
     },
 });
 

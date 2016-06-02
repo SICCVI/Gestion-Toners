@@ -1,0 +1,19 @@
+<template name="ModalEditImpression">
+	<div id="ModalEdit-{{_id}}" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="toggle-editing close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Modification d'un périphérique d'impression</h4>
+	      </div>
+	      <div class="modal-body">
+	      	{{> EditImpression}}
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="modalClose-{{_id}}" class="btn btn-default toggle-editing" data-dismiss="modal">Fermer</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+</template>

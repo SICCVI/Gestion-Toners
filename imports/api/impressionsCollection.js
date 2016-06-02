@@ -25,19 +25,10 @@ ImpressionSchema = new SimpleSchema({
 		type: String,
 		label: "Modèle",
 	},
-	information: {
-		type: String,
-		label: "Information",
-	},
   nombretoner: {
     type: Number,
     label: "Nombre de toner(s)",
     min: 0,
-  },
-  active: {
-    type: Boolean,
-    defaultValue: false,
-    optional: true,
   },
   editMode: {
     type: Boolean,
@@ -53,44 +44,30 @@ Meteor.methods({
     check(impressionId, String);
     Impressions.remove(impressionId);
   },
-  'impressions.insert'(gabarit, marque, modele, information, nombretoner, active) {
+  'impressions.insert'(gabarit, marque, modele, nombretoner) {
     check(gabarit, String);
     check(marque, String);
     check(modele, String);
-    check(information, String);
     check(nombretoner, Number);
-    check(active, Boolean);
     Impressions.insert({
-      gabarit, marque, modele, information, nombretoner, active,
+      gabarit, marque, modele, information, nombretoner,
     });
   },
-  'impressions.update'(impressionId, updateGabarit, updateMarque, updateModele, updateInformation, updateNombretoner, updateActive) {
+  'impressions.update'(impressionId, updateGabarit, updateMarque, updateModele, updateNombretoner) {
     check(impressionId, String);
     check(updateGabarit, String);
     check(updateMarque, String);
     check(updateModele, String);
-    check(updateInformation, String);
     check(updateNombretoner, Number);
-    check(updateActive, Boolean);
     Impressions.update(impressionId, {
     $set: {
       gabarit: updateGabarit,
       marque: updateMarque,
       modele: updateModele,
-      type: updateInformation,
-      nombretoner: updateNombretoner,
-      active: updateActive
+      nombretoner: updateNombretoner
     }});
   },
-  'toggleActive'(impressionId, currentState) {
-    check(impressionId, String);
-    check(currentState, Boolean);
-    Impressions.update(impressionId, {
-      $set: {
-        active: !currentState
-      }});
-  },
-  'toggleEdit'(impressionId, currentState) {
+  'toggleEditImpression'(impressionId, currentState) {
     check(impressionId, String);
     check(currentState, Boolean);
     Impressions.update(impressionId, {

@@ -1,0 +1,24 @@
+<template name="ListeSites">
+	<h3>Liste des sites ({{totalCount}})</h3>
+	
+	<button type="button" class="btn btn-primary new-site" data-toggle="modal" data-target="#ModalNew">Ajouter un nouveau site</button>
+	{{> ModalNewSite}}
+	<section class="sites">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<tr><th>Nom</th><th>Adresse</th><th>Code Postal</th><th>Ville</th><th>Téléphone</th><th></th><th></th></tr>
+				
+				{{#each sites}}
+					<tr class="row-donnees">
+					{{> ElementSite}}
+					</tr>
+				{{/each}}			
+			</table>
+			{{#each sites}}
+				{{> ModalEditSite}}
+			{{/each}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+</template>

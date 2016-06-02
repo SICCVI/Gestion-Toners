@@ -2,74 +2,45 @@
 	<div class="insert-donnee">
  		<form class="new-impression">
 
- 			<div class="row">
-			  <div class="col-lg-6">
-			    <div class="input-group">
- 					<span class="input-group-addon" id="sizing-addon2">Gabarit</span>
-					<select type="button" id="selectgabarit" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="gabarit">
-		 		    	<option value="Imprimante" selected>Imprimante</option>
-				        <option value="Photocopieur">Photocopieur</option>
-				    </select>
-		    	</div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
+		    <div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Gabarit</span>
+				<select type="button" id="selectgabarit" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="gabarit">
+	 		    	<option value="Imprimante" selected>Imprimante</option>
+			        <option value="Photocopieur">Photocopieur</option>
+			    </select>
+	    	</div><!-- /input-group -->
 
- 			<div class="row">
-			  <div class="col-lg-6">
-			    <div class="input-group">
- 					<span class="input-group-addon" id="sizing-addon2">Nombre de toner(s)</span>
-					<select type="button" id="selectnombretoner" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="nombretoner">
-		 		    	<option value="1">1</option>
-				        <option value="2">2</option>
-		 		    	<option value="3">3</option>
-				        <option value="4">4</option>
-		 		    	<option value="5">5</option>
-				        <option value="6">6</option>
-				    </select>
-			    </div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
+		    <div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Nombre de toner(s)</span>
+				<select type="button" id="selectnombretoner" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="nombretoner">
+	 		    	<option value="1">1</option>
+			        <option value="2">2</option>
+	 		    	<option value="3">3</option>
+			        <option value="4">4</option>
+	 		    	<option value="5">5</option>
+			        <option value="6">6</option>
+			    </select>
+		    </div><!-- /input-group -->
 
-			<div class="row">
-			  <div class="col-lg-6">
-			    <div class="input-group">
-			    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
-			    	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque...">
-			      	<div class="input-group-btn">
-				      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
-			 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
-					        {{#each marques}}
-					          <option value="{{nom}}">{{nom}}</option>
-					        {{/each}}
-					    </select>
-			      	</div><!-- /btn-group -->
-			    </div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
+		    <div class="input-group">
+		    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
+		    	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque..." required>
+		      	<div class="input-group-btn">
+			      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
+		 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
+				        {{#each marques}}
+				          <option value="{{nom}}">{{nom}}</option>
+				        {{/each}}
+				    </select>
+		      	</div><!-- /btn-group -->
+		    </div><!-- /input-group -->
 
 		    <div class="input-group">
 			  <span class="input-group-addon" id="sizing-addon2">Modèle</span>
-			  <input type="text" name="modele" class="form-control" placeholder="Ajouter un modèle..." aria-describedby="sizing-addon2">
+			  <input type="text" name="modele" class="form-control" placeholder="Ajouter un modèle..." aria-describedby="sizing-addon2" required>
 			</div>
 
-		    <div class="input-group">
-			  <span class="input-group-addon" id="sizing-addon2">Information</span>
-			  <input type="text" name="information" class="form-control" placeholder="Ajouter une information..." aria-describedby="sizing-addon2">
-			</div>
-
- 			<div class="row">
-			  <div class="col-lg-6">
-			    <div class="input-group">
- 					<span class="input-group-addon" id="sizing-addon2">Fiche active</span>
-					<select type="button" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="active">
-		 		    	<option value="true">Oui</option>
-				        <option value="false">Non</option>
-				    </select>
-		    	</div><!-- /input-group -->
-			  </div><!-- /.col-lg-6 -->
-			</div><!-- /.row -->
-
-	 		<input class="btn btn-primary" type="submit" name="valider">
+	 		<button id="SubmitNew" class="btn btn-success" type="submit">Ajouter</button>
 	 	</form>
 	</div>
 </template>

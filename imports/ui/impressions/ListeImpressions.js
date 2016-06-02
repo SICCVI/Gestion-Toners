@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Impressions } from '../../api/impressionsCollection.js';
 
 import './ListeImpressions.html';
+import './ModalNewImpression.html';
 import './ElementImpression.js';
 import './NewImpression.js';
 import './EditImpression.js';

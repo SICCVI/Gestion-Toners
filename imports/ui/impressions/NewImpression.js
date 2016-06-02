@@ -13,18 +13,11 @@ Template.NewImpression.events({
         const gabarit = target.gabarit.value;
         const marque = target.marque.value;
         const modele = target.modele.value;
-    	const information = target.information.value;
         const nombretoner = Number(target.nombretoner.value);
-        let active = false;
-        if (target.active.value == "true") {
-            active = true;
-        }
-        Meteor.call('impressions.insert', gabarit, marque, modele, information, nombretoner, active);
+        Meteor.call('impressions.insert', gabarit, marque, modele, nombretoner);
         target.marque.value='';
         target.modele.value='';
-        target.information.value='';
         target.nombretoner.value='1';
-        target.active.value='true';
         const nom = marque.toUpperCase();
         const verification = Marques.find({nom: nom}, {limit: 1}).count()>0;
         if (verification === true) {

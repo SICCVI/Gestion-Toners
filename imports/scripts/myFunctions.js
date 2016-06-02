@@ -9,6 +9,15 @@ editCheck = function (field, original, edit) {
 	    $(field).css({'background-color' : 'white'});
 	}
 	else if (original !== edit) {
-	    $(field).css({'background-color' : 'orange'});
+	    $(field).css({'background-color' : '#F8C471'});
 	}
 }
+
+/*editResetCheck = function () {
+	$('#aqw').('click', function() {
+		$('#azerty').css({'background-color' : 'red'});
+	console.log('aaa');
+}
+	})*/
+	
+	

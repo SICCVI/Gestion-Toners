@@ -14,10 +14,12 @@ Toners.allow({
 
 TonerSchema = new SimpleSchema({
   marque: {
-    type: String
+    type: String,
+    label: "Marque",
   },
-  reference: {
-    type: String
+  referenceC: {
+    type: String,
+    label: "Référence constructeur",
   },
 /*  couleur: {
     type: String,

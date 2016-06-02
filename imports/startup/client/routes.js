@@ -4,6 +4,8 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '../../ui/layouts/MainLayout.js';
 
 import '../../ui/impressions/ListeImpressions.js';
+import '../../ui/contacts/ListeContacts.js';
+import '../../ui/sites/ListeSites.js';
 /*import '../../ui/toners/ListeToners.js';*/
 
 FlowRouter.route('/', {
@@ -20,12 +22,12 @@ FlowRouter.route('/impression', {
 	}
 });
 
-FlowRouter.route('/impression/:id', {
+/*FlowRouter.route('/impression/:id', {
 	name: 'impression',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'DetailImpression'});
 	}
-});
+});*/
 
 /*FlowRouter.route('/marque', {
 	name: 'marque',
@@ -54,3 +56,17 @@ FlowRouter.route('/toner/:id', {
 		BlazeLayout.render('MainLayout', {main: 'DetailToner'});
 	}
 });*/
+
+FlowRouter.route('/contact', {
+	name: 'contact',
+	action() {
+		BlazeLayout.render('MainLayout', {main: 'ListeContacts'});
+	}
+});
+
+FlowRouter.route('/site', {
+	name: 'site',
+	action() {
+		BlazeLayout.render('MainLayout', {main: 'ListeSites'});
+	}
+});

@@ -1,0 +1,24 @@
+<template name="ListeContacts">
+	<h3>Liste des contacts ({{totalCount}})</h3>
+	
+	<button type="button" class="btn btn-primary new-contact" data-toggle="modal" data-target="#ModalNew">Ajouter un nouveau contact</button>
+	{{> ModalNewContact}}
+	<section class="contacts">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<tr><th>Nom</th><th>Prénom</th><th>Téléphone</th><th></th><th></th></tr>
+				
+				{{#each contacts}}
+					<tr class="row-donnees">
+					{{> ElementContact}}
+					</tr>
+				{{/each}}			
+			</table>
+			{{#each contacts}}
+				{{> ModalEditContact}}
+			{{/each}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+</template>

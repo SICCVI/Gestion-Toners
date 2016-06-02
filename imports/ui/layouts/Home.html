@@ -1,4 +1,22 @@
 <template name="Home">
   <h3><i>HOME</i></h3>
-<a href="/impression"><button type="button" class="btn btn-info">Impressions</button></a>
+<br/>
+
+
+<button id="aqw">AQW</button>
+<input type="texte" id="azerty">
+<div id="poiuy">aaaaaaaaaaaaaaaaaaa aaaaaaaaaaaaaaaa aaaaaaaaaaaa</div>
+
+<script type="text/javascript">
+
+$(document).ready(function() {
+    $("#aqw").click(function(){
+		$('#azerty').css({'background-color' : 'red'});
+		$('#poiuy').css({'background-color' : 'yellow'});
+		console.log('KLM');
+    }); 
+});
+
+</script>
+
 </template>

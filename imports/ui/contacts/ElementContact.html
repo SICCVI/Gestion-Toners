@@ -1,25 +1,22 @@
-<template name="ElementImpression">
+<template name="ElementContact">
 	<!-- <tr class="row-donnees"> -->
 		<td>
-			{{gabarit}}
+			{{nom}}
 		</td> 
 		<td>
-			{{marque}}
+			{{prenom}}
 		</td> 
 		<td>
-			{{modele}}
+			{{telephone}}
 		</td>
-		<td>
-			{{nombretoner}}
-		</td>
-		<td>
+		<td class="td-icon">
 			{{ #if editMode}}
 			<button type="button" class="glyphicon glyphicon-lock" disabled></button>
 			{{else}}
 			<button type="button" class="glyphicon glyphicon-pencil toggle-editing" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}"></button>
 			{{ /if }}
 		</td>
-		<td>
+		<td class="td-icon">
 			<button class="glyphicon glyphicon-trash"></button>
 		</td>
 <!-- 	</tr> -->

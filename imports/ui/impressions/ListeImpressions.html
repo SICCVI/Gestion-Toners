@@ -2,37 +2,23 @@
 	<h3>Liste des périphériques d'impressions ({{totalCount}})</h3>
 	
 	<button type="button" class="btn btn-primary new-impression" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle impression</button>
-
+	{{> ModalNewImpression}}
 	<section class="impressions">
 		{{#if Template.subscriptionsReady}}
 			<table class="table-donnees">
-				<tr><th>Gabarit</th><th>Marque</th><th>Modèle</th><th>Information</th><th>Nombre de toner(s)</th><th>Active</th><th></th><th></th></tr>
+				<tr><th>Gabarit</th><th>Marque</th><th>Modèle</th><th>Nombre de toner(s)</th><th></th><th></th></tr>
+				
 				{{#each impressions}}
+					<tr class="row-donnees">
 					{{> ElementImpression}}
-				{{/each}}
+					</tr>
+				{{/each}}			
 			</table>
+			{{#each impressions}}
+				{{> ModalEditImpression}}
+			{{/each}}
 		{{else}}
 			<p>En attente</p>
 		{{/if}}
 	</section>
-
-	<div id="ModalNew" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-
-	    <div class="modal-content">
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        <h4 class="modal-title">Ajout d'un nouveau périphérique d'impression</h4>
-	      </div>
-	      <div class="modal-body">
-	        {{> NewImpression}}
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" id="closeModalNew" class="btn btn-default" data-dismiss="modal">Fermer</button>
-	      </div>
-	    </div>
-
-	  </div>
-	</div>
-
 </template>

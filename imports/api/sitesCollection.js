@@ -32,6 +32,11 @@ SiteSchema = new SimpleSchema({
     type: String,
     label: "Téléphone",
   },
+  editMode: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true,
+  },
 });
 
 Sites.attachSchema( SiteSchema );
@@ -50,5 +55,29 @@ Meteor.methods({
     Sites.insert({
       nom, adresse, codepostal, ville, telephone,
     });
+  },
+  'sites.update'(siteId, updateNom, updateAdresse, updateCodepostal, updateVille, updateTelephone) {
+    check(siteId, String);
+    check(updateNom, String);
+    check(updateAdresse, String);
+    check(updateCodepostal, String);
+    check(updateVille, String);
+    check(updateTelephone, String);
+    Sites.update(siteId, {
+    $set: {
+      nom: updateNom,
+      adresse: updateAdresse,
+      codepostal: updateCodepostal,
+      ville: updateVille,
+      telephone: updateTelephone,
+    }});
+  },
+  'toggleEditSite'(siteId, currentState) {
+    check(siteId, String);
+    check(currentState, Boolean);
+    Sites.update(siteId, {
+      $set: {
+        editMode: !currentState
+      }});
   },
 });

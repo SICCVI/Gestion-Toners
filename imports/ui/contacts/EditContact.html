@@ -1,0 +1,33 @@
+<template name="EditContact">
+	<div class="edit-donnee">
+ 		<form id="editForm-{{_id}}" class="update-contact">
+
+		    <div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Nom</span>
+			  <input type="text" id="editNom-{{_id}}" name="nom" class="form-control edit-{{_id}}" value="{{nom}}" aria-describedby="sizing-addon2" onChange="editCheck('#editNom-{{_id}}', '{{nom}}', this.value);" required >
+			</div>
+
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Prénom</span>
+			  <input type="text" id="editPrenom-{{_id}}" name="prenom" class="form-control edit-{{_id}}" value="{{prenom}}" aria-describedby="sizing-addon2" onChange="editCheck('#editPrenom-{{_id}}', '{{prenom}}', this.value);" required>
+			</div>
+
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Téléphone</span>
+			  <input type="text" id="editTelephone-{{_id}}" name="telephone" class="form-control edit-{{_id}}" value="{{telephone}}" aria-describedby="sizing-addon2" onChange="editCheck('#editTelephone-{{_id}}', '{{telephone}}', this.value);" required>
+			</div>
+			
+			<button id="SubmitEdit-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
+
+	 	</form>
+	</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#SubmitEdit-{{_id}}").click(function(){
+		$('.edit-{{_id}}').css({'background-color' : 'white'});
+    }); 
+});
+</script>
+
+</template>

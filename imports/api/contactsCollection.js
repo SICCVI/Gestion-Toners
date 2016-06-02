@@ -20,10 +20,15 @@ ContactSchema = new SimpleSchema({
     type: String,
     label: "Prénom",
   },
-	telephone: {
-		type: String,
-		label: "Téléphone",
-	},
+  telephone: {
+    type: String,
+    label: "Téléphone",
+  },
+  editMode: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true,
+  },
 });
 
 Contacts.attachSchema( ContactSchema );
@@ -40,5 +45,25 @@ Meteor.methods({
     Contacts.insert({
       nom, prenom, telephone,
     });
+  },
+  'contacts.update'(contactId, updateNom, updatePrenom, updateTelephone) {
+    check(contactId, String);
+    check(updateNom, String);
+    check(updatePrenom, String);
+    check(updateTelephone, String);
+    Contacts.update(contactId, {
+    $set: {
+      nom: updateNom,
+      prenom: updatePrenom,
+      telephone: updateTelephone,
+    }});
+  },
+  'toggleEditContact'(contactId, currentState) {
+    check(contactId, String);
+    check(currentState, Boolean);
+    Contacts.update(contactId, {
+      $set: {
+        editMode: !currentState
+      }});
   },
 });
