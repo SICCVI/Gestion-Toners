@@ -13,34 +13,54 @@ Toners.allow({
 
 
 TonerSchema = new SimpleSchema({
-  marque: {
+  libelle: {
     type: String,
     label: "Marque",
   },
+  constructeur: {
+    type: String,
+    label: "Marque",
+  }
   referenceC: {
     type: String,
     label: "Référence constructeur",
   },
-/*  couleur: {
-    type: String,
-    optional: true,
+  referenceF: {
+    type: [ReferenceFournisseur],
+    label: "Référence fournisseur",
   },
-  stock: {
+  couleur: {
     type: String,
-    optional: true,
+    label: "Couleur",
   },
-  statut: {
-    type: String,
-    optional: true,
+  quantité: {
+    type: Number,
+    label: "Quantité",
   },
-  active: {
+  seuil: {
+    type: Number,
+    label: "Seuil",
+  },
+  alerte: {
     type: Boolean,
     defaultValue: false,
     optional: true,
-    autoform: {
-      type: "hidden"
-    }
-  },*/
+    label: "Alerte",
+  },
+  editMode: {
+    type: Boolean,
+    defaultValue: false,
+    optional: true,
+  },
+});
+
+ReferenceFournisseur = new SimpleSchema({
+  reference: {
+    type: String
+  },
+  idfournisseur: {
+    type: String
+  }
 });
 
 Toners.attachSchema( TonerSchema );
@@ -50,11 +70,16 @@ Meteor.methods({
     check(tonerId, String);
     Toners.remove(tonerId);
   },
- 'toners.insert'(marque, reference) {
-    check(marque, String);
-    check(reference, String);
+ 'toners.insert'() {
+    check(libelle, String);
+    check(constructeur, String);
+    check(referenceC, String);
+    check(referenceF, String);
+    check(couleur, String);
+    check(quantité, Number);
+    check(alerte, Boolean);
     Toners.insert({
-      marque, reference,
+      libelle, constructeur, referenceC, referenceF, couleur, quantite, alerte,
     });
   },
 });
