@@ -2,10 +2,10 @@ import { Template } from 'meteor/templating';
 import { Impressions } from '../../api/impressionsCollection.js';
 
 import './ListeImpressions.html';
-import './ModalNewImpression.html';
+
+import './ModalNewImpression.js';
 import './ElementImpression.js';
 import './NewImpression.js';
-import './EditImpression.js';
 
 Template.ListeImpressions.onCreated(function() {
   this.autorun(() => {
@@ -15,7 +15,7 @@ Template.ListeImpressions.onCreated(function() {
 
 Template.ListeImpressions.helpers({
 	impressions: ()=> {
-		return Impressions.find({});
+		return Impressions.find({}, {sort: { gabarit: 1 }});  
 	},
 	totalCount() {
   		return Impressions.find({ _id: {$ne: true }}).count();

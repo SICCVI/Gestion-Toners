@@ -37,7 +37,7 @@ Template.NewImpression.onCreated(function() {
 
 Template.NewImpression.helpers({
     marques: ()=> {
-        return Marques.find({});
+        return Marques.find({}, {sort: { nom: 1 }}); 
     },
 });
 

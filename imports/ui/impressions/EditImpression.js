@@ -37,7 +37,7 @@ Template.EditImpression.onCreated(function() {
 
 Template.EditImpression.helpers({
     marques: ()=> {
-        return Marques.find({});
+        return Marques.find({}, {sort: { nom: 1 }}); 
     },
 });
 

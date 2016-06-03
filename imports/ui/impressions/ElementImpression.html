@@ -13,6 +13,12 @@
 			{{nombretoner}}
 		</td>
 		<td>
+			{{#each toner}}
+				<button type="button" id="{{tonerid}}" class="glyphicon glyphicon-minus remove-toner" data-id="{{../_id}}"></button> - {{tonerid}} - {{../_id}}<br/>
+			{{/each}}
+			<button type="button" class="glyphicon glyphicon-plus add-toner" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddToner-{{_id}}"></button>
+		</td>
+		<td>
 			{{ #if editMode}}
 			<button type="button" class="glyphicon glyphicon-lock" disabled></button>
 			{{else}}

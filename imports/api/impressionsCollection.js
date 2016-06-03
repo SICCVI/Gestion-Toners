@@ -11,6 +11,13 @@ Impressions.allow({
   update:function(){return true;},
 });
 
+
+TonerId = new SimpleSchema({
+  tonerid: {
+    type: String
+  },
+});
+
 ImpressionSchema = new SimpleSchema({
   gabarit: {
     type: String,
@@ -29,6 +36,11 @@ ImpressionSchema = new SimpleSchema({
     type: Number,
     label: "Nombre de toner(s)",
     min: 0,
+  },
+  toner: {
+    type: [TonerId],
+    label: "Toners",
+    optional: true,
   },
   editMode: {
     type: Boolean,
@@ -50,7 +62,7 @@ Meteor.methods({
     check(modele, String);
     check(nombretoner, Number);
     Impressions.insert({
-      gabarit, marque, modele, information, nombretoner,
+      gabarit, marque, modele, nombretoner,
     });
   },
   'impressions.update'(impressionId, updateGabarit, updateMarque, updateModele, updateNombretoner) {
@@ -74,5 +86,25 @@ Meteor.methods({
       $set: {
         editMode: !currentState
       }});
+  },
+  'impressions.addtoner'(impressionId, tonerId) {
+    check(tonerId, String);
+    Impressions.update(impressionId, {
+      $addToSet: {
+        toner : {
+          tonerid: tonerId
+        }
+      }
+    });
+  },
+  'impressions.removetoner'(impressionId, tonerId) {
+    check(tonerId, String);
+    Impressions.update(impressionId, {
+      $pull: {
+        toner : {
+          tonerid: tonerId
+        }
+      }
+    });
   },
 });

@@ -1,4 +1,5 @@
 import './ModalEditImpression.html';
+import './EditImpression.js';
 import { Template } from 'meteor/templating';
 
 Template.ModalEditImpression.onCreated(function(){
