@@ -1,33 +1,33 @@
 <template name="ElementImpression">
-	<!-- <tr class="row-donnees"> -->
-		<td>
-			{{gabarit}}
-		</td> 
-		<td>
-			{{marque}}
-		</td> 
-		<td>
-			{{modele}}
-		</td>
-		<td>
-			{{nombretoner}}
-		</td>
-		<td>
-			{{#each toner}}
-				<button type="button" id="{{tonerid}}" class="glyphicon glyphicon-minus remove-toner" data-id="{{../_id}}"></button> - {{tonerid}} - {{../_id}}<br/>
-			{{/each}}
-			<button type="button" class="glyphicon glyphicon-plus add-toner" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddToner-{{_id}}"></button>
-		</td>
-		<td>
-			{{ #if editMode}}
-			<button type="button" class="glyphicon glyphicon-lock" disabled></button>
-			{{else}}
-			<button type="button" class="glyphicon glyphicon-pencil toggle-editing" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}"></button>
-			{{ /if }}
-		</td>
-		<td>
-			<button class="glyphicon glyphicon-trash"></button>
-		</td>
-<!-- 	</tr> -->
+    <!-- <tr class="row-donnees"> -->
+    <td>
+        {{gabarit}}
+    </td>
+    <td>
+        {{marque}}
+    </td>
+    <td>
+        {{modele}}
+    </td>
+    <td>
+        {{nombretoner}}
+    </td>
+    <td>
+        {{#each toner}}
+            <button id="{{tonerid}}" type="button" class="glyphicon glyphicon-minus remove-toner" data-idtoner="{{../_id}}"></button> - {{tonerid}} - {{../_id}}<br/>
+        {{/each}}
+        <button type="button" class="glyphicon glyphicon-plus add-toner" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddToner-{{_id}}"></button>
+    </td>
+<td>
+{{ #if editMode}}
+    <button type="button" class="glyphicon glyphicon-lock" disabled></button>
+{{else}}
+    <button type="button" class="glyphicon glyphicon-pencil toggle-editing" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}"></button>
+{{ /if }}
+</td>
+    <td>
+        <button class="glyphicon glyphicon-trash"></button>
+    </td>
+    <!-- 	</tr> -->
 </template>
 
