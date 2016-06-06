@@ -1,23 +1,35 @@
 <template name="ListeImpressions">
-	<h3>Liste des périphériques d'impressions ({{totalCount}})</h3>
-	
-	<button type="button" class="btn btn-primary new-impression" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle impression</button>
-	{{> ModalNewImpression}}
+	<h3>Liste des périphériques d'impressions ( {{totalCount}} )</h3>
+
+	<div class="insert-button">
+		<span class="to-left"><button type="button" class="btn btn-primary new-impression" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle impression</button></span>
+		{{> ModalNewImpression}}
+	</div>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=impressionsIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+
+
 	<section class="impressions">
 		{{#if Template.subscriptionsReady}}
-			<table class="table-donnees">
-				<tr><th>Gabarit</th><th>Marque</th><th>Modèle</th><th>Nombre de toner(s)</th><th>Toners</th><th></th><th></th></tr>
-				
+			
+				<table class="table-donnees">
+					<tr><th class="colonne-icone-impression"></th><th class="colonne-impression">Gabarit</th><th class="colonne-impression">Marque</th><th class="colonne-impression">Modèle</th><th class="colonne-impression">Nombre de toner(s)</th><th class="colonne-impression">Toners</th><th class="colonne-icone-impression"></th></tr>
+					{{#EasySearch.Each index=impressionsIndex }}
+						<tr class="row-donnees">
+						{{> ElementImpression}}
+						</tr>
+					{{/EasySearch.Each}}			
+				</table>
 				{{#each impressions}}
-					<tr class="row-donnees">
-					{{> ElementImpression}}
-					</tr>
-				{{/each}}			
-			</table>
-			{{#each impressions}}
-				{{> ModalEditImpression}}
-				{{> ModalAddToner}}
-			{{/each}}
+					{{> ModalEditImpression}}
+					{{> ModalAddToner}}
+				{{/each}}
+
 		{{else}}
 			<p>En attente</p>
 		{{/if}}

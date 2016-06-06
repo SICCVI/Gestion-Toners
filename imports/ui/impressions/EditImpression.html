@@ -4,7 +4,7 @@
 
 		    <div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Gabarit</span>
-				<select type="button" id="editGabarit-{{_id}}" class="btn btn-default dropdown-toggle formselect edit-{{_id}}" aria-haspopup="true" aria-expanded="false" name="gabarit" value="{{gabarit}}" onChange="editCheck('#editGabarit-{{_id}}', '{{gabarit}}', this.value);">
+				<select type="button" id="editGabarit-{{_id}}" class="btn btn-default dropdown-toggle formselect edit-impression-{{_id}}" aria-haspopup="true" aria-expanded="false" name="gabarit" value="{{gabarit}}" onChange="editCheck('#editGabarit-{{_id}}', '{{gabarit}}', this.value);">
 	 		    	<option value="Imprimante" selected="{{compare gabarit 'Imprimante'}}">Imprimante</option>
 			        <option value="Photocopieur" selected="{{compare gabarit 'Photocopieur'}}">Photocopieur</option>
 			    </select>
@@ -12,7 +12,7 @@
 
 		    <div class="input-group">
 					<span class="input-group-addon" id="sizing-addon2">Nombre de toner(s)</span>
-				<select type="button" id="editNombretoner-{{_id}}" class="btn btn-default dropdown-toggle formselect edit-{{_id}}" aria-haspopup="true" aria-expanded="false" name="nombretoner" onChange="editCheck('#editNombretoner-{{_id}}', '{{nombretoner}}', this.value);">
+				<select type="button" id="editNombretoner-{{_id}}" class="btn btn-default dropdown-toggle formselect edit-impression-{{_id}}" aria-haspopup="true" aria-expanded="false" name="nombretoner" onChange="editCheck('#editNombretoner-{{_id}}', '{{nombretoner}}', this.value);">
 	 		    	<option value="1" selected="{{compare nombretoner 1}}">1</option>
 			        <option value="2" selected="{{compare nombretoner 2}}">2</option>
 	 		    	<option value="3" selected="{{compare nombretoner 3}}">3</option>
@@ -24,9 +24,9 @@
 
 		    <div class="input-group">
 		    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
-		      	<input id="editMarque-{{_id}}" type="text" name="marque" class="form-control edit-{{_id}}" aria-label="..." value="{{marque}}" onChange="editCheck('#editMarque-{{_id}}', '{{marque}}', this.value);" required>
+		      	<input id="editMarque-{{_id}}" type="text" name="marque" class="form-control edit-impression-{{_id}}" aria-label="..." value="{{marque}}" onChange="editCheck('#editMarque-{{_id}}', '{{marque}}', this.value);" required>
 		      	<div class="input-group-btn">
-			      	<select type="button" id="select-editMarque-{{_id}}" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('select-editMarque-{{_id}}', 'editMarque-{{_id}}')">
+			      	<select type="button" id="select-editMarque-{{_id}}" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('select-editMarque-{{_id}}', 'editMarque-{{_id}}'); editCheck('#editMarque-{{_id}}', '{{marque}}', this.value);">
 		 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
 				        {{#each marques}}
 				          <option value="{{nom}}">{{nom}}</option>
@@ -37,7 +37,7 @@
 
 		    <div class="input-group">
 			  <span class="input-group-addon" id="sizing-addon2">Modèle</span>
-			  <input type="text" id="editModele-{{_id}}" name="modele" class="form-control edit-{{_id}}" value="{{modele}}" aria-describedby="sizing-addon2" onChange="editCheck('#editModele-{{_id}}', '{{modele}}', this.value);" required>
+			  <input type="text" id="editModele-{{_id}}" name="modele" class="form-control edit-impression-{{_id}}" value="{{modele}}" aria-describedby="sizing-addon2" onChange="editCheck('#editModele-{{_id}}', '{{modele}}', this.value);" required>
 			</div>
 
 			<button id="SubmitEdit-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
@@ -48,7 +48,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $("#SubmitEdit-{{_id}}").click(function(){
-		$('.edit-{{_id}}').css({'background-color' : 'white'});
+		$('.edit-impression-{{_id}}').css({'background-color' : 'white'});
     }); 
 });
 </script>

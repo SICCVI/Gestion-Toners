@@ -21,12 +21,6 @@ Template.ListeImpressions.helpers({
 	totalCount() {
   		return Impressions.find({ _id: {$ne: true }}).count();
   	},
-  	impressionsIndex: function () {
-	    return ImpressionsIndex;   
-	},
-	resultsCount: function () {
-      return ImpressionsIndex.getComponentDict().get('count');
-    },
 });
 
 Template.ListeImpressions.events({

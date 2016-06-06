@@ -10,9 +10,10 @@ Template.AddToner.events({
         const target = event.target;
         const addToner = target.toner.value;
         const impressionId = this._id;
-       	console.log('add - ' + impressionId);
-        Meteor.call('impressions.addtoner', impressionId, addToner);
-        target.toner.value = '';
-        target.toner.focus();
+        if (addToner !== "") {
+            Meteor.call('impressions.addtoner', impressionId, addToner);
+        }
+        target.toner.value = "";
+        target.toner.focus();  
     },
 });

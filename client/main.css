@@ -83,6 +83,14 @@ html, body {
 	padding: 10px;
 }
 
+.colonne-impression {
+	width: 18%;
+}
+
+.colonne-icone-impression {
+	width: 5%;
+}
+
 .td-icon {
 	width: 40px;
 }
@@ -108,4 +116,33 @@ html, body {
 
 .modal-body {
 	background-color: #E5EFF1;
+}
+
+.insert-button {
+
+}
+
+.to-right {
+	float: right;
+}
+
+.to-left {
+	float: left;
+}
+
+.search-section {
+	margin-top: 10px;
+}
+
+.search-section .glyphicon {
+	top: 0px;
+}
+
+.search-section input {
+	height: 28px;
+}
+
+.results-count {
+	font-size: 11px;
+	margin-top: -10px;
 }

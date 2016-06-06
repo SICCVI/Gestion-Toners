@@ -17,20 +17,12 @@ Template.ElementImpression.events({
 	},
 	'click .remove-toner': function (event) {
 		event.preventDefault();
-		// const target = event.target;
-		// const id = target.tonerid.value;
-		// const test = this.tonerid;
-		// console.log('tonerid - ' + test);
-
+		const target = event.target;
+		const idImpression = target.getAttribute('data-id');
+		//const idImpression2 = target.dataset.id;
 		console.log("Id Toner :", this.tonerid);
-		const idImpression = event.target.getAttribute('data-id');
-		console.log("Id impression : ", idImpression);
-		console.log("Id impression Methode 2: ",event.target.dataset.idtoner);
-
-		// const aqw = $(test).data("id");
-		// const zsx = $(test).attr("data-id");
-		// console.log(aqw);
-		// console.log(zsx);
-		// Meteor.call('impressions.removetoner', id, this.tonerid);
+		console.log("Id Impression : ", idImpression);
+		//console.log("Id impression Methode 2: ", target.dataset.id);
+		Meteor.call('impressions.removetoner', idImpression, this.tonerid);
 	},
 });

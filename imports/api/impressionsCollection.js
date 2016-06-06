@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
+import { EasySearch } from 'meteor/easy:search';
 
 export const Impressions = new Mongo.Collection('impressions');
 
@@ -107,4 +108,10 @@ Meteor.methods({
       }
     });
   },
+});
+
+ImpressionsIndex = new EasySearch.Index({
+  collection: Impressions,
+  fields: ['gabarit', 'marque', 'modele'],
+  engine: new EasySearch.Minimongo()
 });
