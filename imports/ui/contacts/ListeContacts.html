@@ -1,18 +1,33 @@
 <template name="ListeContacts">
-	<h3>Liste des contacts ({{totalCount}})</h3>
-	
-	<button type="button" class="btn btn-primary new-contact" data-toggle="modal" data-target="#ModalNew">Ajouter un nouveau contact</button>
-	{{> ModalNewContact}}
+	<h3>Liste des contacts ({{ totalCount }})</h3>
+
+	<div class="insert-button">
+		<span class="to-left"><button type="button" class="btn btn-primary new-contact" data-toggle="modal" data-target="#ModalNew">Ajouter une nouveau contact</button></span>
+		{{> ModalNewContact}}
+	</div>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=contactsIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
 	<section class="contacts">
 		{{#if Template.subscriptionsReady}}
 			<table class="table-donnees">
-				<tr><th>Nom</th><th>Prénom</th><th>Téléphone</th><th></th><th></th></tr>
+				<tr>
+					<th class="colonne-icone"></th>
+					<th class="colonne-contact">Nom</th>
+					<th class="colonne-contact">Prénom</th>
+					<th class="colonne-contact">Téléphone</th>
+					<th class="colonne-icone"></th>
+				</tr>
 				
-				{{#each contacts}}
+				{{#EasySearch.Each index=contactsIndex }}
 					<tr class="row-donnees">
 					{{> ElementContact}}
 					</tr>
-				{{/each}}			
+				{{/EasySearch.Each}}			
 			</table>
 			{{#each contacts}}
 				{{> ModalEditContact}}

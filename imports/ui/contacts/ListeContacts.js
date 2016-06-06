@@ -19,7 +19,13 @@ Template.ListeContacts.helpers({
 	},
 	totalCount() {
   		return Contacts.find({ _id: {$ne: true }}).count();
-  },
+  	},
+    contactsIndex: function () {
+	    return ContactsIndex;   
+	},
+	resultsCount: function () {
+      return ContactsIndex.getComponentDict().get('count');
+    },
 });
 
 Template.ListeContacts.events({

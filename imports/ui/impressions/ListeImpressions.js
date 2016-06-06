@@ -6,7 +6,6 @@ import './ListeImpressions.html';
 import './ModalNewImpression.js';
 import './ElementImpression.js';
 import './NewImpression.js';
-import './RechercheImpression.js';
 
 Template.ListeImpressions.onCreated(function() {
   this.autorun(() => {

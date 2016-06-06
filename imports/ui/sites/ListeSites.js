@@ -19,7 +19,13 @@ Template.ListeSites.helpers({
 	},
 	totalCount() {
   		return Sites.find({ _id: {$ne: true }}).count();
-  },
+  	},
+    sitesIndex: function () {
+	    return SitesIndex;   
+	},
+	resultsCount: function () {
+      return SitesIndex.getComponentDict().get('count');
+    },
 });
 
 Template.ListeSites.events({

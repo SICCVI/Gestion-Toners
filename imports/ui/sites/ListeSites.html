@@ -1,18 +1,35 @@
 <template name="ListeSites">
-	<h3>Liste des sites ({{totalCount}})</h3>
+	<h3>Liste des sites ({{ totalCount }})</h3>
 	
-	<button type="button" class="btn btn-primary new-site" data-toggle="modal" data-target="#ModalNew">Ajouter un nouveau site</button>
-	{{> ModalNewSite}}
+	<div class="insert-button">
+		<span class="to-left"><button type="button" class="btn btn-primary new-site" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle site</button></span>
+		{{> ModalNewSite}}
+	</div>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=sitesIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
 	<section class="sites">
 		{{#if Template.subscriptionsReady}}
 			<table class="table-donnees">
-				<tr><th>Nom</th><th>Adresse</th><th>Code Postal</th><th>Ville</th><th>Téléphone</th><th></th><th></th></tr>
+				<tr>
+					<th class="colonne-icone"></th>
+					<th class="colonne-site">Nom</th>
+					<th class="colonne-site">Adresse</th>
+					<th class="colonne-site">Code Postal</th>
+					<th class="colonne-site">Ville</th>
+					<th class="colonne-site">Téléphone</th>
+					<th class="colonne-icone"></th>
+				</tr>
 				
-				{{#each sites}}
+				{{#EasySearch.Each index=sitesIndex }}
 					<tr class="row-donnees">
 					{{> ElementSite}}
 					</tr>
-				{{/each}}			
+				{{/EasySearch.Each}}		
 			</table>
 			{{#each sites}}
 				{{> ModalEditSite}}

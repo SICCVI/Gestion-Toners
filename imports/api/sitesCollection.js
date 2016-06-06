@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
+import { EasySearch } from 'meteor/easy:search';
 
 export const Sites = new Mongo.Collection('sites');
 
@@ -80,4 +81,10 @@ Meteor.methods({
         editMode: !currentState
       }});
   },
+});
+
+SitesIndex = new EasySearch.Index({
+  collection: Sites,
+  fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone'],
+  engine: new EasySearch.Minimongo()
 });

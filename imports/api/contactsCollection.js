@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
+import { EasySearch } from 'meteor/easy:search';
 
 export const Contacts = new Mongo.Collection('contacts');
 
@@ -66,4 +67,11 @@ Meteor.methods({
         editMode: !currentState
       }});
   },
+});
+
+
+ContactsIndex = new EasySearch.Index({
+  collection: Contacts,
+  fields: ['nom', 'prenom', 'telephone'],
+  engine: new EasySearch.Minimongo()
 });

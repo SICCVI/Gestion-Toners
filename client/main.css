@@ -87,7 +87,15 @@ html, body {
 	width: 18%;
 }
 
-.colonne-icone-impression {
+.colonne-site {
+	width: 18%;
+}
+
+.colonne-contact {
+	width: 30%;
+}
+
+.colonne-icone {
 	width: 5%;
 }
 
