@@ -29,10 +29,13 @@
         {{nombretoner}}
     </td>
     <td>
-        {{#each toner}}
-            <button id="{{tonerid}}" type="button" class="glyphicon glyphicon-minus remove-toner" data-id="{{../_id}}"></button> - {{tonerid}}<br/>
-        {{/each}}
-        <button type="button" class="glyphicon glyphicon-plus add-toner" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddToner-{{_id}}"></button>
+      {{#each toner}}
+        <button type="button" class="glyphicon glyphicon-minus remove-toner" data-id="{{../_id}}"></button>
+        {{#with getToner tonerid}}
+            {{libelle}} - {{constructeur}} - {{referenceC}} {{couleur}}
+        {{/with}}<br />
+      {{/each}}
+      <button type="button" class="glyphicon glyphicon-plus add-toner" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddToner-{{_id}}"></button>
     </td>
     <td>
         <button class="glyphicon glyphicon-trash"></button>

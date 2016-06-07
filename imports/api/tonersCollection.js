@@ -2,6 +2,7 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
+import { EasySearch } from 'meteor/easy:search';
 
 export const Toners = new Mongo.Collection('toners');
 
@@ -12,28 +13,38 @@ Toners.allow({
 });
 
 
+ReferenceFournisseur = new SimpleSchema({
+  reference: {
+    type: String
+  },
+  idfournisseur: {
+    type: String
+  }
+});
+
 TonerSchema = new SimpleSchema({
   libelle: {
     type: String,
-    label: "Marque",
+    label: "Libelle",
   },
   constructeur: {
     type: String,
-    label: "Marque",
-  }
+    label: "Constructeur",
+  },
   referenceC: {
     type: String,
     label: "Référence constructeur",
   },
-  referenceF: {
+/*  referenceF: {
     type: [ReferenceFournisseur],
     label: "Référence fournisseur",
-  },
+    optionnal: true,
+  },*/
   couleur: {
     type: String,
     label: "Couleur",
   },
-  quantité: {
+/*  quantité: {
     type: Number,
     label: "Quantité",
   },
@@ -44,23 +55,13 @@ TonerSchema = new SimpleSchema({
   alerte: {
     type: Boolean,
     defaultValue: false,
-    optional: true,
     label: "Alerte",
   },
   editMode: {
     type: Boolean,
     defaultValue: false,
     optional: true,
-  },
-});
-
-ReferenceFournisseur = new SimpleSchema({
-  reference: {
-    type: String
-  },
-  idfournisseur: {
-    type: String
-  }
+  },*/
 });
 
 Toners.attachSchema( TonerSchema );
@@ -74,12 +75,50 @@ Meteor.methods({
     check(libelle, String);
     check(constructeur, String);
     check(referenceC, String);
-    check(referenceF, String);
+    check(referenceF, []);
     check(couleur, String);
-    check(quantité, Number);
+    check(quantite, Number);
+    check(seuil, Number);
     check(alerte, Boolean);
     Toners.insert({
-      libelle, constructeur, referenceC, referenceF, couleur, quantite, alerte,
+      libelle, constructeur, referenceC, referenceF, couleur, quantite, seuil, alerte,
     });
   },
+  'toners.update'(tonerId, updateLibelle, updateConstructeur, updateReferenceC, updateReferenceF, updateCouleur, updateQuantite, updateSeuil, updateAlerte) {
+    check(tonerId, String);
+    check(updateLibelle, String);
+    check(updateConstructeur, String);
+    check(updateReferenceC, String);
+    check(updateReferenceF, []);
+    check(updateCouleur, String);
+    check(updateQuantite, Number);
+    check(updateSeuil, Number);
+    check(updateAlerte, Boolean);
+    Toners.update(tonerId, {
+    $set: {
+      libelle: updateLibelle,
+      constructeur: updateConstructeur,
+      referenceC: updateReferenceC,
+      referenceF: updateReferenceF,
+      couleur: updateCouleur,
+      quantite: updateQuantite,
+      seuil: updateSeuil,
+      alerte: updateAlerte
+    }});
+  },
+  'toggleEditToner'(tonerId, currentState) {
+    check(tonerId, String);
+    check(currentState, Boolean);
+    Toners.update(tonerId, {
+      $set: {
+        editMode: !currentState
+      }});
+  },
+});
+
+TonersIndex = new EasySearch.Index({
+  collection: Toners,
+  fields: ['libelle', 'constructeur', 'referenceC', 'couleur'],
+  engine: new EasySearch.Minimongo(),
+  defaultSearchOptions : {limit: 25}
 });

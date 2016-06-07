@@ -1,8 +1,7 @@
 import './AddToner.html';
 
 import { Template } from 'meteor/templating';
-
-import { reporterSelect } from '../../scripts/myFunctions.js';
+import { Toners } from '../../api/tonersCollection.js';
 
 Template.AddToner.events({
     'submit .add-toner'(event) {
@@ -14,6 +13,17 @@ Template.AddToner.events({
             Meteor.call('impressions.addtoner', impressionId, addToner);
         }
         target.toner.value = "";
-        target.toner.focus();  
+    },
+});
+
+Template.AddToner.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('toners');
+  });
+});
+
+Template.AddToner.helpers({
+    toners: ()=> {
+        return Toners.find({}, {sort: { libelle: 1 }}); 
     },
 });

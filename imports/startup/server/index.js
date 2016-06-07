@@ -1,6 +1,6 @@
 import { Impressions } from '../../api/impressionsCollection.js';
 import { Marques } from '../../api/marquesCollection.js';
-/*import { Toners } from '../../api/tonersCollection.js';*/
+import { Toners } from '../../api/tonersCollection.js';
 import { Contacts } from '../../api/contactsCollection.js';
 import { Sites } from '../../api/sitesCollection.js';
 
@@ -13,11 +13,11 @@ Meteor.startup(() => {
 	Meteor.publish('impressions', function (){
 		return Impressions.find({});
 	});
-
+/*
 	Meteor.publish('detailImpression', function (id){
 	check(id, String);
 		return Impressions.find({_id: id});
-	});
+	});*/
 
 	Meteor.publish('marques', function (){
 		return Marques.find({});
@@ -26,16 +26,17 @@ Meteor.startup(() => {
 /*	Meteor.publish('detailMarque', function (id){
 	check(id, String);
 		return Marques.find({_id: id});
-	});
+	});*/
 
 	Meteor.publish('toners', function (){
 		return Toners.find({});
 	});
-
+/*
 	Meteor.publish('detailToner', function (id){
 	check(id, String);
 		return Toners.find({_id: id});
-	});*/
+	});
+
 	Meteor.publish('contacts', function (){
 		return Contacts.find({});
 	});
@@ -43,16 +44,16 @@ Meteor.startup(() => {
 	Meteor.publish('detailContact', function (id){
 	check(id, String);
 		return Contacts.find({_id: id});
-	});
+	});*/
 
 	Meteor.publish('sites', function (){
 		return Sites.find({});
 	});
 
-	Meteor.publish('detailSite', function (id){
+/*	Meteor.publish('detailSite', function (id){
 	check(id, String);
 		return Sites.find({_id: id});
-	});
+	});*/
 });
 
 //
@@ -96,7 +97,7 @@ contact_telephone = ["01 01 01 01 01", "02 02 02 02 02", "03 03 03 03 03", "04 0
 
 Meteor.startup(function () {
 if (Contacts.find().count() < 20) {
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 20; i++) {
     Contacts.insert({
       prenom: Random.choice(contact_prenom),
       nom: Random.choice(contact_nom),
@@ -185,12 +186,63 @@ impression_nombretoner = [
 
 Meteor.startup(function () {
 if (Impressions.find().count() < 20) {
-  for (var i = 0; i < 40; i++) {
+  for (var i = 0; i < 20; i++) {
     Impressions.insert({
       gabarit: Random.choice(impression_gabarit),
       marque: Random.choice(impression_marque),
       modele: Random.choice(impression_modele),
       nombretoner: Random.choice(impression_nombretoner)
+    });
+  }
+}
+});
+
+//TONERS
+const toner_libelle = [
+  "LibelleA",
+  "LibelleB",
+  "LibelleC",
+  "LibelleD",
+  "LibelleE",
+  "LibelleF"
+],
+toner_constructeur = [
+  "ConstrcuteurA",
+  "ConstrcuteurB",
+  "ConstrcuteurC",
+  "ConstrcuteurD",
+  "ConstrcuteurE",
+  "ConstrcuteurF"
+],
+toner_referenceC = [
+  "AQW 123",
+  "ZSX 456",
+  "EDC 789",
+  "RFV 234",
+  "TGB 567",
+  "YHN 891",
+  "PLO 345",
+  "JUY 678",
+  "GTR 912",
+  "DEZ 000"
+],
+toner_couleur = [
+  "Noir",
+  "Rouge",
+  "Bleu",
+  "Jaune",
+  "Cyan",
+  "Magenta"
+];;
+
+Meteor.startup(function () {
+if (Toners.find().count() < 20) {
+  for (var i = 0; i < 20; i++) {
+    Toners.insert({
+      libelle: Random.choice(toner_libelle),
+      constructeur: Random.choice(toner_constructeur),
+      referenceC: Random.choice(toner_referenceC),
+      couleur: Random.choice(toner_couleur)
     });
   }
 }

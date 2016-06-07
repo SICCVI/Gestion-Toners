@@ -2,10 +2,17 @@
 	<div class="add-toner">
  		<form id="addToner-{{_id}}" class="add-toner">
 
-		    <div class="input-group">
+<!-- 		    <div class="input-group">
 			  <span class="input-group-addon" id="sizing-addon2">Toner</span>
 			  <input type="text" id="InputAddToner" name="toner" class="form-control" aria-describedby="sizing-addon2" required>
-			</div>
+			</div> -->
+
+	      	<select type="button" id="SelectAddToner" name="toner" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+ 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
+		        {{#each toners}}
+		          <option value="{{_id}}">{{libelle}} - {{constructeur}} - {{referenceC}} - {{couleur}}</option>
+		        {{/each}}
+		    </select>
 
 			<button id="SubmitAddToner-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
 

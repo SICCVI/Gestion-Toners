@@ -1,0 +1,26 @@
+<template name="ListeToners">
+	<h3>Liste des toners</h3>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=tonersIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+	<section class="toners">
+		{{#if Template.subscriptionsReady}}
+					<ul>
+						{{#EasySearch.IfNoResults index=tonersIndex}}
+							Pas de résultats trouvés!
+						{{/EasySearch.IfNoResults}}
+						{{#EasySearch.Each index=tonersIndex }}
+							<li>LIBELLE : {{libelle}} - CONSTRUCTEUR : {{constructeur}} - REFERENCE : {{referenceC}} - COULEUR : {{couleur}}</li>
+						{{/EasySearch.Each}}
+					</ul>
+
+				{{> EasySearch.Pagination index=tonersIndex customRenderPagination="Pagination"}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+</template>

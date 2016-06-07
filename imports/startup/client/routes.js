@@ -6,7 +6,7 @@ import '../../ui/layouts/MainLayout.js';
 import '../../ui/impressions/ListeImpressions.js';
 import '../../ui/contacts/ListeContacts.js';
 import '../../ui/sites/ListeSites.js';
-/*import '../../ui/toners/ListeToners.js';*/
+import '../../ui/toners/ListeToners.js';
 
 FlowRouter.route('/', {
 	name: 'home',
@@ -42,14 +42,14 @@ FlowRouter.route('/marque/:id', {
 		BlazeLayout.render('MainLayout', {main: 'DetailMarque'});
 	}
 });
-
+*/
 FlowRouter.route('/toner', {
 	name: 'toner',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeToners'});
 	}
 });
-
+/*
 FlowRouter.route('/toner/:id', {
 	name: 'toner',
 	action() {
