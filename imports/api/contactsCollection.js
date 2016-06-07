@@ -73,5 +73,6 @@ Meteor.methods({
 ContactsIndex = new EasySearch.Index({
   collection: Contacts,
   fields: ['nom', 'prenom', 'telephone'],
-  engine: new EasySearch.Minimongo()
+  engine: new EasySearch.Minimongo(),
+  defaultSearchOptions : {limit: 25}
 });

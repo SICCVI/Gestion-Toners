@@ -1,5 +1,5 @@
 <template name="ListeSites">
-	<h3>Liste des sites ({{ totalCount }})</h3>
+	<h3>Liste des sites</h3>
 	
 	<div class="insert-button">
 		<span class="to-left"><button type="button" class="btn btn-primary new-site" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle site</button></span>
@@ -24,13 +24,19 @@
 					<th class="colonne-site">Téléphone</th>
 					<th class="colonne-icone"></th>
 				</tr>
-				
+				{{#EasySearch.IfNoResults index=sitesIndex}}
+				<tr>
+					<td colspan="7">Pas de résultats trouvés!</td>
+				</tr>
+				{{/EasySearch.IfNoResults}}
 				{{#EasySearch.Each index=sitesIndex }}
 					<tr class="row-donnees">
 					{{> ElementSite}}
 					</tr>
-				{{/EasySearch.Each}}		
+				{{/EasySearch.Each}}
 			</table>
+			{{> EasySearch.Pagination index=sitesIndex customRenderPagination="Pagination"}}
+
 			{{#each sites}}
 				{{> ModalEditSite}}
 			{{/each}}

@@ -1,5 +1,5 @@
 <template name="ListeContacts">
-	<h3>Liste des contacts ({{ totalCount }})</h3>
+	<h3>Liste des contacts</h3>
 
 	<div class="insert-button">
 		<span class="to-left"><button type="button" class="btn btn-primary new-contact" data-toggle="modal" data-target="#ModalNew">Ajouter une nouveau contact</button></span>
@@ -22,13 +22,18 @@
 					<th class="colonne-contact">Téléphone</th>
 					<th class="colonne-icone"></th>
 				</tr>
-				
+				{{#EasySearch.IfNoResults index=contactsIndex}}
+				<tr>
+					<td colspan="5">Pas de résultats trouvés!</td>
+				</tr>
+				{{/EasySearch.IfNoResults}}
 				{{#EasySearch.Each index=contactsIndex }}
 					<tr class="row-donnees">
 					{{> ElementContact}}
 					</tr>
-				{{/EasySearch.Each}}			
+				{{/EasySearch.Each}}
 			</table>
+			{{> EasySearch.Pagination index=contactsIndex customRenderPagination="Pagination"}}	
 			{{#each contacts}}
 				{{> ModalEditContact}}
 			{{/each}}

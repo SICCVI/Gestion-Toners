@@ -1,5 +1,5 @@
 <template name="ListeImpressions">
-	<h3>Liste des périphériques d'impressions ( {{totalCount}} )</h3>
+	<h3>Liste des périphériques d'impressions</h3>
 
 	<div class="insert-button">
 		<span class="to-left"><button type="button" class="btn btn-primary new-impression" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle impression</button></span>
@@ -25,13 +25,18 @@
 						<th class="colonne-impression">Toners</th>
 						<th class="colonne-icone"></th>
 					</tr>
-
+					{{#EasySearch.IfNoResults index=impressionsIndex}}
+					<tr>
+						<td colspan="7">Pas de résultats trouvés!</td>
+					</tr>
+					{{/EasySearch.IfNoResults}}
 					{{#EasySearch.Each index=impressionsIndex }}
 						<tr class="row-donnees">
 						{{> ElementImpression}}
 						</tr>
-					{{/EasySearch.Each}}			
+					{{/EasySearch.Each}}
 				</table>
+				{{> EasySearch.Pagination index=impressionsIndex customRenderPagination="Pagination"}}
 				{{#each impressions}}
 					{{> ModalEditImpression}}
 					{{> ModalAddToner}}

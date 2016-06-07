@@ -86,5 +86,6 @@ Meteor.methods({
 SitesIndex = new EasySearch.Index({
   collection: Sites,
   fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone'],
-  engine: new EasySearch.Minimongo()
+  engine: new EasySearch.Minimongo(),
+  defaultSearchOptions : {limit: 25}
 });
