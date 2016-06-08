@@ -1,6 +1,11 @@
 <template name="ListeContacts">
 	<h3>Liste des contacts</h3>
-
+<button class="check-selected">check</button>
+<button class="envoi-selection1">tous</button>
+<button class="envoi-selection2">un par un</button>
+<button class="envoi-selection3">tous ID</button>
+<button class="envoi-selection4">insert ID</button>
+<button class="test">XXXX</button>  <!-- verification de selected -->
 	<div class="insert-button">
 		<span class="to-left"><button type="button" class="btn btn-primary new-contact" data-toggle="modal" data-target="#ModalNew">Ajouter une nouveau contact</button></span>
 		{{> ModalNewContact}}
@@ -15,23 +20,27 @@
 	<section class="contacts">
 		{{#if Template.subscriptionsReady}}
 			<table class="table-donnees">
-				<tr>
-					<th class="colonne-icone"></th>
-					<th class="colonne-contact">Nom</th>
-					<th class="colonne-contact">Prénom</th>
-					<th class="colonne-contact">Téléphone</th>
-					<th class="colonne-icone"></th>
-				</tr>
-				{{#EasySearch.IfNoResults index=contactsIndex}}
-				<tr>
-					<td colspan="5">Pas de résultats trouvés!</td>
-				</tr>
-				{{/EasySearch.IfNoResults}}
-				{{#EasySearch.Each index=contactsIndex }}
-					<tr class="row-donnees">
-					{{> ElementContact}}
+				<thead>
+					<tr>
+						<th class="colonne-icone"></th>
+						<th class="colonne-contact">Nom</th>
+						<th class="colonne-contact">Prénom</th>
+						<th class="colonne-contact">Téléphone</th>
+						<th class="colonne-icone"></th>
 					</tr>
-				{{/EasySearch.Each}}
+				</thead>
+				<tbody>
+					{{#EasySearch.IfNoResults index=contactsIndex}}
+					<tr>
+						<td colspan="5">Pas de résultats trouvés!</td>
+					</tr>
+					{{/EasySearch.IfNoResults}}
+					{{#EasySearch.Each index=contactsIndex }}
+						<tr class="row-donnees" data-mongoId="{{_id}}">
+						{{> ElementContact}}
+						</tr>
+					{{/EasySearch.Each}}
+				</tbody>
 			</table>
 			{{> EasySearch.Pagination index=contactsIndex customRenderPagination="Pagination"}}	
 			{{#each contacts}}

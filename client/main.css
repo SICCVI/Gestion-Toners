@@ -154,3 +154,12 @@ html, body {
 	font-size: 11px;
 	margin-top: -10px;
 }
+
+table tr.highlight td {
+    background-color: yellow;
+}
+
+table tr:hover>td, table>tr:hover>th {
+  background-color: #550055;
+  color:#eeeeee;
+}
