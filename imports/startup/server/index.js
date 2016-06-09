@@ -263,20 +263,44 @@ if (Stocks.find().count() < 3) {
     Stocks.insert({
       libelle: "Objet A",
       seuil: 1,
-      quantite: 5,
-      alerte: false
+      nvAvertissement: 4,
+      quantite: 8,
+      alerte: false,
+      avertissement: false,
+      lieu: [
+        { nom: 'LieuAAA',
+        quantite: 2 },
+        { nom: 'LieuZZZ',
+        quantite: 6 }
+        ]
     });
     Stocks.insert({
       libelle: "Objet B",
       seuil: 2,
-      quantite: 6,
-      alerte: false
+      nvAvertissement: 5,
+      quantite: 8,
+      alerte: false,
+      avertissement: false,
+      lieu: [
+        { nom: 'LieuBBB',
+        quantite: 4 },
+        { nom: 'LieuYYY',
+        quantite: 4 }
+        ]
     });
     Stocks.insert({
       libelle: "Objet C",
       seuil: 3,
-      quantite: 7,
-      alerte: false
+      nvAvertissement: 6,
+      quantite: 8,
+      alerte: false,
+      avertissement: false,
+      lieu: [
+        { nom: 'LieuCCC',
+        quantite: 3 },
+        { nom: 'LieuXXX',
+        quantite: 5 }
+        ]
     });
 }
 });

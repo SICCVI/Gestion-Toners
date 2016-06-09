@@ -38,6 +38,16 @@ Meteor.methods({
    		{ $inc: { seuil: -1 } }
 	)
   },
+    'stocks.augmente-avertissement' (stockId) {
+ 	Stocks.update(stockId,
+   		{ $inc: { nvAvertissement: 1 } }
+	)
+  },
+  'stocks.diminue-avertissement' (stockId) {
+ 	Stocks.update(stockId,
+   		{ $inc: { nvAvertissement: -1 } }
+	)
+  },
   'stocks.alerte' (stockId) {
 	Stocks.update(stockId,
 		{ $set: { alerte: true }}
@@ -48,4 +58,26 @@ Meteor.methods({
 		{ $set: { alerte: false }}
 	)
   },
+    'stocks.avertissement' (stockId) {
+	Stocks.update(stockId,
+		{ $set: { avertissement: true }}
+	)
+  },
+  'stocks.no-avertissement' (stockId) {
+	Stocks.update(stockId,
+		{ $set: { avertissement: false }}
+	)
+  },
+  'stocks.augmente-quantite-lieu' (stockId, parametre) {
+ 	Stocks.update( { _id: stockId, 'lieu.nom' : parametre },
+   		{ $inc: { 'lieu.$.quantite': 1 } }
+	)
+  },
+  'stocks.diminue-quantite-lieu' (stockId, parametre) {
+ 	Stocks.update( { _id: stockId, 'lieu.nom' : parametre },
+   		{ $inc: { 'lieu.$.quantite': -1 } }
+	)
+  },
 });
+
+//db.stocks.aggregate( [ {$match: { _id: stockId } }, { $unwind: '$lieu' }, { $group: { _id: 'null', "total": { $sum: "$lieu.quantite" } } } ] );

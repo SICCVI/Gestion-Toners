@@ -168,6 +168,10 @@ table tr:hover>td .glyphicon {
   color:red;
 }
 
-.warning {
+.warning-al {
 	background-color: red !important;
+}
+
+.warning-av {
+	background-color: orange !important;
 }

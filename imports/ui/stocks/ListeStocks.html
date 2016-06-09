@@ -7,15 +7,45 @@
 				<tr>
 					<th class="colonne-site">Libelle</th>
 					<th class="colonne-site">Seuil</th>
-					<th class="colonne-site">Quantité</th>
-					<th class="colonne-site">Alerte</th>
+					<th class="colonne-site">Avertissement</th>
+					<th class="colonne-site">Quantité totale</th>
+					<th class="colonne-site">Quantité par lieu</th>
+					<th class="colonne-site">Statut</th>
 				</tr>
 				{{#each stocks}}
-					<tr class="row-donnees {{#if alerte}}warning{{/if}}">
-						<td>{{libelle}}</td>
-						<td><button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus decrease-seuil"></button><button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus increase-seuil"></button>  {{seuil}}</td>
-						<td><button id="augmenteQ-{{_id}}" class="glyphicon glyphicon-minus decrease-quantity"></button><button id="diminueQ-{{_id}}" class="glyphicon glyphicon-plus increase-quantity"></button>  {{quantite}}</td>
-						<td>{{#if alerte}}ALERTE{{else}}OK{{/if}}</td>
+					<tr class="row-donnees {{#if avertissement}}{{#if alerte}}warning-al{{else}}warning-av{{/if}}{{/if}}">
+						<td>
+							{{libelle}}
+						</td>
+						<td>
+							<button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus decrease-seuil"></button>
+							<button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus increase-seuil"></button>  {{seuil}}
+						</td>
+						<td>
+							<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus decrease-avertissement"></button>
+							<button id="diminueA-{{_id}}" class="glyphicon glyphicon-plus increase-avertissement"></button>  {{nvAvertissement}}
+						</td>
+						<td>
+							<!-- <button id="diminueQ-{{_id}}" class="glyphicon glyphicon-minus decrease-quantity"></button>
+							<button id="augmenteQ-{{_id}}" class="glyphicon glyphicon-plus increase-quantity"></button>   -->{{quantite}}
+						</td>
+						<td>
+							{{#each lieu}}
+					        	<button id="diminueQl-{{../_id}}" class="glyphicon glyphicon-minus decrease-quantity-lieu" data-id="{{../_id}}"></button>
+								<button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus increase-quantity-lieu" data-id="{{../_id}}"></button>  {{quantite}} - {{nom}}<br />
+					      	{{/each}}
+						</td>
+						<td>
+							{{#if avertissement}}
+								{{#if alerte}}
+									ALERTE
+								{{else}}
+									Avertissement
+								{{/if}}
+							{{else}}
+								OK
+							{{/if}}
+						</td>
 					</tr>
 				{{/each}}
 			</table>
