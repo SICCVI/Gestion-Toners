@@ -1,5 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Stocks } from '../../api/stockCollection.js';
+//import { aggregate } from 'meteor/meteorhacks:aggregate';
 
 import './ListeStocks.html';
 
@@ -84,6 +85,8 @@ Template.ListeStocks.events({
 		I = parent._id;
 		A = parent.nvAvertissement;
 		checkStock(Q, S, A, I);
+		//var test = Stocks.aggregate( [ {$match: { _id: 'iNTvaXm4ws5jCAc2F' } }, { $unwind: '$lieu' }, { $group: { _id: 'null', "total": { $sum: "$lieu.quantite" } } } ] );
+		//console.log(test);
 	},
 	'click .decrease-quantity-lieu': function () {
 		const objetId = event.target.getAttribute('data-id');
@@ -98,8 +101,6 @@ Template.ListeStocks.events({
 			A = parent.nvAvertissement;
 			checkStock(Q, S, A, I);
 		}
-		var test = db.stocks.aggregate( [ {$match: { _id: objetId } }, { $unwind: '$lieu' }, { $group: { _id: 'null', "total": { $sum: "$lieu.quantite" } } } ] );
-		console.log(test);
 	},
 });
 
