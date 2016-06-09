@@ -1,5 +1,3 @@
-const SelectContacts = new Mongo.Collection('test');
-
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
@@ -18,6 +16,15 @@ Meteor.methods({
   'items.insert'(item) {
     Items.insert({
       item,
+    });
+  },
+    'items.insert2'(item) {
+    Items.insert({
+        $addToSet: {
+	        toner : {
+	          tonerid: tonerId
+	        }
+      	}
     });
   },
 });

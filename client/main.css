@@ -156,10 +156,18 @@ html, body {
 }
 
 table tr.highlight td {
-    background-color: yellow;
+    background-color: #AA80AA;
 }
 
 table tr:hover>td, table>tr:hover>th {
   background-color: #550055;
   color:#eeeeee;
+}
+
+table tr:hover>td .glyphicon {
+  color:red;
+}
+
+.warning {
+	background-color: red !important;
 }

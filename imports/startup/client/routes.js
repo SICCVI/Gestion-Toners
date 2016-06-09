@@ -7,6 +7,7 @@ import '../../ui/impressions/ListeImpressions.js';
 import '../../ui/contacts/ListeContacts.js';
 import '../../ui/sites/ListeSites.js';
 import '../../ui/toners/ListeToners.js';
+import '../../ui/stocks/ListeStocks.js';
 
 FlowRouter.route('/', {
 	name: 'home',
@@ -68,5 +69,12 @@ FlowRouter.route('/site', {
 	name: 'site',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeSites'});
+	}
+});
+
+FlowRouter.route('/stock', {
+	name: 'stock',
+	action() {
+		BlazeLayout.render('MainLayout', {main: 'ListeStocks'});
 	}
 });

@@ -4,6 +4,7 @@ import { Toners } from '../../api/tonersCollection.js';
 import { Contacts } from '../../api/contactsCollection.js';
 import { Sites } from '../../api/sitesCollection.js';
 import { Items } from '../../api/testCollection.js';
+import { Stocks } from '../../api/stockCollection.js';
 
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
@@ -57,6 +58,10 @@ Meteor.startup(() => {
 	});*/
   Meteor.publish('items', function (){
     return Items.find({});
+  });
+
+  Meteor.publish('stocks', function (){
+    return Stocks.find({});
   });
 });
 
@@ -249,5 +254,29 @@ if (Toners.find().count() < 20) {
       couleur: Random.choice(toner_couleur)
     });
   }
+}
+});
+
+//STOCK
+Meteor.startup(function () {
+if (Stocks.find().count() < 3) {
+    Stocks.insert({
+      libelle: "Objet A",
+      seuil: 1,
+      quantite: 5,
+      alerte: false
+    });
+    Stocks.insert({
+      libelle: "Objet B",
+      seuil: 2,
+      quantite: 6,
+      alerte: false
+    });
+    Stocks.insert({
+      libelle: "Objet C",
+      seuil: 3,
+      quantite: 7,
+      alerte: false
+    });
 }
 });

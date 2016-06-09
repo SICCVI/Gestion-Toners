@@ -1,0 +1,36 @@
+<template name="ListeStocks">
+	<h3>Liste des stocks</h3>
+
+	<section class="stocks">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<tr>
+					<th class="colonne-site">Libelle</th>
+					<th class="colonne-site">Seuil</th>
+					<th class="colonne-site">Quantité</th>
+					<th class="colonne-site">Alerte</th>
+				</tr>
+				{{#each stocks}}
+					<tr class="row-donnees {{#if alerte}}warning{{/if}}">
+						<td>{{libelle}}</td>
+						<td><button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus decrease-seuil"></button><button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus increase-seuil"></button>  {{seuil}}</td>
+						<td><button id="augmenteQ-{{_id}}" class="glyphicon glyphicon-minus decrease-quantity"></button><button id="diminueQ-{{_id}}" class="glyphicon glyphicon-plus increase-quantity"></button>  {{quantite}}</td>
+						<td>{{#if alerte}}ALERTE{{else}}OK{{/if}}</td>
+					</tr>
+				{{/each}}
+			</table>
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+<br /><br /><br />
+		<div style="border: thin solid black">
+		<h5>INFORMATION</h5>
+		<i>Stock insuffisant pour les objets suivants:
+		<ul>
+		{{#each infoAlerte}}
+		<li>{{libelle}}</li>
+		{{/each}}
+		</ul></i>
+		</div>
+	</section>
+</template>
