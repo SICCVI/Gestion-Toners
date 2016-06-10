@@ -175,3 +175,12 @@ table tr:hover>td .glyphicon {
 .warning-av {
 	background-color: orange !important;
 }
+
+.table-donnees .dropdown-menu {
+	background-color: white !important;
+	color: #154360 !important;
+}
+
+.table-donnees .dropdown-menu .glyphicon {
+	color: #154360 !important;
+}

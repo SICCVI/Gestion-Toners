@@ -267,11 +267,11 @@ if (Stocks.find().count() < 3) {
       quantite: 8,
       alerte: false,
       avertissement: false,
-      lieu: [
-        { nom: 'LieuAAA',
-        quantite: 2 },
-        { nom: 'LieuZZZ',
-        quantite: 6 }
+      service: [
+        { nom: 'Service AAA',
+        consommation: 0, historique: [] },
+        { nom: 'Service ZZZ',
+        consommation: 0, historique: [] }
         ]
     });
     Stocks.insert({
@@ -281,11 +281,11 @@ if (Stocks.find().count() < 3) {
       quantite: 8,
       alerte: false,
       avertissement: false,
-      lieu: [
-        { nom: 'LieuBBB',
-        quantite: 4 },
-        { nom: 'LieuYYY',
-        quantite: 4 }
+      service: [
+        { nom: 'Service BBB',
+        consommation: 0, historique: [] },
+        { nom: 'Service YYY',
+        consommation: 0, historique: [] }
         ]
     });
     Stocks.insert({
@@ -295,11 +295,11 @@ if (Stocks.find().count() < 3) {
       quantite: 8,
       alerte: false,
       avertissement: false,
-      lieu: [
-        { nom: 'LieuCCC',
-        quantite: 3 },
-        { nom: 'LieuXXX',
-        quantite: 5 }
+      service: [
+        { nom: 'Service CCC',
+        consommation: 0, historique: [] },
+        { nom: 'Service XXX',
+        consommation: 0, historique: [] }
         ]
     });
 }

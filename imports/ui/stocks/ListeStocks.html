@@ -5,35 +5,37 @@
 		{{#if Template.subscriptionsReady}}
 			<table class="table-donnees">
 				<tr>
+					<th class="colonne-icone"></th>
 					<th class="colonne-site">Libelle</th>
-					<th class="colonne-site">Seuil</th>
-					<th class="colonne-site">Avertissement</th>
-					<th class="colonne-site">Quantité totale</th>
-					<th class="colonne-site">Quantité par lieu</th>
+					<th class="colonne-site">Quantité</th>
 					<th class="colonne-site">Statut</th>
+					<th class="colonne-site">Services</th>
 				</tr>
 				{{#each stocks}}
 					<tr class="row-donnees {{#if avertissement}}{{#if alerte}}warning-al{{else}}warning-av{{/if}}{{/if}}">
+
+						<td>
+							<div class="dropdown">
+							  <span class="glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+							  	<li>Niveau de seuil</li>
+							    <li><button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus decrease-seuil"></button>
+								<button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus increase-seuil"></button>  {{seuil}}</li>
+							    <li role="separator" class="divider"></li>
+							    <li>Niveau d'avertissement</li>
+							    <li>
+							    	<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus decrease-avertissement"></button>
+									<button id="diminueA-{{_id}}" class="glyphicon glyphicon-plus increase-avertissement"></button>  {{nvAvertissement}}
+								</li>
+							  </ul>
+							</div>
+						</td>
 						<td>
 							{{libelle}}
 						</td>
 						<td>
-							<button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus decrease-seuil"></button>
-							<button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus increase-seuil"></button>  {{seuil}}
-						</td>
-						<td>
-							<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus decrease-avertissement"></button>
-							<button id="diminueA-{{_id}}" class="glyphicon glyphicon-plus increase-avertissement"></button>  {{nvAvertissement}}
-						</td>
-						<td>
-							<!-- <button id="diminueQ-{{_id}}" class="glyphicon glyphicon-minus decrease-quantity"></button>
-							<button id="augmenteQ-{{_id}}" class="glyphicon glyphicon-plus increase-quantity"></button>   -->{{quantite}}
-						</td>
-						<td>
-							{{#each lieu}}
-					        	<button id="diminueQl-{{../_id}}" class="glyphicon glyphicon-minus decrease-quantity-lieu" data-id="{{../_id}}"></button>
-								<button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus increase-quantity-lieu" data-id="{{../_id}}"></button>  {{quantite}} - {{nom}}<br />
-					      	{{/each}}
+							<!-- <button id="diminueQ-{{_id}}" class="glyphicon glyphicon-minus decrease-quantity"></button>   -->
+							<button id="augmenteQ-{{_id}}" class="glyphicon glyphicon-plus increase-quantity"></button>  {{quantite}}
 						</td>
 						<td>
 							{{#if avertissement}}
@@ -46,21 +48,48 @@
 								OK
 							{{/if}}
 						</td>
+						<td>
+							{{#each service}}
+					        	<button id="consommer-{{../_id}}" class="glyphicon glyphicon-minus consommer" data-id="{{../_id}}"></button>  {{nom}} - ( {{consommation}} )<br />
+								<!-- <button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus increase-quantity-lieu" data-id="{{../_id}}"></button> -->
+					      	{{/each}}
+						</td>
 					</tr>
 				{{/each}}
 			</table>
 		{{else}}
 			<p>En attente</p>
 		{{/if}}
+	</section>
 <br /><br /><br />
+
+	<section>
 		<div style="border: thin solid black">
-		<h5>INFORMATION</h5>
-		<i>Stock insuffisant pour les objets suivants:
-		<ul>
-		{{#each infoAlerte}}
-		<li>{{libelle}}</li>
-		{{/each}}
-		</ul></i>
+			<h5>INFORMATION</h5>
+			<i>Stock insuffisant pour les objets suivants:
+			<ul>
+			{{#each infoAlerte}}
+			<li>{{libelle}}</li>
+			{{/each}}
+			</ul></i>
+		</div>
+		<div style="border: thin solid black">
+			<h5>Historique</h5>
+			<i>
+			<ul class="check-object">
+			<!-- {{#each stocks}}{{#each service}}{{#each historique}}
+			<li class="check-object">
+			{{../../libelle}} // fourni à {{../nom}} le {{ date }}
+			</li>
+			{{/each}}{{/each}}{{/each}} -->
+			</ul></i>
 		</div>
 	</section>
+	
+
+<script>
+$(document).on('click', '.table-donnees .dropdown-menu', function (e) {
+  e.stopPropagation();
+});
+</script>
 </template>

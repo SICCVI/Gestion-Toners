@@ -1,6 +1,6 @@
 import { Template } from 'meteor/templating';
 import { Stocks } from '../../api/stockCollection.js';
-//import { aggregate } from 'meteor/meteorhacks:aggregate';
+import { ReactiveVar } from 'meteor/reactive-var';
 
 import './ListeStocks.html';
 
@@ -24,8 +24,7 @@ let S = 0;
 let A = 0;
 
 Template.ListeStocks.events({
-/*	'click .increase-quantity': function () {
-		console.log('a');
+	'click .increase-quantity': function () {
 		Meteor.call('stocks.augmente-quantite', this._id);
 		Q = this.quantite + 1;
 		S = this.seuil;
@@ -33,7 +32,7 @@ Template.ListeStocks.events({
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
 	},
-	'click .decrease-quantity': function () {
+	/*'click .decrease-quantity': function () {
 		console.log('b');
 		Meteor.call('stocks.diminue-quantite', this._id);
 		Q = this.quantite - 1;
@@ -74,34 +73,23 @@ Template.ListeStocks.events({
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
 	},
-	'click .increase-quantity-lieu': function () {
+	'click .consommer': function () {
 		const objetId = event.target.getAttribute('data-id');
-		const lieu = this.nom;
-		Meteor.call('stocks.augmente-quantite-lieu', objetId, lieu);
+		const service = this.nom;
+		Meteor.call('stocks.consommation', objetId, service);
+		const date = getDate();
+		Meteor.call('stocks.historique', objetId, service, date);
 		const parent = Stocks.findOne({_id: objetId});
-		Meteor.call('stocks.augmente-quantite', parent._id);
-		Q = parent.quantite + 1;
+		Meteor.call('stocks.diminue-quantite', parent._id);
+		Q = parent.quantite - 1;
 		S = parent.seuil;
 		I = parent._id;
 		A = parent.nvAvertissement;
 		checkStock(Q, S, A, I);
-		//var test = Stocks.aggregate( [ {$match: { _id: 'iNTvaXm4ws5jCAc2F' } }, { $unwind: '$lieu' }, { $group: { _id: 'null', "total": { $sum: "$lieu.quantite" } } } ] );
-		//console.log(test);
 	},
-	'click .decrease-quantity-lieu': function () {
-		const objetId = event.target.getAttribute('data-id');
-		const lieu = this.nom;
-		if (this.quantite > 0) {
-			Meteor.call('stocks.diminue-quantite-lieu', objetId, lieu);
-			const parent = Stocks.findOne({_id: objetId});
-			Meteor.call('stocks.diminue-quantite', parent._id);
-			Q = parent.quantite - 1;
-			S = parent.seuil;
-			I = parent._id;
-			A = parent.nvAvertissement;
-			checkStock(Q, S, A, I);
-		}
-	},
+	'click .check-objet': function () {
+		console.log(this);
+	}
 });
 
 checkStock = function (quantite, seuil, avertissement, id) {
@@ -117,4 +105,19 @@ checkStock = function (quantite, seuil, avertissement, id) {
 	else {
 		Meteor.call('stocks.no-avertissement', id);
 	}
+}
+
+getDate = function () {
+	const today = new Date();
+	let dd = today.getDate();
+	let mm = today.getMonth()+1;
+	let yyyy = today.getFullYear();
+	if(dd<10) {
+	    dd='0'+dd
+	} 
+	if(mm<10) {
+	    mm='0'+mm
+	} 
+	const date = dd+'/'+mm+'/'+yyyy;
+	return date;
 }
