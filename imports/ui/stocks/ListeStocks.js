@@ -1,12 +1,21 @@
 import { Template } from 'meteor/templating';
 import { Stocks } from '../../api/stockCollection.js';
+import { Consommations } from '../../api/consommationCollection.js';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './ListeStocks.html';
 
+import '../../scripts/myFunctions.js';
+
 Template.ListeStocks.onCreated(function() {
   this.autorun(() => {
     this.subscribe('stocks');
+  });
+});
+
+Template.ListeStocks.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('consommations');
   });
 });
 
@@ -16,6 +25,9 @@ Template.ListeStocks.helpers({
 	},
 	infoAlerte: () => {
 		return Stocks.find({"alerte": true});
+	},
+	consommations: () => {
+		return Consommations.find({}, {sort: {date: -1}})
 	},
 });
 
@@ -78,9 +90,10 @@ Template.ListeStocks.events({
 		const service = this.nom;
 		Meteor.call('stocks.consommation', objetId, service);
 		const date = getDate();
-		Meteor.call('stocks.historique', objetId, service, date);
 		const parent = Stocks.findOne({_id: objetId});
+		const objet = parent.libelle;
 		Meteor.call('stocks.diminue-quantite', parent._id);
+		Meteor.call('consommations.insert', service, objet, date);
 		Q = parent.quantite - 1;
 		S = parent.seuil;
 		I = parent._id;

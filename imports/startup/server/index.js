@@ -5,6 +5,7 @@ import { Contacts } from '../../api/contactsCollection.js';
 import { Sites } from '../../api/sitesCollection.js';
 import { Items } from '../../api/testCollection.js';
 import { Stocks } from '../../api/stockCollection.js';
+import { Consommations } from '../../api/consommationCollection.js';
 
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
@@ -62,6 +63,10 @@ Meteor.startup(() => {
 
   Meteor.publish('stocks', function (){
     return Stocks.find({});
+  });
+
+  Meteor.publish('consommations', function (){
+    return Consommations.find({});
   });
 });
 
@@ -269,9 +274,9 @@ if (Stocks.find().count() < 3) {
       avertissement: false,
       service: [
         { nom: 'Service AAA',
-        consommation: 0, historique: [] },
+        consommation: 0},
         { nom: 'Service ZZZ',
-        consommation: 0, historique: [] }
+        consommation: 0}
         ]
     });
     Stocks.insert({
@@ -283,9 +288,9 @@ if (Stocks.find().count() < 3) {
       avertissement: false,
       service: [
         { nom: 'Service BBB',
-        consommation: 0, historique: [] },
+        consommation: 0},
         { nom: 'Service YYY',
-        consommation: 0, historique: [] }
+        consommation: 0}
         ]
     });
     Stocks.insert({
@@ -297,9 +302,9 @@ if (Stocks.find().count() < 3) {
       avertissement: false,
       service: [
         { nom: 'Service CCC',
-        consommation: 0, historique: [] },
+        consommation: 0},
         { nom: 'Service XXX',
-        consommation: 0, historique: [] }
+        consommation: 0}
         ]
     });
 }

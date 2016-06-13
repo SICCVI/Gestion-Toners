@@ -72,7 +72,7 @@ Meteor.methods({
  	Stocks.update( { _id: stockId, 'service.nom' : parametre },
    		{ $inc: { 'service.$.consommation': 1 } }
 	)
-  },
+  }/*,
   'stocks.historique'(stockId, parametre, date) {
     Stocks.update( { _id: stockId, 'service.nom' : parametre },
       { $addToSet: {
@@ -80,7 +80,7 @@ Meteor.methods({
         }
       }
   )
-  }
+  }*/
 });
 
 //db.stocks.aggregate( [ {$match: { _id: stockId } }, { $unwind: '$lieu' }, { $group: { _id: 'null', "total": { $sum: "$lieu.quantite" } } } ] );

@@ -11,7 +11,7 @@ editCheck = function (field, original, edit) {
 	else if (original !== edit) {
 	    $(field).css({'background-color' : '#F8C471'});
 	}
-}
+},
 
 /*editResetCheck = function () {
 	$('#aqw').('click', function() {
@@ -20,4 +20,7 @@ editCheck = function (field, original, edit) {
 }
 	})*/
 	
-	
+$(document).on('click', '.table-donnees .dropdown-menu', function (e) {
+  e.stopPropagation();
+});
+

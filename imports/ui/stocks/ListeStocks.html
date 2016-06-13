@@ -74,22 +74,14 @@
 			</ul></i>
 		</div>
 		<div style="border: thin solid black">
-			<h5>Historique</h5>
+			<h5>HISTORIQUE</h5>
 			<i>
 			<ul class="check-object">
-			<!-- {{#each stocks}}{{#each service}}{{#each historique}}
-			<li class="check-object">
-			{{../../libelle}} // fourni à {{../nom}} le {{ date }}
-			</li>
-			{{/each}}{{/each}}{{/each}} -->
+			{{#each consommations}}
+			<li class="check-object">{{service}} // {{objet}} le {{ date }}.</li>
+			{{/each}}
 			</ul></i>
 		</div>
 	</section>
-	
 
-<script>
-$(document).on('click', '.table-donnees .dropdown-menu', function (e) {
-  e.stopPropagation();
-});
-</script>
 </template>
