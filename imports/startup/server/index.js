@@ -68,6 +68,12 @@ Meteor.startup(() => {
   Meteor.publish('consommations', function (){
     return Consommations.find({});
   });
+
+  Meteor.publish('aperçu-consommations', function (){
+    return Consommations.find({}, {sort: {date: -1}, limit: 5 });
+  });
+
+  
 });
 
 //
@@ -274,9 +280,9 @@ if (Stocks.find().count() < 3) {
       avertissement: false,
       service: [
         { nom: 'Service AAA',
-        consommation: 0},
+        consommation: 0, historique: []},
         { nom: 'Service ZZZ',
-        consommation: 0}
+        consommation: 0, historique: []}
         ]
     });
     Stocks.insert({
@@ -288,9 +294,9 @@ if (Stocks.find().count() < 3) {
       avertissement: false,
       service: [
         { nom: 'Service BBB',
-        consommation: 0},
+        consommation: 0, historique: []},
         { nom: 'Service YYY',
-        consommation: 0}
+        consommation: 0, historique: []}
         ]
     });
     Stocks.insert({
@@ -302,9 +308,9 @@ if (Stocks.find().count() < 3) {
       avertissement: false,
       service: [
         { nom: 'Service CCC',
-        consommation: 0},
+        consommation: 0, historique: []},
         { nom: 'Service XXX',
-        consommation: 0}
+        consommation: 0, historique: []}
         ]
     });
 }

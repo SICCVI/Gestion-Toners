@@ -14,8 +14,12 @@ Consommations.allow({
 
 Meteor.methods({
   'consommations.insert'(service, objet, date) {
-    Consommations.insert({
+    var newDoc = Consommations.insert({
       service, objet, date,
     });
+    return newDoc;
+  },
+  'consommations.remove'(consommationId) {
+    Consommations.remove(consommationId);
   }
 });

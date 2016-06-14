@@ -72,15 +72,28 @@ Meteor.methods({
  	Stocks.update( { _id: stockId, 'service.nom' : parametre },
    		{ $inc: { 'service.$.consommation': 1 } }
 	)
-  }/*,
-  'stocks.historique'(stockId, parametre, date) {
+  },
+  'stocks.annule-consommation' (stockId, parametre) {
+  Stocks.update( { _id: stockId, 'service.nom' : parametre },
+      { $inc: { 'service.$.consommation': -1 } }
+  )
+  },
+  'stocks.historique'(stockId, parametre, historiqueId) {
     Stocks.update( { _id: stockId, 'service.nom' : parametre },
       { $addToSet: {
-        'service.$.historique': date
+        'service.$.historique': historiqueId
         }
       }
   )
-  }*/
+  },
+  'stocks.remove-historique'(stockId, parametre, historiqueId) {
+    Stocks.update( { _id: stockId, 'service.nom' : parametre },
+      { $pull: {
+        'service.$.historique': historiqueId
+        }
+      }
+  )
+  }
 });
 
 //db.stocks.aggregate( [ {$match: { _id: stockId } }, { $unwind: '$lieu' }, { $group: { _id: 'null', "total": { $sum: "$lieu.quantite" } } } ] );

@@ -12,15 +12,17 @@ editCheck = function (field, original, edit) {
 	    $(field).css({'background-color' : '#F8C471'});
 	}
 },
-
-/*editResetCheck = function () {
-	$('#aqw').('click', function() {
-		$('#azerty').css({'background-color' : 'red'});
-	console.log('aaa');
-}
-	})*/
 	
 $(document).on('click', '.table-donnees .dropdown-menu', function (e) {
   e.stopPropagation();
 });
 
+getGrandParentDataId = function (element) {
+	var parent = element.parentNode.parentNode.getAttribute('data-id');
+	element.setAttribute('data-id' , parent);
+},
+
+getParentDataId = function (element) {
+	var parent = elementparentNode.getAttribute('data-id');
+	element.setAttribute('data-id' , parent);
+}

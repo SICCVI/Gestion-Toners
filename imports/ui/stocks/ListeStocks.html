@@ -8,8 +8,8 @@
 					<th class="colonne-icone"></th>
 					<th class="colonne-site">Libelle</th>
 					<th class="colonne-site">Quantité</th>
-					<th class="colonne-site">Statut</th>
 					<th class="colonne-site">Services</th>
+					<th class="colonne-site">Statut</th>
 				</tr>
 				{{#each stocks}}
 					<tr class="row-donnees {{#if avertissement}}{{#if alerte}}warning-al{{else}}warning-av{{/if}}{{/if}}">
@@ -25,7 +25,7 @@
 							    <li>Niveau d'avertissement</li>
 							    <li>
 							    	<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus decrease-avertissement"></button>
-									<button id="diminueA-{{_id}}" class="glyphicon glyphicon-plus increase-avertissement"></button>  {{nvAvertissement}}
+									<button id="diminueA-{{_id}}" class=" glyphicon glyphicon-plus increase-avertissement"></button>  {{nvAvertissement}}
 								</li>
 							  </ul>
 							</div>
@@ -34,8 +34,25 @@
 							{{libelle}}
 						</td>
 						<td>
-							<!-- <button id="diminueQ-{{_id}}" class="glyphicon glyphicon-minus decrease-quantity"></button>   -->
-							<button id="augmenteQ-{{_id}}" class="glyphicon glyphicon-plus increase-quantity"></button>  {{quantite}}
+							<button id="diminueQ-{{_id}}" class="btn btn-default btn-sm decrease-quantity glyphicon glyphicon-minus"></button>
+							<button id="augmenteQ-{{_id}}" class="btn btn-default glyphicon glyphicon-plus increase-quantity"></button>  {{quantite}}
+						</td>
+						<td>
+							{{#each service}}
+					        	<button id="consommer-{{../_id}}" class="btn btn-default btn-sm glyphicon glyphicon-share consommer" data-id="{{../_id}}"></button>  {{nom}} -
+					        	<span class="dropdown">
+								  <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="badge">{{consommation}}</span></a>
+								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
+								  	{{#each (limit historique -6)}}
+								  		{{#with getHistorique this}}
+								            <li class=""><button class="glyphicon glyphicon-remove-sign consommations-remove" onClick="getGrandParentDataId(this);"></button>{{objet}}-{{date}}</li>
+								        {{/with}}
+								  	{{/each}}
+								  </ul>
+								</span>
+								<br />
+								<!-- <button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus increase-quantity-lieu" data-id="{{../_id}}"></button> -->
+					      	{{/each}}
 						</td>
 						<td>
 							{{#if avertissement}}
@@ -47,12 +64,6 @@
 							{{else}}
 								OK
 							{{/if}}
-						</td>
-						<td>
-							{{#each service}}
-					        	<button id="consommer-{{../_id}}" class="glyphicon glyphicon-minus consommer" data-id="{{../_id}}"></button>  {{nom}} - ( {{consommation}} )<br />
-								<!-- <button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus increase-quantity-lieu" data-id="{{../_id}}"></button> -->
-					      	{{/each}}
 						</td>
 					</tr>
 				{{/each}}
@@ -78,10 +89,13 @@
 			<i>
 			<ul class="check-object">
 			{{#each consommations}}
-			<li class="check-object">{{service}} // {{objet}} le {{ date }}.</li>
+			<li class="check-object">{{service}} // {{objet}} le {{ date }}.----------- {{_id}}</li>
 			{{/each}}
 			</ul></i>
 		</div>
 	</section>
 
+<script type="text/javascript">
+
+</script>
 </template>

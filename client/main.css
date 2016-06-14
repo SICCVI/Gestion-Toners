@@ -179,6 +179,9 @@ table tr:hover>td .glyphicon {
 .table-donnees .dropdown-menu {
 	background-color: white !important;
 	color: #154360 !important;
+	margin-left: -125px;
+	width: 250px !important;
+	padding: 10px ! important;
 }
 
 .table-donnees .dropdown-menu .glyphicon {
