@@ -2,16 +2,17 @@ import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
+import { EasySearch } from 'meteor/easy:search';
 
-export const Marques = new Mongo.Collection('marques');
+export const Services = new Mongo.Collection('services');
 
-Marques.allow({
+Services.allow({
   insert:function(){return true;},
   remove:function(){return true;},
   update:function(){return true;},
 });
 
-MarqueSchema = new SimpleSchema({
+ServiceSchema = new SimpleSchema({
   nom: {
     type: String,
     label: "Nom",
@@ -23,45 +24,39 @@ MarqueSchema = new SimpleSchema({
   },
 });
 
-Marques.attachSchema( MarqueSchema );
+Services.attachSchema( ServiceSchema );
 
 Meteor.methods({
-  'marques.remove'(marqueId) {
-    check(marqueId, String);
-    Marques.remove(marqueId);
+  'services.remove'(serviceId) {
+    check(serviceId, String);
+    Services.remove(serviceId);
   },
-  'marques.insert'(nom) {
+  'services.insert'(nom) {
     check(nom, String);
-    Marques.insert({
+    Services.insert({
       nom,
     });
   },
-  'marques.add'(nom) {
-    check(nom, String);
-    Marques.insert({
-      nom,
-    });
-  },
-  'marques.update'(marqueId, updateNom) {
-    check(marqueId, String);
+  'services.update'(serviceId, updateNom) {
+    check(serviceId, String);
     check(updateNom, String);
-    Marques.update(marqueId, {
+    Services.update(serviceId, {
     $set: {
       nom: updateNom,
     }});
   },
-  'toggleEditMarque'(marqueId, currentState) {
-    check(marqueId, String);
+  'toggleEditService'(serviceId, currentState) {
+    check(serviceId, String);
     check(currentState, Boolean);
-    Marques.update(marqueId, {
+    Services.update(serviceId, {
       $set: {
         editMode: !currentState
       }});
   },
 });
 
-MarquesIndex = new EasySearch.Index({
-  collection: Marques,
+ServicesIndex = new EasySearch.Index({
+  collection: Services,
   fields: ['nom'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}

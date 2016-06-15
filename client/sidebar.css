@@ -123,3 +123,26 @@
         margin-right: 0;
     }
 }
+
+/* Ajouts */
+
+#sideMenuTitle {
+    color: white;
+    text-align: center;
+    text-indent: 0px;
+}
+
+.sidebar-nav .glyphicon {
+    margin-right: 20px;
+}
+
+.sidebar-nav li {
+    text-indent: 10px !important;
+}
+
+.sidebar-nav .dropdown-menu {
+    margin-top: 0px;
+    background-color: #337F8F;
+    -webkit-box-shadow: none !important;
+    border: none !important;
+}

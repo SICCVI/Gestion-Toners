@@ -1,0 +1,23 @@
+<template name="EditMarque">
+	<div class="edit-donnees">
+ 		<form id="editForm-{{_id}}" class="update-marque">
+
+		    <div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Nom</span>
+			  <input type="text" id="editNom-{{_id}}" name="nom" class="form-control edit-marque-{{_id}}" value="{{nom}}" aria-describedby="sizing-addon2" onChange="editCheck('#editNom-{{_id}}', '{{nom}}', this.value);" required>
+			</div>
+			
+			<button id="SubmitEdit-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
+
+	 	</form>
+	</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#SubmitEdit-{{_id}}").click(function(){
+		$('.edit-marque-{{_id}}').css({'background-color' : 'whervice'});
+    }); 
+});
+</script>
+
+</template>

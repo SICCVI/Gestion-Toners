@@ -4,10 +4,16 @@ import { BlazeLayout } from 'meteor/kadira:blaze-layout';
 import '../../ui/layouts/MainLayout.js';
 
 import '../../ui/impressions/ListeImpressions.js';
+import '../../ui/toners/ListeToners.js';
+import '../../ui/marques/ListeMarques.js';
+
 import '../../ui/contacts/ListeContacts.js';
 import '../../ui/sites/ListeSites.js';
-import '../../ui/toners/ListeToners.js';
+import '../../ui/services/ListeServices.js';
+
 import '../../ui/stocks/ListeStocks.js';
+import '../../ui/historiques/ListeHistoriques.js';
+
 
 FlowRouter.route('/', {
 	name: 'home',
@@ -16,8 +22,8 @@ FlowRouter.route('/', {
 	}
 });
 
-FlowRouter.route('/impression', {
-	name: 'impression',
+FlowRouter.route('/impressions', {
+	name: 'impressions',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeImpressions'});
 	}
@@ -30,51 +36,51 @@ FlowRouter.route('/impression', {
 	}
 });*/
 
-/*FlowRouter.route('/marque', {
-	name: 'marque',
+FlowRouter.route('/marques', {
+	name: 'marques',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeMarques'});
 	}
 });
 
-FlowRouter.route('/marque/:id', {
-	name: 'marque',
-	action() {
-		BlazeLayout.render('MainLayout', {main: 'DetailMarque'});
-	}
-});
-*/
-FlowRouter.route('/toner', {
-	name: 'toner',
+FlowRouter.route('/toners', {
+	name: 'toners',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeToners'});
 	}
 });
-/*
-FlowRouter.route('/toner/:id', {
-	name: 'toner',
-	action() {
-		BlazeLayout.render('MainLayout', {main: 'DetailToner'});
-	}
-});*/
 
-FlowRouter.route('/contact', {
-	name: 'contact',
+FlowRouter.route('/contacts', {
+	name: 'contacts',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeContacts'});
 	}
 });
 
-FlowRouter.route('/site', {
-	name: 'site',
+FlowRouter.route('/sites', {
+	name: 'sites',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeSites'});
 	}
 });
 
-FlowRouter.route('/stock', {
-	name: 'stock',
+FlowRouter.route('/stocks', {
+	name: 'stocks',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeStocks'});
+	}
+});
+
+FlowRouter.route('/historiques', {
+	name: 'historiques',
+	action() {
+		BlazeLayout.render('MainLayout', {main: 'ListeHistoriques'});
+	}
+});
+
+FlowRouter.route('/services', {
+	name: 'services',
+	action() {
+		BlazeLayout.render('MainLayout', {main: 'ListeServices'});
 	}
 });

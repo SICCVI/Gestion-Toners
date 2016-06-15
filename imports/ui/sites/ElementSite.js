@@ -12,7 +12,7 @@ Template.ElementSite.events({
 	'click .toggle-editing': function() {
 		Meteor.call('toggleEditSite', this._id, this.editMode);
 	},
-	'click .glyphicon-trash': function() {
+	'click .supprimer': function() {
 		Meteor.call('sites.remove', this._id);
 	},
 });

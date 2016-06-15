@@ -1,6 +1,7 @@
 import { Template } from 'meteor/templating';
-import { Stocks } from '../../api/stockCollection.js';
-import { Consommations } from '../../api/consommationCollection.js';
+import { Stocks } from '../../api/stocksCollection.js';
+import { Historiques } from '../../api/historiquesCollection.js';
+import { Toners } from '../../api/tonersCollection.js';
 import { ReactiveVar } from 'meteor/reactive-var';
 
 import './ListeStocks.html';
@@ -16,7 +17,13 @@ Template.ListeStocks.onCreated(function() {
 
 Template.ListeStocks.onCreated(function() {
   this.autorun(() => {
-    this.subscribe('consommations');
+    this.subscribe('historiques');
+  });
+});
+
+Template.ListeStocks.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('toners');
   });
 });
 
@@ -27,11 +34,14 @@ Template.ListeStocks.helpers({
 	infoAlerte: () => {
 		return Stocks.find({"alerte": true});
 	},
-	consommations: () => {
-		return Consommations.find({}, {sort: {date: -1}})
+	historiques: () => {
+		return Historiques.find({}, {sort: {date: -1}})
 	},
 	getHistorique: function(id) {
-        return Consommations.findOne({_id: id});
+        return Historiques.findOne({_id: id});
+    },
+	getToner: function(id) {
+        return Toners.findOne({_id: id});
     },
 });
 
@@ -40,15 +50,21 @@ let S = 0;
 let A = 0;
 
 Template.ListeStocks.events({
-	'click .increase-quantity': function () {
+	'click .augmente-quantite': function () {
 		Meteor.call('stocks.augmente-quantite', this._id);
 		Q = this.quantite + 1;
 		S = this.seuil;
 		I = this._id;
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
+		const objet = this.libelle;
+		const date = getDate();
+		const sortie = false;
+		const auteur = "-";
+		Meteor.call('historiques.insert', objet, auteur, date, sortie);
+  		
 	},
-	'click .decrease-quantity': function () {
+	'click .diminue-quantite': function () {
 		Meteor.call('stocks.diminue-quantite', this._id);
 		Q = this.quantite - 1;
 		S = this.seuil;
@@ -56,7 +72,7 @@ Template.ListeStocks.events({
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
 	},
-	'click .increase-seuil': function () {
+	'click .augmente-seuil': function () {
 		Meteor.call('stocks.augmente-seuil', this._id);
 		Q = this.quantite;
 		S = this.seuil + 1
@@ -64,7 +80,7 @@ Template.ListeStocks.events({
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
 	},
-	'click .decrease-seuil': function () {
+	'click .diminue-seuil': function () {
 		Meteor.call('stocks.diminue-seuil', this._id);
 		Q = this.quantite;
 		S = this.seuil - 1
@@ -72,7 +88,7 @@ Template.ListeStocks.events({
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
 	},
-	'click .increase-avertissement': function () {
+	'click .augmente-avertissement': function () {
 		Meteor.call('stocks.augmente-avertissement', this._id);
 		Q = this.quantite;
 		S = this.seuil + 1
@@ -80,7 +96,7 @@ Template.ListeStocks.events({
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
 	},
-	'click .decrease-avertissement': function () {
+	'click .diminue-avertissement': function () {
 		Meteor.call('stocks.diminue-avertissement', this._id);
 		Q = this.quantite;
 		S = this.seuil - 1
@@ -89,17 +105,23 @@ Template.ListeStocks.events({
 		checkStock(Q, S, A, I);
 	},
 	'click .consommer': function () {
-		const objetId = event.target.getAttribute('data-id');
+		const elementId = event.target.getAttribute('data-id');
 		const service = this.nom;
-		Meteor.call('stocks.consommation', objetId, service);
-		const date = getDate();
-		const parent = Stocks.findOne({_id: objetId});
-		const objet = parent.libelle;
+		Meteor.call('stocks.consommation', elementId, service);
+
+		const parent = Stocks.findOne({_id: elementId});
 		Meteor.call('stocks.diminue-quantite', parent._id);
-		Meteor.call('consommations.insert', service, objet, date, function(error, result){
+
+		const objet = parent.libelle;
+		const date = getDate();
+		const sortie = true;
+		const auteur = service;
+		Meteor.call('historiques.insert', objet, auteur, date, sortie, function(error, result){
+  		
   		var historiqueId = result;
-  		Meteor.call('stocks.historique', parent._id, service, historiqueId);
+  		Meteor.call('stocks.add-historique', parent._id, service, historiqueId);
   		});
+
 		Q = parent.quantite - 1;
 		S = parent.seuil;
 		I = parent._id;
@@ -114,14 +136,16 @@ Template.ListeStocks.events({
 		//console.log(test);
 	},
 	'click .consommations-remove': function () {
-		Meteor.call('consommations.remove', this._id);
-		const objetId = event.target.getAttribute('data-id');
+		Meteor.call('historiques.remove', this._id);
+		const elementId = event.target.getAttribute('data-id');
 		const service = this.service;
-		Meteor.call('stocks.remove-historique', objetId, service, this._id);
+		Meteor.call('stocks.remove-historique', elementId, service, this._id);
 
-		Meteor.call('stocks.annule-consommation', objetId, service);
-		const parent = Stocks.findOne({_id: objetId});
-		Meteor.call('stocks.augmente-quantite', objetId);
+		Meteor.call('stocks.annule-consommation', elementId, service);
+
+		const parent = Stocks.findOne({_id: elementId});
+		Meteor.call('stocks.augmente-quantite', elementId);
+
 		Q = parent.quantite + 1;
 		S = parent.seuil;
 		I = parent._id;

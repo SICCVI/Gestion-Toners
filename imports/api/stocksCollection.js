@@ -38,7 +38,7 @@ Meteor.methods({
    		{ $inc: { seuil: -1 } }
 	)
   },
-    'stocks.augmente-avertissement' (stockId) {
+  'stocks.augmente-avertissement' (stockId) {
  	Stocks.update(stockId,
    		{ $inc: { nvAvertissement: 1 } }
 	)
@@ -78,7 +78,7 @@ Meteor.methods({
       { $inc: { 'service.$.consommation': -1 } }
   )
   },
-  'stocks.historique'(stockId, parametre, historiqueId) {
+  'stocks.add-historique'(stockId, parametre, historiqueId) {
     Stocks.update( { _id: stockId, 'service.nom' : parametre },
       { $addToSet: {
         'service.$.historique': historiqueId
@@ -95,5 +95,3 @@ Meteor.methods({
   )
   }
 });
-
-//db.stocks.aggregate( [ {$match: { _id: stockId } }, { $unwind: '$lieu' }, { $group: { _id: 'null', "total": { $sum: "$lieu.quantite" } } } ] );

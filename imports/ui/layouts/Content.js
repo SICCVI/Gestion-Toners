@@ -1,5 +1,5 @@
 import './Content.html';
 
-import './Home.html';
+import './../home/Home.js';
 
 import './Pagination.html';

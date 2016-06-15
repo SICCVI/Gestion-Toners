@@ -1,0 +1,44 @@
+<template name="ListeMarques">
+	<h3>Liste des marques</h3>
+	
+	<div class="insert-button">
+		<span class="to-left"><button type="button" class="btn btn-primary new-marque" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle marque</button></span>
+		{{> ModalNewMarque}}
+	</div>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=marquesIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+	<section class="marques">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<tr>
+					<th class="colonne-marque">Nom</th>
+					<th class="colonne-icone"></th>
+					<th class="colonne-icone"></th>
+				</tr>
+				{{#EasySearch.IfNoResults index=marquesIndex}}
+				<tr>
+					<td colspan="7">Pas de résultats trouvés!</td>
+				</tr>
+				{{/EasySearch.IfNoResults}}
+				{{#EasySearch.Each index=marquesIndex }}
+					<tr class="row-donnees">
+					{{> ElementMarque}}
+					</tr>
+				{{/EasySearch.Each}}
+			</table>
+			{{> EasySearch.Pagination index=marquesIndex customRenderPagination="Pagination"}}
+
+			{{#each marques}}
+				{{> ModalEditMarque}}
+			{{/each}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+	
+</template>

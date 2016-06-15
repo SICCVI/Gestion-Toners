@@ -1,6 +1,5 @@
 import { Template } from 'meteor/templating';
 import { Contacts } from '../../api/contactsCollection.js';
-import { Items } from '../../api/testCollection.js';
 
 import './ListeContacts.html';
 import './ModalNewContact.html';

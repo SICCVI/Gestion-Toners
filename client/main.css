@@ -49,10 +49,6 @@ html, body {
 	padding-top: 3px;
 }
 
-#sideMenuTitle {
-	color: white;
-}
-
 .table-donnees {
 	border: 1px solid black;
 	width: 100%;
@@ -179,11 +175,32 @@ table tr:hover>td .glyphicon {
 .table-donnees .dropdown-menu {
 	background-color: white !important;
 	color: #154360 !important;
-	margin-left: -125px;
+	margin-left: -120px;
 	width: 250px !important;
 	padding: 10px ! important;
 }
 
-.table-donnees .dropdown-menu .glyphicon {
+.table-donnees .dropdown-menu.suppression {
+	background-color: white !important;
 	color: #154360 !important;
+	margin-left: -202px;
+}
+
+.table-donnees .dropdown-menu.unlock {
+	background-color: white !important;
+	color: #154360 !important;
+	margin-left: -202px;
+}
+
+.table-donnees .dropdown-menu.glyphicon {
+	color: #154360 !important;
+}
+
+.lightgreen {
+	background-color: #82E0AA;
+}
+
+
+.lightred {
+	background-color: #F1948A;
 }

@@ -1,5 +1,5 @@
+
 reporterSelect = function (select, input) {
-	console.log('fonction appelée => reporterSelect');
     let selection = document.getElementById(select).value;
     document.getElementById(input).value = selection;
 },

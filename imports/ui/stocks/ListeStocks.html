@@ -6,7 +6,7 @@
 			<table class="table-donnees">
 				<tr>
 					<th class="colonne-icone"></th>
-					<th class="colonne-site">Libelle</th>
+					<th class="colonne-site">Toners</th>
 					<th class="colonne-site">Quantité</th>
 					<th class="colonne-site">Services</th>
 					<th class="colonne-site">Statut</th>
@@ -19,13 +19,13 @@
 							  <span class="glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
 							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							  	<li>Niveau de seuil</li>
-							    <li><button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus decrease-seuil"></button>
-								<button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus increase-seuil"></button>  {{seuil}}</li>
+							    <li><button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus diminue-seuil"></button>
+								<button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus augmente-seuil"></button>  {{seuil}}</li>
 							    <li role="separator" class="divider"></li>
 							    <li>Niveau d'avertissement</li>
 							    <li>
-							    	<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus decrease-avertissement"></button>
-									<button id="diminueA-{{_id}}" class=" glyphicon glyphicon-plus increase-avertissement"></button>  {{nvAvertissement}}
+							    	<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus diminue-avertissement"></button>
+									<button id="diminueA-{{_id}}" class=" glyphicon glyphicon-plus augmente-avertissement"></button>  {{nvAvertissement}}
 								</li>
 							  </ul>
 							</div>
@@ -34,8 +34,8 @@
 							{{libelle}}
 						</td>
 						<td>
-							<button id="diminueQ-{{_id}}" class="btn btn-default btn-sm decrease-quantity glyphicon glyphicon-minus"></button>
-							<button id="augmenteQ-{{_id}}" class="btn btn-default glyphicon glyphicon-plus increase-quantity"></button>  {{quantite}}
+							<button id="diminueQ-{{_id}}" class="btn btn-default btn-sm diminue-quantite glyphicon glyphicon-minus"></button>
+							<button id="augmenteQ-{{_id}}" class="btn btn-default glyphicon glyphicon-plus augmente-quantite"></button>  {{quantite}}
 						</td>
 						<td>
 							{{#each service}}
@@ -45,13 +45,13 @@
 								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
 								  	{{#each (limit historique -6)}}
 								  		{{#with getHistorique this}}
-								            <li class=""><button class="glyphicon glyphicon-remove-sign consommations-remove" onClick="getGrandParentDataId(this);"></button>{{objet}}-{{date}}</li>
+								            <li class=""><button class="glyphicon glyphicon-remove-sign consommations-remove" onClick="getGrandParentDataId(this);"></button>&nbsp;Retrait le {{date}}</li>
 								        {{/with}}
 								  	{{/each}}
 								  </ul>
 								</span>
 								<br />
-								<!-- <button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus increase-quantity-lieu" data-id="{{../_id}}"></button> -->
+								<!-- <button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus augmente-quantity-lieu" data-id="{{../_id}}"></button> -->
 					      	{{/each}}
 						</td>
 						<td>
@@ -77,25 +77,26 @@
 	<section>
 		<div style="border: thin solid black">
 			<h5>INFORMATION</h5>
-			<i>Stock insuffisant pour les objets suivants:
+			<i>Stock critique pour les objets suivants:
 			<ul>
-			{{#each infoAlerte}}
-			<li>{{libelle}}</li>
-			{{/each}}
+				{{#each infoAlerte}}
+				<li>{{libelle}}</li>
+				{{/each}}
 			</ul></i>
 		</div>
 		<div style="border: thin solid black">
 			<h5>HISTORIQUE</h5>
 			<i>
-			<ul class="check-object">
-			{{#each consommations}}
-			<li class="check-object">{{service}} // {{objet}} le {{ date }}.----------- {{_id}}</li>
-			{{/each}}
+			<ul>
+				{{#each historiques}}
+					{{#if sortie}}
+					<li>{{date}} : {{auteur}} a effectué le retrait d'un " {{objet}} ".</li>
+					{{else}}
+					<li>{{date}} : L'ajout d'un " {{objet}} " est enregistré.</li>
+					{{/if}}
+				{{/each}}
 			</ul></i>
 		</div>
 	</section>
 
-<script type="text/javascript">
-
-</script>
 </template>

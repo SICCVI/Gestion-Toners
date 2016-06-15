@@ -30,7 +30,7 @@ Template.ElementImpression.events({
 	'click .toggle-editing': function () {
 		Meteor.call('toggleEditImpression', this._id, this.editMode);
 	},
-	'click .glyphicon-trash': function () {
+	'click .supprimer': function () {
 		Meteor.call('impressions.remove', this._id);
 	},
 	'click .remove-toner': function (event) {

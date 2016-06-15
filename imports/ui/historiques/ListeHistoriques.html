@@ -1,0 +1,30 @@
+<template name="ListeHistoriques">
+	<h3>Consultation de l'historique</h3>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=historiquesIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+	<section class="historiques">
+		{{#if Template.subscriptionsReady}}
+					<ul>
+						{{#EasySearch.IfNoResults index=historiquesIndex}}
+							Pas de résultats trouvés!
+						{{/EasySearch.IfNoResults}}
+						{{#EasySearch.Each index=historiquesIndex }}
+							{{#if sortie}}
+								<li class="lightred">{{date}} : {{auteur}} a effectué le retrait d'un " {{objet}} ".</li>
+								{{else}}
+								<li class="lightgreen">{{date}} : L'ajout d'un " {{objet}} " est enregistré.</li>
+							{{/if}}
+						{{/EasySearch.Each}}
+					</ul>
+
+				{{> EasySearch.Pagination index=historiquesIndex customRenderPagination="Pagination"}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+</template>

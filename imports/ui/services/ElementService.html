@@ -1,16 +1,9 @@
-<template name="ElementContact">
-	<!-- <tr class="row-donnees"> -->
+<template name="ElementService">
 		<td>
 			{{nom}}
-		</td> 
-		<td>
-			{{prenom}}
-		</td> 
-		<td>
-			{{telephone}}
 		</td>
 		<td>
-		    {{ #if editMode}}
+			{{ #if editMode}}
 		        <div class="btn-group">
 		            <button type="button" class="btn btn-default glyphicon glyphicon-lock" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
 		            <ul class="dropdown-menu unlock">
@@ -37,6 +30,5 @@
 	            </ul>
 	        </div>
 		</td>
-<!-- 	</tr> -->
 </template>
 
