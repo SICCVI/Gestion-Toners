@@ -1,5 +1,5 @@
 <template name="ListeStocks">
-	<h3>Liste des stocks</h3>
+	<h3>Gestion du stock</h3>
 
 	<section class="stocks">
 		{{#if Template.subscriptionsReady}}
@@ -41,7 +41,7 @@
 							{{#each service}}
 					        	<button id="consommer-{{../_id}}" class="btn btn-default btn-sm glyphicon glyphicon-share consommer" data-id="{{../_id}}"></button>  {{nom}} -
 					        	<span class="dropdown">
-								  <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="badge">{{consommation}}</span></a>
+								  <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="label label-info">{{consommation}}</span></a>
 								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
 								  	{{#each (limit historique -6)}}
 								  		{{#with getHistorique this}}

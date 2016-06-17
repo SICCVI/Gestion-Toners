@@ -166,6 +166,7 @@ table tr:hover>td .glyphicon {
 
 .warning-al {
 	background-color: red !important;
+	color:#eeeeee;
 }
 
 .warning-av {
@@ -203,4 +204,9 @@ table tr:hover>td .glyphicon {
 
 .lightred {
 	background-color: #F1948A;
+}
+
+.half {
+	width: 30%;
+
 }

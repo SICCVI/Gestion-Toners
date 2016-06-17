@@ -14,6 +14,8 @@ import '../../ui/services/ListeServices.js';
 import '../../ui/stocks/ListeStocks.js';
 import '../../ui/historiques/ListeHistoriques.js';
 
+import '../../ui/creation/Creation.js';
+
 
 FlowRouter.route('/', {
 	name: 'home',
@@ -82,5 +84,13 @@ FlowRouter.route('/services', {
 	name: 'services',
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeServices'});
+	}
+});
+
+
+FlowRouter.route('/creation', {
+	name: 'creation',
+	action() {
+		BlazeLayout.render('MainLayout', {main: 'Creation'});
 	}
 });
