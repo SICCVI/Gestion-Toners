@@ -76,3 +76,10 @@ ContactsIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
+
+ModuleContactsIndex = new EasySearch.Index({
+  collection: Contacts,
+  fields: ['nom', 'prenom', 'telephone'],
+  engine: new EasySearch.Minimongo(),
+  defaultSearchOptions : {limit: 5}
+});

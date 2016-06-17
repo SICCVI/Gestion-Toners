@@ -1,0 +1,52 @@
+<template name="CreationContact">
+	CONTACT CREATION
+</template>
+
+<template name="SelectionContact">
+<!-- 
+	<button class="check-selected">check</button>
+	<button class="envoi-selection1">tous</button>
+	<button class="envoi-selection2">un par un</button>
+	<button class="envoi-selection3">tous ID</button>
+	<button class="envoi-selection4">insert ID</button>
+	<button class="test">XXXX</button> -->
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=contactsIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+	<section class="contacts">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<thead>
+					<tr>
+						<th class="colonne-contact">Nom</th>
+						<th class="colonne-contact">Prénom</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#EasySearch.IfNoResults index=contactsIndex}}
+					<tr>
+						<td colspan="5">Pas de résultats trouvés!</td>
+					</tr>
+					{{/EasySearch.IfNoResults}}
+					{{#EasySearch.Each index=contactsIndex }}
+						<tr class="row-donnees" data-mongoId="{{_id}}">
+							<td>
+								<div class="cellule">{{nom}}</div>
+							</td> 
+							<td>
+								<div class="cellule">{{prenom}}</div>
+							</td> 
+						</tr>
+					{{/EasySearch.Each}}
+				</tbody>
+			</table>
+			{{> EasySearch.Pagination index=contactsIndex customRenderPagination="Pagination"}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+</template>

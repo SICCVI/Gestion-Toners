@@ -20,7 +20,7 @@ html, body {
 
 #Header {
 	position:fixed;
-	z-index: 1;
+	z-index: 100;
 	left:0px;
 	top:0px;
 	right:0px;

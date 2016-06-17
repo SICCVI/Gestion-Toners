@@ -160,12 +160,12 @@ const toner_libelle = [
   "LibelleF"
 ],
 toner_constructeur = [
-  "ConstrcuteurA",
-  "ConstrcuteurB",
-  "ConstrcuteurC",
-  "ConstrcuteurD",
-  "ConstrcuteurE",
-  "ConstrcuteurF"
+  "ConstructeurA",
+  "ConstructeurB",
+  "ConstructeurC",
+  "ConstructeurD",
+  "ConstructeurE",
+  "ConstructeurF"
 ],
 toner_referenceC = [
   "AQW 123",

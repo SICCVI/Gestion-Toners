@@ -1,0 +1,47 @@
+<template name="CreationImpression">
+	IMPRESSION CREATION
+</template>
+
+<template name="SelectionImpression">
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=impressionsIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+	<section class="impressions">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<thead>
+					<tr>
+						<th class="colonne-impression">Marque</th>
+						<th class="colonne-impression">Modele</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#EasySearch.IfNoResults index=impressionsIndex}}
+					<tr>
+						<td colspan="5">Pas de résultats trouvés!</td>
+					</tr>
+					{{/EasySearch.IfNoResults}}
+					{{#EasySearch.Each index=impressionsIndex }}
+						<tr class="row-donnees" data-mongoId="{{_id}}">
+							<td>
+								<div class="cellule">{{marque}}</div>
+							</td> 
+							<td>
+								<div class="cellule">{{modele}}</div>
+							</td> 
+						</tr>
+					{{/EasySearch.Each}}
+				</tbody>
+			</table>
+			{{> EasySearch.Pagination index=impressionsIndex customRenderPagination="Pagination"}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+
+</template>

@@ -1,0 +1,47 @@
+<template name="CreationSite">
+	SITE CREATION
+</template>
+
+<template name="SelectionSite">
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=sitesIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+	<section class="sites">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<thead>
+					<tr>
+						<th class="colonne-site">Nom</th>
+						<th class="colonne-site">Ville</th>
+					</tr>
+				</thead>
+				<tbody>
+					{{#EasySearch.IfNoResults index=sitesIndex}}
+					<tr>
+						<td colspan="5">Pas de résultats trouvés!</td>
+					</tr>
+					{{/EasySearch.IfNoResults}}
+					{{#EasySearch.Each index=sitesIndex }}
+						<tr class="row-donnees" data-mongoId="{{_id}}">
+							<td>
+								<div class="cellule">{{nom}}</div>
+							</td> 
+							<td>
+								<div class="cellule">{{ville}}</div>
+							</td> 
+						</tr>
+					{{/EasySearch.Each}}
+				</tbody>
+			</table>
+			{{> EasySearch.Pagination index=sitesIndex customRenderPagination="Pagination"}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+
+</template>

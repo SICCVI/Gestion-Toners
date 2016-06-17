@@ -116,3 +116,10 @@ ImpressionsIndex = new EasySearch.Index({
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
+
+ModuleImpressionsIndex = new EasySearch.Index({
+  collection: Impressions,
+  fields: ['gabarit', 'marque', 'modele'],
+  engine: new EasySearch.Minimongo(),
+  defaultSearchOptions : {limit: 5}
+});
