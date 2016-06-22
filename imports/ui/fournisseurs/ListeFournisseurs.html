@@ -1,0 +1,46 @@
+<template name="ListeFournisseurs">
+	<h3><span class="glyphicon glyphicon-road"></span>&emsp;Liste des fournisseurs</h3>
+	
+	<div class="insert-button">
+		<span class="to-left"><button type="button" class="btn btn-primary new-fournisseur" data-toggle="modal" data-target="#ModalNew">Ajouter une nouvelle fournisseur</button></span>
+		{{> ModalNewFournisseur}}
+	</div>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=fournisseursIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+	<section class="fournisseurs">
+		{{#if Template.subscriptionsReady}}
+			<table class="table-donnees">
+				<tr>
+					<th class="colonne-fournisseur">Nom</th>
+					<th class="colonne-fournisseur">Adresse</th>
+					<th class="colonne-fournisseur">Téléphone</th>
+					<th class="colonne-fournisseur">Website</th>
+					<th class="colonne-icone"></th>
+					<th class="colonne-icone"></th>
+				</tr>
+				{{#EasySearch.IfNoResults index=fournisseursIndex}}
+				<tr>
+					<td colspan="8">Pas de résultats trouvés!</td>
+				</tr>
+				{{/EasySearch.IfNoResults}}
+				{{#EasySearch.Each index=fournisseursIndex }}
+					<tr class="row-donnees">
+					{{> ElementFournisseur}}
+					</tr>
+				{{/EasySearch.Each}}
+			</table>
+			{{> EasySearch.Pagination index=fournisseursIndex customRenderPagination="Pagination"}}
+
+			{{#each fournisseurs}}
+				{{> ModalEditFournisseur}}
+			{{/each}}
+		{{else}}
+			<p>En attente</p>
+		{{/if}}
+	</section>
+</template>

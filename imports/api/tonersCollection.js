@@ -23,10 +23,6 @@ ReferenceFournisseur = new SimpleSchema({
 });
 
 TonerSchema = new SimpleSchema({
-  libelle: {
-    type: String,
-    label: "Libelle",
-  },
   constructeur: {
     type: String,
     label: "Constructeur",
@@ -72,7 +68,6 @@ Meteor.methods({
     Toners.remove(tonerId);
   },
  'toners.insert'() {
-    check(libelle, String);
     check(constructeur, String);
     check(referenceC, String);
     check(referenceF, []);
@@ -81,12 +76,11 @@ Meteor.methods({
     check(seuil, Number);
     check(alerte, Boolean);
     Toners.insert({
-      libelle, constructeur, referenceC, referenceF, couleur, quantite, seuil, alerte,
+      constructeur, referenceC, referenceF, couleur, quantite, seuil, alerte,
     });
   },
-  'toners.update'(tonerId, updateLibelle, updateConstructeur, updateReferenceC, updateReferenceF, updateCouleur, updateQuantite, updateSeuil, updateAlerte) {
+  'toners.update'(tonerId, updateConstructeur, updateReferenceC, updateReferenceF, updateCouleur, updateQuantite, updateSeuil, updateAlerte) {
     check(tonerId, String);
-    check(updateLibelle, String);
     check(updateConstructeur, String);
     check(updateReferenceC, String);
     check(updateReferenceF, []);
@@ -96,7 +90,6 @@ Meteor.methods({
     check(updateAlerte, Boolean);
     Toners.update(tonerId, {
     $set: {
-      libelle: updateLibelle,
       constructeur: updateConstructeur,
       referenceC: updateReferenceC,
       referenceF: updateReferenceF,
@@ -118,7 +111,7 @@ Meteor.methods({
 
 TonersIndex = new EasySearch.Index({
   collection: Toners,
-  fields: ['libelle', 'constructeur', 'referenceC', 'couleur'],
+  fields: ['constructeur', 'referenceC', 'couleur', 'referenceF', 'fournisseur'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
@@ -126,7 +119,7 @@ TonersIndex = new EasySearch.Index({
 
 ModuleTonersIndex = new EasySearch.Index({
   collection: Toners,
-  fields: ['libelle', 'constructeur', 'referenceC', 'couleur'],
+  fields: ['constructeur', 'referenceC', 'couleur', 'referenceF', 'fournisseur'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

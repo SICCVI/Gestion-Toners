@@ -2,7 +2,13 @@ import { Template } from 'meteor/templating';
 import { Stocks } from '../../api/stocksCollection.js';
 import { Historiques } from '../../api/historiquesCollection.js';
 import { Toners } from '../../api/tonersCollection.js';
+import { Impressions } from '../../api/impressionsCollection.js';
+import { Sites } from '../../api/sitesCollection.js';
+import { Contacts } from '../../api/contactsCollection.js';
+import { Services } from '../../api/servicesCollection.js';
 import { ReactiveVar } from 'meteor/reactive-var';
+
+import { EasySearch } from 'meteor/easy:search';
 
 import './ListeStocks.html';
 
@@ -13,17 +19,23 @@ Template.ListeStocks.onCreated(function() {
   this.autorun(() => {
     this.subscribe('stocks');
   });
-});
-
-Template.ListeStocks.onCreated(function() {
   this.autorun(() => {
     this.subscribe('historiques');
   });
-});
-
-Template.ListeStocks.onCreated(function() {
   this.autorun(() => {
     this.subscribe('toners');
+  });
+  this.autorun(() => {
+    this.subscribe('impressions');
+  });
+  this.autorun(() => {
+    this.subscribe('sites');
+  });
+  this.autorun(() => {
+    this.subscribe('contacts');
+  });
+  this.autorun(() => {
+    this.subscribe('services');
   });
 });
 
@@ -43,6 +55,24 @@ Template.ListeStocks.helpers({
 	getToner: function(id) {
         return Toners.findOne({_id: id});
     },
+    getImpression: function(id) {
+        return Impressions.findOne({_id: id});
+    },
+    getSite: function(id) {
+        return Sites.findOne({_id: id});
+    },
+    getContact: function(id) {
+        return Contacts.findOne({_id: id});
+    },
+    getService: function(id) {
+        return Services.findOne({_id: id});
+    },
+    stocksIndex: function () {
+	    return StocksIndex;   
+	},
+	resultsCount: function () {
+      return StocksIndex.getComponentDict().get('count');
+    },
 });
 
 let Q = 0;
@@ -57,12 +87,17 @@ Template.ListeStocks.events({
 		I = this._id;
 		A = this.nvAvertissement;
 		checkStock(Q, S, A, I);
-		const objet = this.libelle;
+		const toner = Toners.findOne({_id: this.toner});
+		const objet = toner.constructeur + " " + toner.referenceC;
 		const date = getDate();
 		const sortie = false;
+		const entree = true;
+		const commande = false;
 		const auteur = "-";
-		Meteor.call('historiques.insert', objet, auteur, date, sortie);
-  		
+		const objetId = null;
+		const note = null;
+		Meteor.call('historiques.insert', objet, auteur, date, sortie, entree, commande, note, objetId);
+		Meteor.call('historiques.remove-ligne', this.toner);
 	},
 	'click .diminue-quantite': function () {
 		Meteor.call('stocks.diminue-quantite', this._id);
@@ -106,20 +141,26 @@ Template.ListeStocks.events({
 	},
 	'click .consommer': function () {
 		const elementId = event.target.getAttribute('data-id');
-		const service = this.nom;
-		Meteor.call('stocks.consommation', elementId, service);
+		const site = this.site;
+		const service = this.service;
+		Meteor.call('stocks.consommation', elementId, site, service);
 
 		const parent = Stocks.findOne({_id: elementId});
 		Meteor.call('stocks.diminue-quantite', parent._id);
 
-		const objet = parent.libelle;
+		const toner = Toners.findOne({_id: parent.toner});
+		const objet = toner.constructeur + " " + toner.referenceC;
 		const date = getDate();
 		const sortie = true;
-		const auteur = service;
-		Meteor.call('historiques.insert', objet, auteur, date, sortie, function(error, result){
+		const entree = false;
+		const commande = false;
+		const auteur = Sites.findOne({_id: site}).nom + " / " + Services.findOne({_id: service}).nom;
+		const objetId = null;
+		const note = null;
+		Meteor.call('historiques.insert', objet, auteur, date, sortie, entree, commande, note, objetId, function(error, result){
   		
   		var historiqueId = result;
-  		Meteor.call('stocks.add-historique', parent._id, service, historiqueId);
+  		Meteor.call('stocks.add-historique', parent._id, site, service, historiqueId);
   		});
 
 		Q = parent.quantite - 1;
@@ -128,20 +169,14 @@ Template.ListeStocks.events({
 		A = parent.nvAvertissement;
 		checkStock(Q, S, A, I);
 	},
-	'click .check-objet': function () {
-		console.log(this);
-		console.log(event.target.getAttribute('data-id'));
-		//console.log(this.parentNode.className);*/
-		//const test = this.parentNode.getAttribute("data-id");
-		//console.log(test);
-	},
 	'click .consommations-remove': function () {
 		Meteor.call('historiques.remove', this._id);
 		const elementId = event.target.getAttribute('data-id');
+		const site = this.site;
 		const service = this.service;
-		Meteor.call('stocks.remove-historique', elementId, service, this._id);
+		Meteor.call('stocks.remove-historique', elementId, site, service, this._id);
 
-		Meteor.call('stocks.annule-consommation', elementId, service);
+		Meteor.call('stocks.annule-consommation', elementId, site, service);
 
 		const parent = Stocks.findOne({_id: elementId});
 		Meteor.call('stocks.augmente-quantite', elementId);
@@ -151,7 +186,19 @@ Template.ListeStocks.events({
 		I = parent._id;
 		A = parent.nvAvertissement;
 		checkStock(Q, S, A, I);
-	}
+	},
+	'click .commander': function () {
+		const toner = Toners.findOne({_id: this.toner});
+		const objet = toner.constructeur + " " + toner.referenceC;
+		const date = getDate();
+		const sortie = false;
+		const entree = false;
+		const commande = true;
+		const auteur = "-";
+		const objetId = this.toner;
+		const note = null;
+		Meteor.call('historiques.insert', objet, auteur, date, sortie, entree, commande, note, objetId);	
+	},
 });
 
 checkStock = function (quantite, seuil, avertissement, id) {

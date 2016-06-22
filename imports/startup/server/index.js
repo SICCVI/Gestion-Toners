@@ -1,6 +1,7 @@
 import { Impressions } from '../../api/impressionsCollection.js';
 import { Marques } from '../../api/marquesCollection.js';
 import { Toners } from '../../api/tonersCollection.js';
+import { Fournisseurs } from '../../api/fournisseursCollection.js';
 
 import { Contacts } from '../../api/contactsCollection.js';
 import { Sites } from '../../api/sitesCollection.js';
@@ -28,56 +29,41 @@ Meteor.startup(() => {
 		return Marques.find({});
 	});
 
-/*	Meteor.publish('detailMarque', function (id){
-	check(id, String);
-		return Marques.find({_id: id});
-	});*/
-
 	Meteor.publish('toners', function (){
 		return Toners.find({});
 	});
-/*
-	Meteor.publish('detailToner', function (id){
-	check(id, String);
-		return Toners.find({_id: id});
+
+	Meteor.publish('fournisseurs', function (){
+		return Fournisseurs.find({});
 	});
-*/
+
 	Meteor.publish('contacts', function (){
 		return Contacts.find({});
 	});
-/*
-	Meteor.publish('detailContact', function (id){
-	check(id, String);
-		return Contacts.find({_id: id});
-	});*/
 
 	Meteor.publish('sites', function (){
 		return Sites.find({});
 	});
 
-/*	Meteor.publish('detailSite', function (id){
-	check(id, String);
-		return Sites.find({_id: id});
-	});*/
-  Meteor.publish('items', function (){
-    return Items.find({});
-  });
+	Meteor.publish('items', function (){
+	return Items.find({});
+	});
 
-  Meteor.publish('stocks', function (){
-    return Stocks.find({});
-  });
+	Meteor.publish('stocks', function (){
+	return Stocks.find({});
+	});
 
-  Meteor.publish('services', function (){
-    return Services.find({});
-  });
+	Meteor.publish('services', function (){
+	return Services.find({});
+	});
 
-  Meteor.publish('historiques', function (){
-    return Historiques.find({});
-  });
+	Meteor.publish('historiques', function (){
+	return Historiques.find({});
+	});
 
-  Meteor.publish('aperçu-historiques', function (){
-    return Historiques.find({}, {sort: {date: -1}, limit: 5 });
-  });
+	Meteor.publish('aperçu-historiques', function (){
+	return Historiques.find({}, {sort: {date: -1}, limit: 5 });
+	});
 
   
 });

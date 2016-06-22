@@ -16,8 +16,8 @@
 			<table class="table-donnees">
 				<thead>
 					<tr>
-						<th class="colonne-toner">Libelle</th>
-						<th class="colonne-toner">Référence Constructeur</th>
+						<th class="colonne-toner">Constructeur</th>
+						<th class="colonne-toner">Référence</th>
 						<th class="colonne-toner">Couleur</th>
 					</tr>
 				</thead>
@@ -30,10 +30,10 @@
 					{{#EasySearch.Each index=tonersIndex }}
 						<tr class="row-donnees" data-mongoId="{{_id}}">
 							<td>
-								<div class="cellule">{{libelle}}</div>
+								<div class="cellule">{{constructeur}}</div>
 							</td> 
 							<td>
-								<div class="cellule">{{constructeur}} - {{referenceC}}</div>
+								<div class="cellule">{{referenceC}}</div>
 							</td> 
 							<td>
 								<div class="cellule">{{couleur}}</div>

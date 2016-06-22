@@ -13,20 +13,43 @@ Historiques.allow({
 });
 
 Meteor.methods({
-  'historiques.insert'(objet, auteur, date, sortie) {
+  'historiques.insert'(objet, auteur, date, sortie, entree, commande, note, objetId) {
     var newElement = Historiques.insert({
-      objet, auteur, date, sortie,
+      objet, auteur, date, sortie, entree, commande, note, objetId,
     });
     return newElement;
   },
   'historiques.remove'(historiqueId) {
     Historiques.remove(historiqueId);
+  },
+  'historiques.remove-ligne'(objetId) {
+    const removeLigne = Historiques.findOne({objetId: objetId});
+    console.log(removeLigne);
+    if (typeof removeLigne === "undefined") {
+      console.log('if');
+    }
+    else {
+      Historiques.remove(removeLigne._id);
+      console.log('else');
+    }
+  },
+    'historiques.note'(historiqueId, updateNote) {
+    check(historiqueId, String);
+    check(updateNote, String);
+    Historiques.update(historiqueId, {
+    $set: {
+      note: updateNote,
+    }});
   }
 });
 
 HistoriquesIndex = new EasySearch.Index({
   collection: Historiques,
-  fields: ['objet', 'auteur', 'date'],
-  engine: new EasySearch.Minimongo(),
+  fields: ['objet', 'auteur', 'date', 'note'],
+  engine: new EasySearch.Minimongo({
+    sort: function () {
+      return { date: -1 };
+    }
+  }),
   defaultSearchOptions : {limit: 25}
 });

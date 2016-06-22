@@ -25,4 +25,8 @@ getGrandParentDataId = function (element) {
 getParentDataId = function (element) {
 	var parent = elementparentNode.getAttribute('data-id');
 	element.setAttribute('data-id' , parent);
+},
+
+scrollto = function (module) {
+    $('html, body').animate({'scrollTop':   $(module).offset().top }, 1000);
 }

@@ -128,7 +128,7 @@
                             Toner
                         </td>
                         <td>
-                            <input type="text" id="ResultatToner" name="choix-service" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatToner" name="choix-toner" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                             <input type="hidden" id="ResultatTonerId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
@@ -137,7 +137,7 @@
                             Impression
                         </td>
                         <td>
-                            <input type="text" id="ResultatImpression" name="choix-service" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatImpression" name="choix-impression" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                             <input type="hidden" id="ResultatImpressionId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
@@ -146,7 +146,7 @@
                             Site
                         </td>
                         <td>
-                            <input type="text" id="ResultatSite" name="choix-service" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatSite" name="choix-site" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                             <input type="hidden" id="ResultatSiteId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
@@ -155,7 +155,7 @@
                             Contact
                         </td>
                         <td>
-                            <input type="text" id="ResultatContact" name="choix-service" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatContact" name="choix-contact" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                             <input type="hidden" id="ResultatContactId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
@@ -171,7 +171,7 @@
                 </table>   
             </div>
             <div class="finaliser">
-	            <a href="" class="vers-suivant" id="ToValidation">
+	            <a href="" class="" id="ToValidation" onClick="scrollto('#SectionSuite');">
 	            	<button class="btn btn-default vers-suivant">
 	            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
 	            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
@@ -182,128 +182,23 @@
 	            </a>
             </div>
         </div>
+
+        <div class="module-suite">
+            <div>
+                <a href="" class="ajouter" id="ToAjouter" onClick="scrollto('#SectionToner');">
+                    <button class="btn btn-default">Ajouter de nouveaux éléments à ce toner
+                    </button>
+                </a>
+            </div>
+            <a class="anchor" id="SectionSuite"></a>
+            <div>
+                <a href="" class="reset" id="ToReset" onClick="scrollto('#SectionToner');">
+                    <button class="btn btn-default">Enregistrer une nouvelle association
+                    </button>
+                </a>
+            </div>
+
+        </div>
 </div>
-<style type="text/css">
-#content-wrap {
-    width: 100%;
-}
 
-.module {
-	margin-bottom: 150px !important;
-    -moz-border-radius: 6px; 
-    border-radius: 6px;
-}
-
-.titre-module {
-	width: 100%;
-    text-align:center;
-    background-color: orange;
-    height: 50px;
-    padding: 10px;
-     -moz-border-radius: 6px 6px 0 0;
-    border-radius: 6px 6px 0 0;
-}
-
-.infocomplet {
-    width: 100%;
-    height: 275px;
-    background-color: olive;
-    -moz-border-radius: 6px; 
-    border-radius: 6px;
-    color: black;
-}
-
-.info {
-    width: 20%;
-    float: left;
-    height: 356px;
-    background-color: lightseagreen;
-    -moz-border-bottom-right-radius: 6px; 
-    border-bottom-right-radius: 6px;
-    -moz-border-bottom-left-radius: 6px; 
-    border-bottom-left-radius: 6px;
-}
-
-.titre-module .glyphicon {
-    font-size: 250% !important;
-}
-
-.creation, .selection {
-    width: 40%;
-    float: left;
-    height: 320px;
-    -moz-border-bottom-right-radius: 6px; 
-    border-bottom-right-radius: 6px;
-    -moz-border-bottom-left-radius: 6px; 
-    border-bottom-left-radius: 6px;
-    margin-bottom: 3px;
-}
-
-.creation {
-    width: 30%;
-    background-color: lightgreen;
-}
-
-.selection {
-    width: 50%;
-	background-color: mediumpurple ;
-    padding: 5px;
-}
-
-.suivant {
-	width: 100%;
-    min-height: 50px;
-    margin-bottom: 150px !important;
-    background-color:darkkhaki;
-}
-
-.finaliser {
-    width: 100%;
-    min-height: 50px;
-    margin-bottom: 150px !important;
-    background-color:darkkhaki;
-    margin-bottom:200px;
-}
-    
-
-.vers-suivant {
-	width: 100%;
-    margin-top: -22px;
-}
-
-.float-gauche {
-	float:left;
-}
-
-.float-droite {
-	float:right;
-}
-
-a.anchor {
-    display: block;
-    position: relative;
-    top: -65px;
-    visibility: hidden;
-}
-
-.module {
-	margin-top: 0px;
-}
-
-.cellule {
-    overflow-y: scroll;
-    max-height: 20px;
-}
-
-#Resultats {
-    width: 100%;
-}
-</style>
-
-<script type="text/javascript">
-scrollto = function (module) {
-    $('html, body').animate({'scrollTop':   $(module).offset().top }, 1000);
-    }
-
-</script>
 </template>

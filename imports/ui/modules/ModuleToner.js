@@ -29,7 +29,7 @@ Template.SelectionToner.events({
     'click .table-donnees .row-donnees':function(evt){
         if (!$(evt.currentTarget).hasClass("highlight")) {
           $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
-          $('#ChoixToner').val(this.libelle + "   //   " + this.constructeur + " " + this.referenceC + " ( " + this.couleur + " )");
+          $('#ChoixToner').val(this.constructeur + " " + this.referenceC + " ( " + this.couleur + " )");
           $('#ChoixTonerId').val(this._id);
         }
         else {

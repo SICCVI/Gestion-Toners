@@ -1,5 +1,17 @@
 <template name="ListeHistoriques">
-	<h3>Consultation de l'historique</h3>
+	<h3><span class="glyphicon glyphicon-time"></span>&emsp;Consultation de l'historique</h3>
+
+	<div class="to-left">
+		<div class="checkbox">
+			<span class="lightorange">&emsp;&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-commandes" name=""> Commande</label>
+		</div>
+		<div class="checkbox">
+			<span class="lightgreen">&emsp;&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-entrees" name=""> Entrée</label>
+		</div>
+		<div class="checkbox">
+			<span class="lightred">&emsp;&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-sorties" name=""> Sortie</label>
+		</div>
+	</div>
 
 	<div class="input-group search-section">
 	  <span class="to-right">{{> EasySearch.Input index=historiquesIndex }}</span>
@@ -9,22 +21,101 @@
 
 	<section class="historiques">
 		{{#if Template.subscriptionsReady}}
-					<ul>
+					<table class="table-donnees">
+						<th>Date</th>
+						<th>Objet</th>
+						<th>Note</th>
+						<th></th>
 						{{#EasySearch.IfNoResults index=historiquesIndex}}
 							Pas de résultats trouvés!
 						{{/EasySearch.IfNoResults}}
 						{{#EasySearch.Each index=historiquesIndex }}
+							{{#if commande}}
+								{{#if showCommandes }}
+									<tr class="lightorange">
+										<td>{{date}}</td>
+										<td>Commande de " {{objet}} ".</td>
+										<td>{{> NoteHistorique}}</td>
+										<td>{{> SuppressionHistorique}}</td>
+									</tr>
+								{{/if}}
+							{{/if}}
+							{{#if entree}}
+								{{#if showEntrees }}
+									<tr class="lightgreen">
+										<td>{{date}}</td>
+										<td>Ajout d'un " {{objet}} ".</td>
+										<td>{{> NoteHistorique}}</td>
+										<td>{{> SuppressionHistorique}}</td>
+									</tr>
+								{{/if}}
+							{{/if}}
 							{{#if sortie}}
-								<li class="lightred">{{date}} : {{auteur}} a effectué le retrait d'un " {{objet}} ".</li>
-								{{else}}
-								<li class="lightgreen">{{date}} : L'ajout d'un " {{objet}} " est enregistré.</li>
+								{{#if showSorties }}
+									<tr class="lightred">
+										<td>{{date}}</td>
+										<td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
+										<td>{{> NoteHistorique}}</td>
+										<td>{{> SuppressionHistorique}}</td>
+									</tr>
+								{{/if}}
 							{{/if}}
 						{{/EasySearch.Each}}
-					</ul>
-
+					</table>
 				{{> EasySearch.Pagination index=historiquesIndex customRenderPagination="Pagination"}}
 		{{else}}
 			<p>En attente</p>
 		{{/if}}
 	</section>
+	<br /><br /><br /><br /><br />
+</template>
+
+<template name="SuppressionHistorique">
+		<div class="btn-group">
+		    <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-trash" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+		    <ul class="dropdown-menu suppression">
+		        <li>Etes-vous sûrs de vouloir supprimer cet élément?</li>
+		        <li role="separator" class="divider"></li>
+		        <li><a href="" class="supprimer">Oui, je veux le supprimer.</a></li>
+		        <li role="separator" class="divider"></li>
+		        <li><a href="" data-toggle="dropdown">Non</a></li>
+		    </ul>
+		</div>
+</template>
+
+<template name="NoteHistorique">
+	<button type="button" class="btn btn-default btn-sm glyphicon glyphicon-comment add-note" data-id="{{_id}}" data-toggle="modal" data-target="#ModalNote-{{_id}}" ></button>
+	{{> ModalNoteHistorique}}
+	{{note}}
+</template>
+
+<template name="ModalNoteHistorique">
+	<div id="ModalNote-{{_id}}" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Attacher une note</h4>
+	      </div>
+	      <div class="modal-body">
+	        	<div class="add-note">
+			 		<form id="addNote-{{_id}}" class="add-note">
+
+					    <div class="input-group">
+						  <input type="text" class="form-control" placeholder="..." aria-describedby="basic-addon2" name="note" id="Note-{{_id}}">
+						  <span class="input-group-addon add-note" id="basic-addon2"><span class="glyphicon glyphicon-comment"></span></span>
+						</div>
+						<button id="SubmitAddNote-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
+
+				 	</form>
+				</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="closeModalNew" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
 </template>

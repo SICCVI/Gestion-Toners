@@ -13,9 +13,23 @@ Stocks.allow({
 });
 
 Meteor.methods({
-  'stocks.insert'(stock) {
+  'stocks.insert'(tonerId, impressionId, siteId, contactId, serviceId, index) {
     Stocks.insert({
-      stock,
+      toner : tonerId,
+      index : index,
+      seuil : 0,
+      nvAvertissement : 0,
+      alerte : false,
+      avertissement : false,
+      quantite : 0,
+      consommateur : [
+        { site : siteId,
+          impression : impressionId,
+          contact : contactId,
+          service : serviceId,
+          consommation : 0,
+          historique : []},
+        ]
     });
   },
   'stocks.augmente-quantite' (stockId) {
@@ -68,30 +82,38 @@ Meteor.methods({
 		{ $set: { avertissement: false }}
 	)
   },
-  'stocks.consommation' (stockId, parametre) {
- 	Stocks.update( { _id: stockId, 'service.nom' : parametre },
-   		{ $inc: { 'service.$.consommation': 1 } }
+  'stocks.consommation' (stockId, parametre1, parametre2) {
+ 	Stocks.update( { _id: stockId, 'consommateur.site' : parametre1, 'consommateur.service' : parametre2 },
+   		{ $inc: { 'consommateur.$.consommation': 1 } }
 	)
   },
-  'stocks.annule-consommation' (stockId, parametre) {
-  Stocks.update( { _id: stockId, 'service.nom' : parametre },
-      { $inc: { 'service.$.consommation': -1 } }
+  'stocks.annule-consommation' (stockId, parametre1, parametre2) {
+  Stocks.update( { _id: stockId, 'consommateur.site' : parametre1, 'consommateur.service' : parametre2 },
+      { $inc: { 'consommateur.$.consommation': -1 } }
   )
   },
-  'stocks.add-historique'(stockId, parametre, historiqueId) {
-    Stocks.update( { _id: stockId, 'service.nom' : parametre },
+  'stocks.add-historique'(stockId, parametre1, parametre2, historiqueId) {
+    Stocks.update( { _id: stockId,'consommateur.site' : parametre1, 'consommateur.service' : parametre2 },
       { $addToSet: {
-        'service.$.historique': historiqueId
+        'consommateur.$.historique': historiqueId
         }
       }
   )
   },
-  'stocks.remove-historique'(stockId, parametre, historiqueId) {
-    Stocks.update( { _id: stockId, 'service.nom' : parametre },
+  'stocks.remove-historique'(stockId, parametre1, parametre2, historiqueId) {
+    Stocks.update( { _id: stockId,'consommateur.site' : parametre1, 'consommateur.service' : parametre2 },
       { $pull: {
-        'service.$.historique': historiqueId
+        'consommateur.$.historique': historiqueId
         }
       }
   )
   }
 });
+
+StocksIndex = new EasySearch.Index({
+  collection: Stocks,
+  fields: ['index'],
+  engine: new EasySearch.Minimongo(),
+  defaultSearchOptions : {limit: 25}
+});
+

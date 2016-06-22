@@ -1,6 +1,7 @@
 import { Impressions } from '../../api/impressionsCollection.js';
 import { Marques } from '../../api/marquesCollection.js';
 import { Toners } from '../../api/tonersCollection.js';
+import { Fournisseurs } from '../../api/fournisseursCollection.js';
 
 import { Contacts } from '../../api/contactsCollection.js';
 import { Sites } from '../../api/sitesCollection.js';
@@ -247,7 +248,7 @@ if (Services.find().count() < 5) {
 //STOCK
 Meteor.startup(function () {
 if (Stocks.find().count() < 3) {
-    Stocks.insert({
+/*    Stocks.insert({
       libelle: "Objet A",
       seuil: 1,
       nvAvertissement: 4,
@@ -288,6 +289,75 @@ if (Stocks.find().count() < 3) {
         { nom: 'Service XXX',
         consommation: 0, historique: []}
         ]
+    });
+*/    Stocks.insert({
+      toner : "WbQPf3FCwiRMHkGcS",
+      index : ["LibelleD", "ConstructeurA", "ZSX 456", "Rouge"],
+      seuil : 0,
+      nvAvertissement : 1,
+      alerte : false,
+      avertissement : false,
+      quantite : 5,
+      consommateur : [
+        { site : "MeYSkawCkreFnsYNP",
+          impression : ["BjFvmkE587vCM7hRo"],
+          contact : "5ZbKGh5DqzDc2exYF",
+          service : "ToQ4XS83vmPdEMRna",
+          consommation : 0,
+          historique : []},
+        { site : "DN5Chv5jyrzBLFmwB",
+          impression : ["yAoMDTamgTBjWvNYy"],
+          contact : "wMt6PmJybsAHmBrqk",
+          service : "CoXRbTT9jzP6owfa8",
+          consommation : 0,
+          historique : []}
+          ]
+    });
+    Stocks.insert({
+      toner : "SC3qczJ7hhTYbaBN3",
+      index : ["LibelleE", "ConstructeurD", "AQW 123", "Magenta"],
+      seuil : 0,
+      nvAvertissement : 1,
+      alerte : false,
+      avertissement : false,
+      quantite : 5,
+      consommateur : [
+        { site : "MeYSkawCkreFnsYNP",
+          impression : ["BjFvmkE587vCM7hRo"],
+          contact : "5ZbKGh5DqzDc2exYF",
+          service : "ToQ4XS83vmPdEMRna",
+          consommation : 0,
+          historique : []},
+        { site : "DN5Chv5jyrzBLFmwB",
+          impression : ["yAoMDTamgTBjWvNYy"],
+          contact : "wMt6PmJybsAHmBrqk",
+          service : "CoXRbTT9jzP6owfa8",
+          consommation : 0,
+          historique : []}
+          ]
+    });
+    Stocks.insert({
+      toner : "KHyYQQuFfGvwbfZTa",
+      index : ["LibelleC", "ConstructeurF", "ZSX 456", "Rouge"],
+      seuil : 0,
+      nvAvertissement : 1,
+      alerte : false,
+      avertissement : false,
+      quantite : 5,
+      consommateur : [
+        { site : "N9j2tu22H9aubxdYu",
+          impression : ["BjFvmkE587vCM7hRo"],
+          contact : "5ZbKGh5DqzDc2exYF",
+          service : "ToQ4XS83vmPdEMRna",
+          consommation : 0,
+          historique : []},
+        { site : "DN5Chv5jyrzBLFmwB",
+          impression : ["yAoMDTamgTBjWvNYy"],
+          contact : "wMt6PmJybsAHmBrqk",
+          service : "CoXRbTT9jzP6owfa8",
+          consommation : 0,
+          historique : []}
+          ]
     });
 }
 });

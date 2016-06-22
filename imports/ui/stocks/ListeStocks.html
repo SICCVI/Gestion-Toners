@@ -1,22 +1,30 @@
 <template name="ListeStocks">
-	<h3>Gestion du stock</h3>
+	<h3><span class="glyphicon glyphicon-barcode"></span>&emsp;Gestion du stock</h3>
+
+	<div class="input-group search-section">
+	  <span class="to-right">{{> EasySearch.Input index=stocksIndex }}</span>
+	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+	</div>
+	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
 
 	<section class="stocks">
 		{{#if Template.subscriptionsReady}}
 			<table class="table-donnees">
 				<tr>
 					<th class="colonne-icone"></th>
-					<th class="colonne-site">Toners</th>
-					<th class="colonne-site">Quantité</th>
-					<th class="colonne-site">Services</th>
-					<th class="colonne-site">Statut</th>
+					<th class="colonne-stocks" >Toners</th>
+					<th class="colonne-stocks">Quantité</th>
+					<th class="colonne-stocks">Services</th>
+					<th class="colonne-stocks">Statut</th>
+					<th class="colonne-icone"></th>
 				</tr>
-				{{#each stocks}}
+					{{#EasySearch.Each index=stocksIndex }}
+					
 					<tr class="row-donnees {{#if avertissement}}{{#if alerte}}warning-al{{else}}warning-av{{/if}}{{/if}}">
 
 						<td>
 							<div class="dropdown">
-							  <span class="glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></span>
+							  <button class="btn btn-default glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
 							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
 							  	<li>Niveau de seuil</li>
 							    <li><button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus diminue-seuil"></button>
@@ -30,16 +38,28 @@
 							  </ul>
 							</div>
 						</td>
+						{{#with getToner toner}}
 						<td>
-							{{libelle}}
+							 	{{constructeur}} - {{referenceC}} ( {{couleur}} )
 						</td>
+						{{/with}}
 						<td>
 							<button id="diminueQ-{{_id}}" class="btn btn-default btn-sm diminue-quantite glyphicon glyphicon-minus"></button>
 							<button id="augmenteQ-{{_id}}" class="btn btn-default glyphicon glyphicon-plus augmente-quantite"></button>  {{quantite}}
 						</td>
 						<td>
-							{{#each service}}
-					        	<button id="consommer-{{../_id}}" class="btn btn-default btn-sm glyphicon glyphicon-share consommer" data-id="{{../_id}}"></button>  {{nom}} -
+							{{#each consommateur}}
+					        	<button id="consommer-{{../_id}}" class="btn btn-default btn-sm glyphicon glyphicon-share consommer" data-id="{{../_id}}"></button>
+					        	{{#with getSite site}}
+					        		{{nom}}
+								{{/with}}
+								/
+								{{#with getService service}}
+					        		{{nom}}
+								{{/with}}
+								{{#with getContact contact}}
+									( {{nom}} {{prenom}} )
+								{{/with}}
 					        	<span class="dropdown">
 								  <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="label label-info">{{consommation}}</span></a>
 								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
@@ -51,7 +71,13 @@
 								  </ul>
 								</span>
 								<br />
-								<!-- <button id="augmenteQl-{{../_id}}" class="glyphicon glyphicon-plus augmente-quantity-lieu" data-id="{{../_id}}"></button> -->
+								<ul>
+									{{#each impression}}
+										{{#with getImpression this}}
+										<li>{{marque}} {{modele}}</li>
+										{{/with}}
+									{{/each}}
+								</ul>
 					      	{{/each}}
 						</td>
 						<td>
@@ -65,8 +91,11 @@
 								OK
 							{{/if}}
 						</td>
+						<td>
+							<button class="btn btn-default glyphicon glyphicon-shopping-cart commander" aria-haspopup="true" aria-expanded="true"></button>
+						</td>
 					</tr>
-				{{/each}}
+				{{/EasySearch.Each}}
 			</table>
 		{{else}}
 			<p>En attente</p>
@@ -81,19 +110,6 @@
 			<ul>
 				{{#each infoAlerte}}
 				<li>{{libelle}}</li>
-				{{/each}}
-			</ul></i>
-		</div>
-		<div style="border: thin solid black">
-			<h5>HISTORIQUE</h5>
-			<i>
-			<ul>
-				{{#each historiques}}
-					{{#if sortie}}
-					<li>{{date}} : {{auteur}} a effectué le retrait d'un " {{objet}} ".</li>
-					{{else}}
-					<li>{{date}} : L'ajout d'un " {{objet}} " est enregistré.</li>
-					{{/if}}
 				{{/each}}
 			</ul></i>
 		</div>
