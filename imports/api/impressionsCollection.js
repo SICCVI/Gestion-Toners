@@ -66,6 +66,16 @@ Meteor.methods({
       gabarit, marque, modele, nombretoner,
     });
   },
+  'impressions.alt-insert'(gabarit, marque, modele, nombretoner) {
+    check(gabarit, String);
+    check(marque, String);
+    check(modele, String);
+    check(nombretoner, Number);
+    const newElement = Impressions.insert({
+      gabarit, marque, modele, nombretoner,
+    });
+    return newElement;
+  },
   'impressions.update'(impressionId, updateGabarit, updateMarque, updateModele, updateNombretoner) {
     check(impressionId, String);
     check(updateGabarit, String);

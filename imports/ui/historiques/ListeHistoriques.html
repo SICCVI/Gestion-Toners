@@ -27,7 +27,9 @@
 						<th>Note</th>
 						<th></th>
 						{{#EasySearch.IfNoResults index=historiquesIndex}}
-							Pas de résultats trouvés!
+						<tr>
+							<td colspan="4">Pas de résultats trouvés!</td>
+						</tr>
 						{{/EasySearch.IfNoResults}}
 						{{#EasySearch.Each index=historiquesIndex }}
 							{{#if commande}}

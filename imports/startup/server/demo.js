@@ -191,19 +191,19 @@ if (Toners.find().count() < 5) {
 Meteor.startup(function () {
 if (Marques.find().count() < 5) {
     Marques.insert({
-      nom: "Marque A"
+      nom: "MARQUE A"
     });
     Marques.insert({
-      nom: "Marque B"
+      nom: "MARQUE B"
     });
     Marques.insert({
-      nom: "Marque C"
+      nom: "MARQUE C"
     });
     Marques.insert({
-      nom: "Marque D"
+      nom: "MARQUE D"
     });
     Marques.insert({
-      nom: "Marque E"
+      nom: "MARQUE E"
     });
 }
 });
@@ -270,76 +270,76 @@ if (Fournisseurs.find().count() < 5) {
 });
 
 //STOCK
-Meteor.startup(function () {
-if (Stocks.find().count() < 3) {
-    Stocks.insert({
-      toner : "WbQPf3FCwiRMHkGcS",
-      index : ["LibelleD", "ConstructeurA", "ZSX 456", "Rouge"],
-      seuil : 0,
-      nvAvertissement : 1,
-      alerte : false,
-      avertissement : false,
-      quantite : 5,
-      consommateur : [
-        { site : "MeYSkawCkreFnsYNP",
-          impression : ["BjFvmkE587vCM7hRo"],
-          contact : "5ZbKGh5DqzDc2exYF",
-          service : "ToQ4XS83vmPdEMRna",
-          consommation : 0,
-          historique : []},
-        { site : "DN5Chv5jyrzBLFmwB",
-          impression : ["yAoMDTamgTBjWvNYy"],
-          contact : "wMt6PmJybsAHmBrqk",
-          service : "CoXRbTT9jzP6owfa8",
-          consommation : 0,
-          historique : []}
+/*METEOR.STARTUP(FUNCTION () {
+IF (STOCKS.FIND().COUNT() < 3) {
+    STOCKS.INSERT({
+      TONER : "WBQPF3FCWIRMHKGCS",
+      INDEX : ["LIBELLED", "CONSTRUCTEURA", "ZSX 456", "ROUGE"],
+      SEUIL : 0,
+      NVAVERTISSEMENT : 1,
+      ALERTE : FALSE,
+      AVERTISSEMENT : FALSE,
+      QUANTITE : 5,
+      CONSOMMATEUR : [
+        { SITE : "MEYSKAWCKREFNSYNP",
+          IMPRESSION : ["BJFVMKE587VCM7HRO"],
+          CONTACT : "5ZBKGH5DQZDC2EXYF",
+          SERVICE : "TOQ4XS83VMPDEMRNA",
+          CONSOMMATION : 0,
+          HISTORIQUE : []},
+        { SITE : "DN5CHV5JYRZBLFMWB",
+          IMPRESSION : ["YAOMDTAMGTBJWVNYY"],
+          CONTACT : "WMT6PMJYBSAHMBRQK",
+          SERVICE : "COXRBTT9JZP6OWFA8",
+          CONSOMMATION : 0,
+          HISTORIQUE : []}
           ]
     });
-    Stocks.insert({
-      toner : "SC3qczJ7hhTYbaBN3",
-      index : ["LibelleE", "ConstructeurD", "AQW 123", "Magenta"],
-      seuil : 0,
-      nvAvertissement : 1,
-      alerte : false,
-      avertissement : false,
-      quantite : 5,
-      consommateur : [
-        { site : "MeYSkawCkreFnsYNP",
-          impression : ["BjFvmkE587vCM7hRo"],
-          contact : "5ZbKGh5DqzDc2exYF",
-          service : "ToQ4XS83vmPdEMRna",
-          consommation : 0,
-          historique : []},
-        { site : "DN5Chv5jyrzBLFmwB",
-          impression : ["yAoMDTamgTBjWvNYy"],
-          contact : "wMt6PmJybsAHmBrqk",
-          service : "CoXRbTT9jzP6owfa8",
-          consommation : 0,
-          historique : []}
+    STOCKS.INSERT({
+      TONER : "SC3QCZJ7HHTYBABN3",
+      INDEX : ["LIBELLEE", "CONSTRUCTEURD", "AQW 123", "MAGENTA"],
+      SEUIL : 0,
+      NVAVERTISSEMENT : 1,
+      ALERTE : FALSE,
+      AVERTISSEMENT : FALSE,
+      QUANTITE : 5,
+      CONSOMMATEUR : [
+        { SITE : "MEYSKAWCKREFNSYNP",
+          IMPRESSION : ["BJFVMKE587VCM7HRO"],
+          CONTACT : "5ZBKGH5DQZDC2EXYF",
+          SERVICE : "TOQ4XS83VMPDEMRNA",
+          CONSOMMATION : 0,
+          HISTORIQUE : []},
+        { SITE : "DN5CHV5JYRZBLFMWB",
+          IMPRESSION : ["YAOMDTAMGTBJWVNYY"],
+          CONTACT : "WMT6PMJYBSAHMBRQK",
+          SERVICE : "COXRBTT9JZP6OWFA8",
+          CONSOMMATION : 0,
+          HISTORIQUE : []}
           ]
     });
-    Stocks.insert({
-      toner : "KHyYQQuFfGvwbfZTa",
-      index : ["LibelleC", "ConstructeurF", "ZSX 456", "Rouge"],
-      seuil : 0,
-      nvAvertissement : 1,
-      alerte : false,
-      avertissement : false,
-      quantite : 5,
-      consommateur : [
-        { site : "N9j2tu22H9aubxdYu",
-          impression : ["BjFvmkE587vCM7hRo"],
-          contact : "5ZbKGh5DqzDc2exYF",
-          service : "ToQ4XS83vmPdEMRna",
-          consommation : 0,
-          historique : []},
-        { site : "DN5Chv5jyrzBLFmwB",
-          impression : ["yAoMDTamgTBjWvNYy"],
-          contact : "wMt6PmJybsAHmBrqk",
-          service : "CoXRbTT9jzP6owfa8",
-          consommation : 0,
-          historique : []}
+    STOCKS.INSERT({
+      TONER : "KHYYQQUFFGVWBFZTA",
+      INDEX : ["LIBELLEC", "CONSTRUCTEURF", "ZSX 456", "ROUGE"],
+      SEUIL : 0,
+      NVAVERTISSEMENT : 1,
+      ALERTE : FALSE,
+      AVERTISSEMENT : FALSE,
+      QUANTITE : 5,
+      CONSOMMATEUR : [
+        { SITE : "N9J2TU22H9AUBXDYU",
+          IMPRESSION : ["BJFVMKE587VCM7HRO"],
+          CONTACT : "5ZBKGH5DQZDC2EXYF",
+          SERVICE : "TOQ4XS83VMPDEMRNA",
+          CONSOMMATION : 0,
+          HISTORIQUE : []},
+        { SITE : "DN5CHV5JYRZBLFMWB",
+          IMPRESSION : ["YAOMDTAMGTBJWVNYY"],
+          CONTACT : "WMT6PMJYBSAHMBRQK",
+          SERVICE : "COXRBTT9JZP6OWFA8",
+          CONSOMMATION : 0,
+          HISTORIQUE : []}
           ]
     });
 }
-});
+});*/

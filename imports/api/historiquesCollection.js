@@ -14,7 +14,7 @@ Historiques.allow({
 
 Meteor.methods({
   'historiques.insert'(objet, auteur, date, sortie, entree, commande, note, objetId) {
-    var newElement = Historiques.insert({
+    const newElement = Historiques.insert({
       objet, auteur, date, sortie, entree, commande, note, objetId,
     });
     return newElement;
@@ -24,13 +24,10 @@ Meteor.methods({
   },
   'historiques.remove-ligne'(objetId) {
     const removeLigne = Historiques.findOne({objetId: objetId});
-    console.log(removeLigne);
     if (typeof removeLigne === "undefined") {
-      console.log('if');
     }
     else {
       Historiques.remove(removeLigne._id);
-      console.log('else');
     }
   },
     'historiques.note'(historiqueId, updateNote) {

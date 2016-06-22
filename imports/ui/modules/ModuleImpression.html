@@ -1,5 +1,49 @@
 <template name="CreationImpression">
 <span class="label label-info to-left">Creation</span>
+<div class="insert-donnees">
+ 		<form class="new-impression">
+
+		    <div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Gabarit</span>
+				<select type="button" id="selectgabarit" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="gabarit">
+	 		    	<option value="Imprimante" selected>Imprimante</option>
+			        <option value="Photocopieur">Photocopieur</option>
+			    </select>
+	    	</div><!-- /input-group -->
+
+		    <div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Emplacement(s) de toner</span>
+				<select type="button" id="selectnombretoner" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="nombretoner">
+	 		    	<option value="1">1</option>
+			        <option value="2">2</option>
+	 		    	<option value="3">3</option>
+			        <option value="4">4</option>
+	 		    	<option value="5">5</option>
+			        <option value="6">6</option>
+			    </select>
+		    </div><!-- /input-group -->
+		      	<div class="input-group-btn">
+			      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
+		 		    	<option value="" disabled selected>Sélectionner à partir de la liste</option>
+				        {{#each marques}}
+				          <option value="{{nom}}">{{nom}}</option>
+				        {{/each}}
+				    </select>
+		      	</div><!-- /btn-group -->
+		    <div class="input-group">
+		    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
+		    	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque..." required>
+
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Modèle</span>
+			  <input type="text" name="modele" class="form-control" placeholder="Ajouter un modèle..." aria-describedby="sizing-addon2" required>
+			</div>
+
+	 		<button id="SubmitNew" class="btn btn-success" type="submit">Ajouter</button>
+	 	</form>
+	</div>
 </template>
 
 <template name="SelectionImpression">

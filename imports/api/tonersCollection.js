@@ -17,7 +17,7 @@ ReferenceFournisseur = new SimpleSchema({
   reference: {
     type: String
   },
-  idfournisseur: {
+  fournisseurId: {
     type: String
   }
 });
@@ -40,19 +40,7 @@ TonerSchema = new SimpleSchema({
     type: String,
     label: "Couleur",
   },
-/*  quantité: {
-    type: Number,
-    label: "Quantité",
-  },
-  seuil: {
-    type: Number,
-    label: "Seuil",
-  },
-  alerte: {
-    type: Boolean,
-    defaultValue: false,
-    label: "Alerte",
-  },
+/*
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -67,36 +55,37 @@ Meteor.methods({
     check(tonerId, String);
     Toners.remove(tonerId);
   },
- 'toners.insert'() {
+ 'toners.insert'(constructeur, referenceC, fournisseur, couleur) {
     check(constructeur, String);
     check(referenceC, String);
-    check(referenceF, []);
+    check(fournisseur, []);
     check(couleur, String);
-    check(quantite, Number);
-    check(seuil, Number);
-    check(alerte, Boolean);
     Toners.insert({
-      constructeur, referenceC, referenceF, couleur, quantite, seuil, alerte,
+      constructeur, referenceC, fournisseur, couleur,
     });
   },
-  'toners.update'(tonerId, updateConstructeur, updateReferenceC, updateReferenceF, updateCouleur, updateQuantite, updateSeuil, updateAlerte) {
+  'toners.alt-insert'(constructeur, referenceC, fournisseur, couleur) {
+    check(constructeur, String);
+    check(referenceC, String);
+    check(fournisseur, []);
+    check(couleur, String);
+    const newElement = Toners.insert({
+      constructeur, referenceC, fournisseur, couleur,
+    });
+    return newElement;
+  },
+  'toners.update'(tonerId, updateConstructeur, updateReferenceC, updateFournisseur, updateCouleur) {
     check(tonerId, String);
     check(updateConstructeur, String);
     check(updateReferenceC, String);
-    check(updateReferenceF, []);
+    check(updateFournisseur, []);
     check(updateCouleur, String);
-    check(updateQuantite, Number);
-    check(updateSeuil, Number);
-    check(updateAlerte, Boolean);
     Toners.update(tonerId, {
     $set: {
       constructeur: updateConstructeur,
       referenceC: updateReferenceC,
-      referenceF: updateReferenceF,
+      referenceF: updateFournisseur,
       couleur: updateCouleur,
-      quantite: updateQuantite,
-      seuil: updateSeuil,
-      alerte: updateAlerte
     }});
   },
   'toggleEditToner'(tonerId, currentState) {

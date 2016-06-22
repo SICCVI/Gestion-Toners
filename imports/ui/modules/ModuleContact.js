@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { Contacts } from '../../api/contactsCollection.js';
 
 import './ModuleContact.html';
-import './../../scripts/pagination.js';
+
 Template.SelectionContact.onCreated(function() {
   this.autorun(() => {
     this.subscribe('contacts');
@@ -79,5 +79,19 @@ Template.SelectionContact.events({
       for (index = 0; index < selected.length; ++index) {
           Meteor.call('items.insert', selected[index]._id);
       }
+    },
+});
+
+Template.CreationContact.events({
+    'submit .new-contact'(event) {
+        event.preventDefault();
+        const target = event.target;
+        const nom = target.nom.value;
+        const prenom = target.prenom.value;
+        const telephone = target.telephone.value;
+        Meteor.call('contacts.alt-insert', nom, prenom, telephone, function(error, result){
+        $('#ChoixContactId').val(result);
+        });
+        $('#ChoixContact').val(nom + " " + prenom + " ( " + telephone + " )");
     },
 });

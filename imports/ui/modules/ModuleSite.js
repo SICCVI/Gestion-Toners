@@ -39,3 +39,19 @@ Template.SelectionSite.events({
         }
     },
 });
+
+Template.CreationSite.events({
+    'submit .new-site'(event) {
+        event.preventDefault();
+        const target = event.target;
+        const nom = target.nom.value;
+        const adresse = target.adresse.value;
+        const codepostal = target.codepostal.value;
+        const ville = target.ville.value;
+        const telephone = target.telephone.value;
+        Meteor.call('sites.alt-insert', nom, adresse, codepostal, ville, telephone, function(error, result){
+        $('#ChoixSiteId').val(result);
+        });
+        $('#ChoixSite').val(nom + "   //   " + codepostal + " " + ville + " ( " + telephone + " )");
+    },
+});

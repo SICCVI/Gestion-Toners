@@ -57,6 +57,17 @@ Meteor.methods({
       nom, adresse, codepostal, ville, telephone,
     });
   },
+  'sites.alt-insert'(nom, adresse, codepostal, ville, telephone) {
+    check(nom, String);
+    check(adresse, String);
+    check(codepostal, String);
+    check(ville, String);
+    check(telephone, String);
+    const newElement = Sites.insert({
+      nom, adresse, codepostal, ville, telephone,
+    });
+    return newElement;
+  },
   'sites.update'(siteId, updateNom, updateAdresse, updateCodepostal, updateVille, updateTelephone) {
     check(siteId, String);
     check(updateNom, String);

@@ -79,31 +79,12 @@ html, body {
 	padding: 10px;
 }
 
-.colonne-impression {
-	width: 18%;
-}
-
-.colonne-site {
-	width: 18%;
-}
-
-.colonne-contact {
-	width: 30%;
-}
-
 .colonne-icone {
 	width: 5%;
 }
 
 .td-icon {
 	width: 40px;
-}
-
-.insert-donnees {
-	border: 5px solid red;
-	background-color: green;
-	margin: 10px;
-	padding: 10px;
 }
 
 .input-group {
@@ -239,9 +220,11 @@ table tr:hover>td .glyphicon {
 .infocomplet {
     width: 100%;
     height: 370px;
-    background-color: #801638;
-    -moz-border-radius: 6px; 
-    border-radius: 6px;
+    background-color: #027878;
+    -moz-border-bottom-right-radius: 6px; 
+    border-bottom-right-radius: 6px;
+    -moz-border-bottom-left-radius: 6px; 
+    border-bottom-left-radius: 6px;
     padding: 20px;
     color: white;
 }
@@ -249,7 +232,7 @@ table tr:hover>td .glyphicon {
 .info {
     width: 20%;
     float: left;
-    height: 386px;
+    height: 391px;
     background-color: #027878;
     color: white;
     -moz-border-bottom-right-radius: 6px; 
@@ -270,12 +253,13 @@ table tr:hover>td .glyphicon {
 .creation, .selection {
     width: 40%;
     float: left;
-    height: 350px;
+    height: 355px;
     -moz-border-bottom-right-radius: 6px; 
     border-bottom-right-radius: 6px;
     -moz-border-bottom-left-radius: 6px; 
     border-bottom-left-radius: 6px;
     margin-bottom: 3px;
+    padding: 5px;
 }
 
 .creation {
@@ -284,10 +268,18 @@ table tr:hover>td .glyphicon {
     color: white;
 }
 
+
+.creation .insert-donnees {
+	border: 5px solid #FDBF4C;
+	margin: 5px;
+	padding: 5px;
+	margin-top: 20px;
+}
+
 .selection {
     width: 50%;
 	background-color: #F37338;
-    padding: 5px;
+    
 }
 
 .suivant {

@@ -40,3 +40,15 @@ Template.SelectionService.events({
         }
     },
 });
+
+Template.CreationService.events({
+    'submit .new-service'(event) {
+        event.preventDefault();
+        const target = event.target;
+        const nom = target.nom.value;
+        Meteor.call('services.alt-insert', nom, function(error, result){
+        $('#ChoixServiceId').val(result);
+        });
+        $('#ChoixService').val(nom);
+    },
+});

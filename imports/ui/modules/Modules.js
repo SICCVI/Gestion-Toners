@@ -38,4 +38,34 @@ Template.Modules.events({
             $('#ResultatServiceId').val("");
         }
     },
+    'click #ToAjouter'(event) {
+        clearRecapitulatif();
+        clearModule();
+    },
+    'click #ToReset'(event) {
+        clearRecapitulatif();
+        clearModule();
+        clearToner();
+    },
 });
+
+clearChamp = function (cible1, cible2, cible3, cible4) {
+    $(cible1).val("");
+    $(cible2).val("");
+    $(cible3).val("");
+    $(cible4).val("");
+}
+
+clearRecapitulatif = function () {
+    clearChamp('#ResultatService', '#ResultatSite', '#ResultatContact', '#ResultatImpression');
+    clearChamp('#ResultatServiceId', '#ResultatSiteId', '#ResultatContactId',  '#ResultatImpressionId');
+}
+
+clearModule = function () {
+    clearChamp('#ChoixService', '#ChoixSite', '#ChoixContact', '#ChoixImpression');
+    clearChamp('#ChoixServiceId', '#ChoixSiteId', '#ChoixContactId', '#ChoixImpressionId');
+}
+
+clearToner = function () {
+    clearChamp('#ChoixTonerId', '#ChoixTonerId', '#ResultatToner', '#ResultatToner');
+}

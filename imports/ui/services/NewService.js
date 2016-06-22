@@ -5,7 +5,7 @@ import { Template } from 'meteor/templating';
 import '../../scripts/disableEnterKey.js';
 
 Template.NewService.events({
-    'submit .new-site'(event) {
+    'submit .new-service'(event) {
         event.preventDefault();
         const target = event.target;
         const nom = target.nom.value;

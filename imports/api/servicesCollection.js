@@ -37,6 +37,13 @@ Meteor.methods({
       nom,
     });
   },
+  'services.alt-insert'(nom) {
+    check(nom, String);
+    const newElement = Services.insert({
+      nom,
+    });
+    return newElement;
+  },
   'services.update'(serviceId, updateNom) {
     check(serviceId, String);
     check(updateNom, String);

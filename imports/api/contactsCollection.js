@@ -47,6 +47,15 @@ Meteor.methods({
       nom, prenom, telephone,
     });
   },
+  'contacts.alt-insert'(nom, prenom, telephone) {
+    check(nom, String);
+    check(prenom, String);
+    check(telephone, String);
+    const newElement = Contacts.insert({
+      nom, prenom, telephone,
+    });
+    return newElement;
+  },
   'contacts.update'(contactId, updateNom, updatePrenom, updateTelephone) {
     check(contactId, String);
     check(updateNom, String);

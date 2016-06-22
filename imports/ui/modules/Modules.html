@@ -10,8 +10,8 @@
             <div class="selection">{{> SelectionToner}}</div>
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
-              <input type="text" id="ChoixToner" name="choix-toner" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-              <input type="hidden" id="ChoixTonerId" name="choix-toner-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="text" id="ChoixToner" name="choix-toner" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="hidden" id="ChoixTonerId" name="choix-toner-id" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             
             <a href="" class="vers-suivant" id="ToSectionImpression" onClick="scrollto('#SectionImpression');">
@@ -34,8 +34,8 @@
             <div class="selection">{{> SelectionImpression}}</div>
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
-              <input type="text" id="ChoixImpression" name="choix-impression" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-              <input type="hidden" id="ChoixImpressionId" name="choix-impression-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="text" id="ChoixImpression" name="choix-impression" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="hidden" id="ChoixImpressionId" name="choix-impression-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             <a href="" class="vers-suivant" id="ToSectionSite"  onClick="scrollto('#SectionSite');">
             	<button class="btn btn-default vers-suivant">
@@ -57,8 +57,8 @@
             <div class="selection">{{> SelectionSite}}</div>
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
-              <input type="text" id="ChoixSite" name="choix-site" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-              <input type="hidden" id="ChoixSiteId" name="choix-site-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="text" id="ChoixSite" name="choix-site" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="hidden" id="ChoixSiteId" name="choix-site-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             <a href="" class="vers-suivant" id="ToSectionContact"  onClick="scrollto('#SectionContact');">
             	<button class="btn btn-default vers-suivant">
@@ -80,8 +80,8 @@
             <div class="selection">{{> SelectionContact}}</div>
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
-              <input type="text" id="ChoixContact" name="choix-contact" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-              <input type="hidden" id="ChoixContactId" name="choix-contact-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="text" id="ChoixContact" name="choix-contact" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="hidden" id="ChoixContactId" name="choix-contact-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             <a href="" class="vers-suivant" id="ToSectionService"  onClick="scrollto('#SectionService');">
             	<button class="btn btn-default vers-suivant">
@@ -103,8 +103,8 @@
             <div class="selection">{{> SelectionService}}</div>
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
-              <input type="text" id="ChoixService" name="choix-service" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-              <input type="hidden" id="ChoixServiceId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="text" id="ChoixService" name="choix-service" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+              <input type="hidden" id="ChoixServiceId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             <a href="" class="vers-suivant" id="ToSectionFin"  onClick="scrollto('#SectionFin');">
             	<button class="btn btn-default vers-suivant">
@@ -128,8 +128,8 @@
                             Toner
                         </td>
                         <td>
-                            <input type="text" id="ResultatToner" name="choix-toner" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatTonerId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatToner" name="choix-toner" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="hidden" id="ResultatTonerId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -137,8 +137,8 @@
                             Impression
                         </td>
                         <td>
-                            <input type="text" id="ResultatImpression" name="choix-impression" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatImpressionId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatImpression" name="choix-impression" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="hidden" id="ResultatImpressionId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -146,8 +146,8 @@
                             Site
                         </td>
                         <td>
-                            <input type="text" id="ResultatSite" name="choix-site" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatSiteId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatSite" name="choix-site" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="hidden" id="ResultatSiteId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -155,8 +155,8 @@
                             Contact
                         </td>
                         <td>
-                            <input type="text" id="ResultatContact" name="choix-contact" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatContactId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatContact" name="choix-contact" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="hidden" id="ResultatContactId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
                     <tr>
@@ -164,8 +164,8 @@
                             Service
                         </td>
                         <td>
-                            <input type="text" id="ResultatService" name="choix-service" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatServiceId" name="choix-service-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="text" id="ResultatService" name="choix-service" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                            <input type="hidden" id="ResultatServiceId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
                         </td>
                     </tr>
                 </table>   
@@ -185,7 +185,7 @@
 
         <div class="module-suite">
             <div>
-                <a href="" class="ajouter" id="ToAjouter" onClick="scrollto('#SectionToner');">
+                <a href="" class="ajouter" id="ToAjouter" onClick="scrollto('#SectionToner'); scrollto('#SectionImpression');">
                     <button class="btn btn-default">Ajouter de nouveaux éléments à ce toner
                     </button>
                 </a>
