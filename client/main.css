@@ -249,7 +249,7 @@ table tr:hover>td .glyphicon {
 .info {
     width: 20%;
     float: left;
-    height: 356px;
+    height: 386px;
     background-color: #027878;
     color: white;
     -moz-border-bottom-right-radius: 6px; 
@@ -270,7 +270,7 @@ table tr:hover>td .glyphicon {
 .creation, .selection {
     width: 40%;
     float: left;
-    height: 320px;
+    height: 350px;
     -moz-border-bottom-right-radius: 6px; 
     border-bottom-right-radius: 6px;
     -moz-border-bottom-left-radius: 6px; 

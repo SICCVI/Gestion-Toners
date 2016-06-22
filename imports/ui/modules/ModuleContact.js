@@ -2,7 +2,7 @@ import { Template } from 'meteor/templating';
 import { Contacts } from '../../api/contactsCollection.js';
 
 import './ModuleContact.html';
-
+import './../../scripts/pagination.js';
 Template.SelectionContact.onCreated(function() {
   this.autorun(() => {
     this.subscribe('contacts');

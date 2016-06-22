@@ -17,6 +17,10 @@ $(document).on('click', '.table-donnees .dropdown-menu', function (e) {
   e.stopPropagation();
 });
 
+$(document).on('click', '.sidebar-nav .dropdown-menu', function (e) {
+  e.stopPropagation();
+});
+
 getGrandParentDataId = function (element) {
 	var parent = element.parentNode.parentNode.getAttribute('data-id');
 	element.setAttribute('data-id' , parent);

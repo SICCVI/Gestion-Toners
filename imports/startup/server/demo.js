@@ -15,7 +15,7 @@ import { Historiques } from '../../api/historiquesCollection.js';
 //
 
 //CONTACTS
-const contact_prenom = [
+const contact_nom = [
   "Pierre",
   "Paul",
   "Jacques",
@@ -32,28 +32,13 @@ const contact_prenom = [
   "François",
   "Hélène"
 ],
-contact_nom = [
-  "Noir",
-  "Blanc",
-  "Rouge",
-  "Bleu",
-  "Vert",
-  "Violet",
-  "Jaune",
-  "Rose",
-  "Gris",
-  "Cyan",
-  "Marron",
-  "Magenta",
-  "Orange",
-],
 contact_telephone = ["01 01 01 01 01", "02 02 02 02 02", "03 03 03 03 03", "04 04 04 04 04", "05 05 05 05 05", "06 06 06 06 06", "07 07 07 07 07", "08 08 08 08 08", "09 09 09 09 09"];;
 
 Meteor.startup(function () {
 if (Contacts.find().count() < 10) {
   for (var i = 0; i < 10; i++) {
     Contacts.insert({
-      prenom: Random.choice(contact_prenom),
+      prenom: Random.choice(contact_nom),
       nom: Random.choice(contact_nom),
       telephone: Random.choice(contact_telephone)
     });
@@ -92,8 +77,8 @@ site_ville = [
 site_telephone = ["01 01 01 01 01", "02 02 02 02 02", "03 03 03 03 03", "04 04 04 04 04", "05 05 05 05 05", "06 06 06 06 06", "07 07 07 07 07", "08 08 08 08 08", "09 09 09 09 09"];;
 
 Meteor.startup(function () {
-if (Sites.find().count() < 10) {
-  for (var i = 0; i < 10; i++) {
+if (Sites.find().count() < 5) {
+  for (var i = 0; i < 5; i++) {
     Sites.insert({
       nom: Random.choice(site_nom),
       adresse: Random.choice(site_adresse),
@@ -139,8 +124,8 @@ impression_nombretoner = [
 ];;
 
 Meteor.startup(function () {
-if (Impressions.find().count() < 10) {
-  for (var i = 0; i < 10; i++) {
+if (Impressions.find().count() < 5) {
+  for (var i = 0; i < 5; i++) {
     Impressions.insert({
       gabarit: Random.choice(impression_gabarit),
       marque: Random.choice(impression_marque),
@@ -190,8 +175,8 @@ toner_couleur = [
 ];;
 
 Meteor.startup(function () {
-if (Toners.find().count() < 10) {
-  for (var i = 0; i < 10; i++) {
+if (Toners.find().count() < 5) {
+  for (var i = 0; i < 5; i++) {
     Toners.insert({
       libelle: Random.choice(toner_libelle),
       constructeur: Random.choice(toner_constructeur),
@@ -244,53 +229,50 @@ if (Services.find().count() < 5) {
 }
 });
 
+//FOURNISSEURS
+const fournisseur_nom = [
+  "Fournisseur A",
+  "Fournisseur B",
+  "Vendeur A",
+  "Vendeur B"
+],
+fournisseur_adresse = [
+  "10 rue du haut",
+  "15 rue du bas",
+  "20 rue de gauche",
+  "25 rue de droite"
+],
+fournisseur_codepostal = [
+  "11 000",
+  "22 130",
+  "33 390",
+],
+fournisseur_ville = [
+  "Paris",
+  "Lille",
+  "Amiens"
+],
+fournisseur_telephone = ["01 01 01 01 01", "02 02 02 02 02", "03 03 03 03 03", "04 04 04 04 04", "05 05 05 05 05", "06 06 06 06 06", "07 07 07 07 07", "08 08 08 08 08", "09 09 09 09 09"];;
+
+Meteor.startup(function () {
+if (Fournisseurs.find().count() < 5) {
+  for (var i = 0; i < 5; i++) {
+    Fournisseurs.insert({
+      nom: Random.choice(fournisseur_nom),
+      adresse: Random.choice(fournisseur_adresse),
+      codepostal: Random.choice(fournisseur_codepostal),
+      ville: Random.choice(fournisseur_ville),
+      telephone: Random.choice(fournisseur_telephone),
+      website: "www.website.com"
+    });
+  }
+}
+});
 
 //STOCK
 Meteor.startup(function () {
 if (Stocks.find().count() < 3) {
-/*    Stocks.insert({
-      libelle: "Objet A",
-      seuil: 1,
-      nvAvertissement: 4,
-      quantite: 8,
-      alerte: false,
-      avertissement: false,
-      service: [
-        { nom: 'Service AAA',
-        consommation: 0, historique: []},
-        { nom: 'Service ZZZ',
-        consommation: 0, historique: []}
-        ]
-    });
     Stocks.insert({
-      libelle: "Objet B",
-      seuil: 2,
-      nvAvertissement: 5,
-      quantite: 8,
-      alerte: false,
-      avertissement: false,
-      service: [
-        { nom: 'Service BBB',
-        consommation: 0, historique: []},
-        { nom: 'Service YYY',
-        consommation: 0, historique: []}
-        ]
-    });
-    Stocks.insert({
-      libelle: "Objet C",
-      seuil: 3,
-      nvAvertissement: 6,
-      quantite: 8,
-      alerte: false,
-      avertissement: false,
-      service: [
-        { nom: 'Service CCC',
-        consommation: 0, historique: []},
-        { nom: 'Service XXX',
-        consommation: 0, historique: []}
-        ]
-    });
-*/    Stocks.insert({
       toner : "WbQPf3FCwiRMHkGcS",
       index : ["LibelleD", "ConstructeurA", "ZSX 456", "Rouge"],
       seuil : 0,
