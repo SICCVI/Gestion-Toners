@@ -14,12 +14,13 @@ Toners.allow({
 
 
 ReferenceFournisseur = new SimpleSchema({
-  reference: {
-    type: String
-  },
   fournisseurId: {
     type: String
-  }
+  },
+  referenceF: {
+    type: String
+  },
+
 });
 
 TonerSchema = new SimpleSchema({
@@ -31,21 +32,20 @@ TonerSchema = new SimpleSchema({
     type: String,
     label: "Référence constructeur",
   },
-/*  referenceF: {
+  fournisseur: {
     type: [ReferenceFournisseur],
     label: "Référence fournisseur",
-    optionnal: true,
-  },*/
+    optional: true,
+  },
   couleur: {
     type: String,
     label: "Couleur",
   },
-/*
   editMode: {
     type: Boolean,
     defaultValue: false,
     optional: true,
-  },*/
+  },
 });
 
 Toners.attachSchema( TonerSchema );
@@ -55,13 +55,28 @@ Meteor.methods({
     check(tonerId, String);
     Toners.remove(tonerId);
   },
- 'toners.insert'(constructeur, referenceC, fournisseur, couleur) {
+ 'toners.insert-simple'(constructeur, referenceC, couleur) {
+    check(constructeur, String);
+    check(referenceC, String);
+    check(couleur, String);
+    Toners.insert({
+      constructeur : constructeur,
+      referenceC : referenceC,
+      couleur : couleur,
+    });
+  },
+ 'toners.insert'(constructeur, referenceC, couleur, fournisseurId, referenceF) {
     check(constructeur, String);
     check(referenceC, String);
     check(fournisseur, []);
     check(couleur, String);
     Toners.insert({
-      constructeur, referenceC, fournisseur, couleur,
+      constructeur : constructeur,
+      referenceC : referenceC,
+      couleur : couleur,
+      fournisseur : [
+        { fournisseurId : fournisseurId,
+          referenceF :  referenceF} ]
     });
   },
   'toners.alt-insert'(constructeur, referenceC, fournisseur, couleur) {
@@ -100,7 +115,7 @@ Meteor.methods({
 
 TonersIndex = new EasySearch.Index({
   collection: Toners,
-  fields: ['constructeur', 'referenceC', 'couleur', 'referenceF', 'fournisseur'],
+  fields: ['constructeur', 'referenceC', 'couleur', 'fournisseur'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
@@ -108,7 +123,7 @@ TonersIndex = new EasySearch.Index({
 
 ModuleTonersIndex = new EasySearch.Index({
   collection: Toners,
-  fields: ['constructeur', 'referenceC', 'couleur', 'referenceF', 'fournisseur'],
+  fields: ['constructeur', 'referenceC', 'couleur', 'fournisseur'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

@@ -9,7 +9,13 @@ Template.NewService.events({
         event.preventDefault();
         const target = event.target;
         const nom = target.nom.value;
-        Meteor.call('services.insert', nom);
+		const verification = Services.find({nom: nom}, {limit: 1}).count()>0;
+        if (verification === true) {
+            throw new Meteor.Error('Cette élément existe déjà dans la collection et ne sera donc pas insérée.');
+        }
+        else {
+            Meteor.call('services.insert', nom);
+        }
         target.nom.value = "";
         target.nom.focus();
     },

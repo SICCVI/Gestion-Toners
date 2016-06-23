@@ -1,0 +1,44 @@
+<template name="ElementToner">
+    <!-- <tr class="row-donnees"> -->
+    <td>
+        {{constructeur}} - {{referenceC}}
+    </td>
+    <td>
+      {{#each fournisseur}}
+        - {{#with getFournisseur fournisseurId}}{{nom}}{{/with}} - {{referenceF}}<br />
+      {{/each}}
+    </td>
+    <td>
+        {{couleur}}
+    </td>
+    <td>
+    {{ #if editMode}}
+        <div class="btn-group">
+            <button type="button" class="btn btn-default glyphicon glyphicon-lock" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+            <ul class="dropdown-menunlock">
+                <li>Un module d'édition est déjà ouvert pour cet élément.<br />Souhaitez-vous tout de même y accéder?</li>
+                <li role="separator" class="divider"></li>
+                <li><a href="" class="toggle-editing">Oui, je veux le débloquer.</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="" data-toggle="dropdown">Non</a></li>
+            </ul>
+        </div>
+    {{else}}
+        <button type="button" class="btn btn-default glyphicon glyphicon-pencil toggle-editing" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}" data-backdrop="static"></button>
+    {{ /if }}
+    </td>
+        <td>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default glyphicon glyphicon-trash" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+                <ul class="dropdown-menu suppression">
+                    <li>Etes-vous sûrs de vouloir supprimer cet élément?</li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="" class="supprimer">Oui, je veux le supprimer.</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="" data-toggle="dropdown">Non</a></li>
+                </ul>
+            </div>
+        </td>
+    <!-- 	</tr> -->
+</template>
+

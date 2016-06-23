@@ -12,13 +12,14 @@ Template.NewImpression.events({
         const target = event.target;
         const gabarit = target.gabarit.value;
         const marque = target.marque.value;
+        const nom = marque.toUpperCase();
         const modele = target.modele.value;
         const nombretoner = Number(target.nombretoner.value);
-        Meteor.call('impressions.insert', gabarit, marque, modele, nombretoner);
+        Meteor.call('impressions.insert', gabarit, nom, modele, nombretoner);
         target.marque.value='';
         target.modele.value='';
         target.nombretoner.value='1';
-        const nom = marque.toUpperCase();
+        
         const verification = Marques.find({nom: nom}, {limit: 1}).count()>0;
         if (verification === true) {
             throw new Meteor.Error('Cette marque existe déjà dans la collection et ne sera donc pas insérée.');

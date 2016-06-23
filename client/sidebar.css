@@ -70,7 +70,7 @@
     color: white;
 }
 
-.sidebar-nav li a:hover {
+.sidebar-nav li a:hover, .sidebar-nav .dropdown li a:hover {
     text-decoration: none;
     color: #fff;
     background: rgba(255,255,255,0.2);
@@ -145,4 +145,5 @@
     background-color: #337F8F;
     -webkit-box-shadow: none !important;
     border: none !important;
+    width: 250px;
 }

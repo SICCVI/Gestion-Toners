@@ -13,12 +13,6 @@ Impressions.allow({
 });
 
 
-TonerId = new SimpleSchema({
-  tonerid: {
-    type: String
-  },
-});
-
 ImpressionSchema = new SimpleSchema({
   gabarit: {
     type: String,
@@ -37,11 +31,6 @@ ImpressionSchema = new SimpleSchema({
     type: Number,
     label: "Nombre de toner(s)",
     min: 0,
-  },
-  toner: {
-    type: [TonerId],
-    label: "Toners",
-    optional: true,
   },
   editMode: {
     type: Boolean,
@@ -98,7 +87,7 @@ Meteor.methods({
         editMode: !currentState
       }});
   },
-  'impressions.addtoner'(impressionId, tonerId) {
+/*  'impressions.addtoner'(impressionId, tonerId) {
     check(tonerId, String);
     Impressions.update(impressionId, {
       $addToSet: {
@@ -117,19 +106,19 @@ Meteor.methods({
         }
       }
     });
-  },
+  },*/
 });
 
 ImpressionsIndex = new EasySearch.Index({
   collection: Impressions,
-  fields: ['gabarit', 'marque', 'modele'],
+  fields: ['gabarit', 'marque', 'modele', 'nombretoner'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
 
 ModuleImpressionsIndex = new EasySearch.Index({
   collection: Impressions,
-  fields: ['gabarit', 'marque', 'modele'],
+  fields: ['gabarit', 'marque', 'modele', 'nombretoner'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

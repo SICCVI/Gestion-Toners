@@ -3,6 +3,9 @@ import { Toners } from '../../api/tonersCollection.js';
 
 import './ListeToners.html';
 
+import './ModalNewToner.js';
+import './ElementToner.js';
+import './NewToner.js';
 
 Template.ListeToners.onCreated(function() {
   this.autorun(() => {
@@ -12,7 +15,7 @@ Template.ListeToners.onCreated(function() {
 
 Template.ListeToners.helpers({
 	toners: ()=> {
-		return Toners.find({}, {sort: { libelle: 1 }});  
+		return Toners.find({}/*, {sort: { gabarit: 1 }}*/);  
 	},
 	totalCount() {
   		return Toners.find({ _id: {$ne: true }}).count();

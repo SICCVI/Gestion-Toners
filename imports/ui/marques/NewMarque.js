@@ -9,9 +9,16 @@ Template.NewMarque.events({
         event.preventDefault();
         const target = event.target;
         const nom = target.nom.value;
-        Meteor.call('marques.insert', nom);
+
+        const verification = Marques.find({nom: nom}, {limit: 1}).count()>0;
+        if (verification === true) {
+            throw new Meteor.Error('Cette element existe déjà dans la collection et ne sera donc pas insérée.');
+        }
+        else {
+            Meteor.call('marques.insert', nom);
+        }
         target.nom.value = "";
-        target.nom.focus();
+        target.nom.focus(); 
     },
 });
 

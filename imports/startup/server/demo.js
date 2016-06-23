@@ -136,16 +136,8 @@ if (Impressions.find().count() < 5) {
 }
 });
 
-//TONERS
-const toner_libelle = [
-  "LibelleA",
-  "LibelleB",
-  "LibelleC",
-  "LibelleD",
-  "LibelleE",
-  "LibelleF"
-],
-toner_constructeur = [
+/*//TONERS
+const toner_constructeur = [
   "ConstructeurA",
   "ConstructeurB",
   "ConstructeurC",
@@ -164,6 +156,9 @@ toner_referenceC = [
   "JUY 678",
   "GTR 912",
   "DEZ 000"
+],
+toner_fournisseur = [
+  nom: F
 ],
 toner_couleur = [
   "Noir",
@@ -186,7 +181,7 @@ if (Toners.find().count() < 5) {
   }
 }
 });
-
+*/
 //MARQUE
 Meteor.startup(function () {
 if (Marques.find().count() < 5) {
@@ -269,56 +264,32 @@ if (Fournisseurs.find().count() < 5) {
 }
 });
 
-//STOCK
-/*METEOR.STARTUP(FUNCTION () {
-IF (STOCKS.FIND().COUNT() < 3) {
-    STOCKS.INSERT({
-      TONER : "WBQPF3FCWIRMHKGCS",
-      INDEX : ["LIBELLED", "CONSTRUCTEURA", "ZSX 456", "ROUGE"],
-      SEUIL : 0,
-      NVAVERTISSEMENT : 1,
-      ALERTE : FALSE,
-      AVERTISSEMENT : FALSE,
-      QUANTITE : 5,
-      CONSOMMATEUR : [
-        { SITE : "MEYSKAWCKREFNSYNP",
-          IMPRESSION : ["BJFVMKE587VCM7HRO"],
-          CONTACT : "5ZBKGH5DQZDC2EXYF",
-          SERVICE : "TOQ4XS83VMPDEMRNA",
-          CONSOMMATION : 0,
-          HISTORIQUE : []},
-        { SITE : "DN5CHV5JYRZBLFMWB",
-          IMPRESSION : ["YAOMDTAMGTBJWVNYY"],
-          CONTACT : "WMT6PMJYBSAHMBRQK",
-          SERVICE : "COXRBTT9JZP6OWFA8",
-          CONSOMMATION : 0,
-          HISTORIQUE : []}
-          ]
+//TONERS
+Meteor.startup(function () {
+if (Toners.find().count() < 2) {
+    Toners.insert({
+      constructeur : "Constructeur A",
+      referenceC : "AZE",
+      couleur : "black",
+      fournisseur : [
+        { fournisseurId : "WWW",
+          referenceF : "XSZ"},
+        { fournisseurId : "YYY",
+          referenceF : "CDE"}
+        ]
     });
-    STOCKS.INSERT({
-      TONER : "SC3QCZJ7HHTYBABN3",
-      INDEX : ["LIBELLEE", "CONSTRUCTEURD", "AQW 123", "MAGENTA"],
-      SEUIL : 0,
-      NVAVERTISSEMENT : 1,
-      ALERTE : FALSE,
-      AVERTISSEMENT : FALSE,
-      QUANTITE : 5,
-      CONSOMMATEUR : [
-        { SITE : "MEYSKAWCKREFNSYNP",
-          IMPRESSION : ["BJFVMKE587VCM7HRO"],
-          CONTACT : "5ZBKGH5DQZDC2EXYF",
-          SERVICE : "TOQ4XS83VMPDEMRNA",
-          CONSOMMATION : 0,
-          HISTORIQUE : []},
-        { SITE : "DN5CHV5JYRZBLFMWB",
-          IMPRESSION : ["YAOMDTAMGTBJWVNYY"],
-          CONTACT : "WMT6PMJYBSAHMBRQK",
-          SERVICE : "COXRBTT9JZP6OWFA8",
-          CONSOMMATION : 0,
-          HISTORIQUE : []}
-          ]
+     Toners.insert({
+      constructeur : "Constructeur B",
+      referenceC : "RTY",
+      couleur : "cyan",
+      fournisseur : [
+        { fournisseurId : "XXX",
+          referenceF : "QSD"},
+        { fournisseurId : "ZZZ",
+          referenceF : "WXC"}
+        ]
     });
-    STOCKS.INSERT({
+/*    STOCKS.INSERT({
       TONER : "KHYYQQUFFGVWBFZTA",
       INDEX : ["LIBELLEC", "CONSTRUCTEURF", "ZSX 456", "ROUGE"],
       SEUIL : 0,
@@ -340,6 +311,6 @@ IF (STOCKS.FIND().COUNT() < 3) {
           CONSOMMATION : 0,
           HISTORIQUE : []}
           ]
-    });
-}
-});*/
+    });*/
+  }
+});
