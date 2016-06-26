@@ -1,6 +1,5 @@
 import './ElementToner.html';
 import { Template } from 'meteor/templating';
-import './ModalEditToner.js';
 
 import { Fournisseurs } from '../../api/fournisseursCollection.js';
 
@@ -15,7 +14,7 @@ Template.ElementToner.onCreated(function () {
 
 Template.ElementToner.helpers({
 	toners: ()=> {
-		return Toners.find({}/*, {sort: { gabarit: 1 }}*/);  
+		return Toners.find({});  
 	},
 	getFournisseur: function(id) {
         return Fournisseurs.findOne({_id: id});

@@ -74,7 +74,7 @@ Meteor.methods({
     });
     return newElement;
   },
-  'fournisseurs.update'(fournisseurId, updateNom, updateAdresse, updateCodepostal, updateVille, updateWebsite) {
+  'fournisseurs.update'(fournisseurId, updateNom, updateAdresse, updateCodepostal, updateVille, updateTelephone, updateWebsite) {
     check(fournisseurId, String);
     check(updateNom, String);
     check(updateAdresse, String);

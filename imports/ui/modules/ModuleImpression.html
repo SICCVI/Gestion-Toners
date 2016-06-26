@@ -22,18 +22,17 @@
 			        <option value="6">6</option>
 			    </select>
 		    </div><!-- /input-group -->
+		    <div class="input-group">
+		    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
+		    	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque..." required>
 		      	<div class="input-group-btn">
-			      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
-		 		    	<option value="" disabled selected>Sélectionner à partir de la liste</option>
+			      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle select-reduce" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
+		 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
 				        {{#each marques}}
 				          <option value="{{nom}}">{{nom}}</option>
 				        {{/each}}
 				    </select>
 		      	</div><!-- /btn-group -->
-		    <div class="input-group">
-		    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
-		    	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque..." required>
-
 		    </div><!-- /input-group -->
 
 		    <div class="input-group">

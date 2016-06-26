@@ -1,58 +1,34 @@
 <template name="Modules">
 
 <div id="content-wrap">
-		
-		 <a class="anchor" id="SectionToner"></a>
+        
+         <a class="anchor" id="SectionToner"></a>
         <div class="module">
-        	<div class="titre-module"><span class="glyphicon glyphicon-tint float-gauche" aria-hidden="true"></span><label>Module Choix Toner</label></div>
-        	<div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
-            <div class="creation">{{> CreationToner}}</div>
-            <div class="selection">{{> SelectionToner}}</div>
+            <div class="titre-module"><span class="glyphicon glyphicon-tint float-gauche" aria-hidden="true"></span><label>Module Choix Toner</label></div>
+            <div class="info info-mod-toner">RECAPITULATIF CHOIX PRECEDENTS</div>
+            <div class="creation creation-mod-toner">{{> CreationToner}}</div>
+            <div class="selection selection-mod-toner">{{> SelectionToner}}</div>
             <div class="input-group">
               <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
               <input type="text" id="ChoixToner" name="choix-toner" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
               <input type="hidden" id="ChoixTonerId" name="choix-toner-id" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             
-            <a href="" class="vers-suivant" id="ToSectionImpression" onClick="scrollto('#SectionImpression');">
-            	<button class="btn btn-default vers-suivant">
-            		<span class="glyphicon glyphicon-menu-down float-gauche"></span>
-            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-            		Etape suivante
-            		<span class="glyphicon glyphicon-option-vertical float-droite"></span>
-            		<span class="glyphicon glyphicon-menu-down float-droite"></span>
-            	</button>
+            <a href="" class="vers-suivant" id="ToSectionSite" onClick="scrollto('#SectionSite');">
+                <button class="btn btn-default vers-suivant">
+                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                    Etape suivante
+                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+                </button>
             </a>
-        </div>
-         
-        
-        <a class="anchor" id="SectionImpression"></a>
-        <div class="module">
-        	<div class="titre-module"><span class="glyphicon glyphicon-print float-gauche" aria-hidden="true"></span><label>Module Choix Impression</label></div>
-        	<div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
-            <div class="creation">{{> CreationImpression}}</div>
-            <div class="selection">{{> SelectionImpression}}</div>
-            <div class="input-group">
-              <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
-              <input type="text" id="ChoixImpression" name="choix-impression" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-              <input type="hidden" id="ChoixImpressionId" name="choix-impression-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-            </div>
-            <a href="" class="vers-suivant" id="ToSectionSite"  onClick="scrollto('#SectionSite');">
-            	<button class="btn btn-default vers-suivant">
-            		<span class="glyphicon glyphicon-menu-down float-gauche"></span>
-            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-            		Etape suivante
-            		<span class="glyphicon glyphicon-option-vertical float-droite"></span>
-            		<span class="glyphicon glyphicon-menu-down float-droite"></span>
-            	</button>
-            </a>
-        </div>
-        
+        </div>        
         
         <a class="anchor" id="SectionSite"></a>
         <div class="module">
-        	<div class="titre-module"><span class="glyphicon glyphicon-map-marker float-gauche" aria-hidden="true"></span><label>Module Choix Site</label></div>
-        	<div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
+            <div class="titre-module"><span class="glyphicon glyphicon-map-marker float-gauche" aria-hidden="true"></span><label>Module Choix Site</label></div>
+            <div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
             <div class="creation">{{> CreationSite}}</div>
             <div class="selection">{{> SelectionSite}}</div>
             <div class="input-group">
@@ -60,22 +36,48 @@
               <input type="text" id="ChoixSite" name="choix-site" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
               <input type="hidden" id="ChoixSiteId" name="choix-site-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
-            <a href="" class="vers-suivant" id="ToSectionContact"  onClick="scrollto('#SectionContact');">
-            	<button class="btn btn-default vers-suivant">
-            		<span class="glyphicon glyphicon-menu-down float-gauche"></span>
-            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-            		Etape suivante
-            		<span class="glyphicon glyphicon-option-vertical float-droite"></span>
-            		<span class="glyphicon glyphicon-menu-down float-droite"></span>
-            	</button>
+            <a href="" class="vers-suivant" id="ToSectionImpression"  onClick="scrollto('#SectionImpression');">
+                <button class="btn btn-default vers-suivant">
+                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                    Etape suivante
+                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+                </button>
             </a>
         </div>
         
-        
+        <a class="anchor" id="SectionImpression"></a>
+        <div class="module">
+            <div class="titre-module"><span class="glyphicon glyphicon-print float-gauche" aria-hidden="true"></span><label>Module Choix Impression</label></div>
+            <div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
+            <div class="creation">{{> CreationImpression}}</div>
+            <div class="selection">{{> SelectionImpression}}</div>
+            <div class="selection-impression">
+                <button class="btn btn-default selectionner-impression" disabled>Choix sélectionné&ensp;<span class="glyphicon glyphicon-arrow-down"></span></button>
+
+                <table id="TableChoixImpression" class="table-donnees">
+                    <th>Marque</th>
+                    <th>Modèle</th>
+                    <th width="10px"><button class="btn btn-default btn-danger delete-selection-impression">X</button></th>
+                </table>
+            </div>
+
+            <a href="" class="vers-suivant" id="ToSectionContact"  onClick="scrollto('#SectionContact');">
+                <button class="btn btn-default vers-suivant">
+                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                    Etape suivante
+                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+                </button>
+            </a>
+        </div>
+
         <a class="anchor" id="SectionContact"></a>
         <div class="module">
-        	<div class="titre-module"><span class="glyphicon glyphicon-user float-gauche" aria-hidden="true"></span><label>Module Choix Contact</label></div>
-        	<div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
+            <div class="titre-module"><span class="glyphicon glyphicon-user float-gauche" aria-hidden="true"></span><label>Module Choix Contact</label></div>
+            <div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
             <div class="creation">{{> CreationContact}}</div>
             <div class="selection">{{> SelectionContact}}</div>
             <div class="input-group">
@@ -84,21 +86,21 @@
               <input type="hidden" id="ChoixContactId" name="choix-contact-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             <a href="" class="vers-suivant" id="ToSectionService"  onClick="scrollto('#SectionService');">
-            	<button class="btn btn-default vers-suivant">
-            		<span class="glyphicon glyphicon-menu-down float-gauche"></span>
-            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-            		Etape suivante
-            		<span class="glyphicon glyphicon-option-vertical float-droite"></span>
-            		<span class="glyphicon glyphicon-menu-down float-droite"></span>
-            	</button>
+                <button class="btn btn-default vers-suivant">
+                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                    Etape suivante
+                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+                </button>
             </a>
         </div>
 
         
         <a class="anchor" id="SectionService"></a>
         <div class="module">
-         	<div class="titre-module"><span class="glyphicon glyphicon-folder-open float-gauche" aria-hidden="true"></span><label>Module Choix Service</label></div>
-        	<div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
+            <div class="titre-module"><span class="glyphicon glyphicon-folder-open float-gauche" aria-hidden="true"></span><label>Module Choix Service</label></div>
+            <div class="info">RECAPITULATIF CHOIX PRECEDENTS</div>
             <div class="creation">{{> CreationService}}</div>
             <div class="selection">{{> SelectionService}}</div>
             <div class="input-group">
@@ -107,21 +109,22 @@
               <input type="hidden" id="ChoixServiceId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
             </div>
             <a href="" class="vers-suivant" id="ToSectionFin"  onClick="scrollto('#SectionFin');">
-            	<button class="btn btn-default vers-suivant">
-            		<span class="glyphicon glyphicon-menu-down float-gauche"></span>
-            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-            		Etape finale
-            		<span class="glyphicon glyphicon-option-vertical float-droite"></span>
-            		<span class="glyphicon glyphicon-menu-down float-droite"></span>
-            	</button>
+                <button class="btn btn-default vers-suivant">
+                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                    Etape finale
+                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+                </button>
             </a>
         </div>
 
         
         <a class="anchor" id="SectionFin"></a>
         <div class="module">
-        	<div class="titre-module"><span class="glyphicon glyphicon-check float-gauche" aria-hidden="true"></span><label>Récapitulatif complet</label></div>
-        	<div class="infocomplet">
+            <div class="titre-module"><span class="glyphicon glyphicon-check float-gauche" aria-hidden="true"></span><label>Récapitulatif complet</label></div>
+            <div class="infocomplet">
+                <input type="hidden" id="NewStockId" name="stock-id" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
                 <table id="Resultats">
                     <tr>
                         <td>
@@ -134,20 +137,23 @@
                     </tr>
                     <tr>
                         <td>
-                            Impression
-                        </td>
-                        <td>
-                            <input type="text" id="ResultatImpression" name="choix-impression" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatImpressionId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
                             Site
                         </td>
                         <td>
                             <input type="text" id="ResultatSite" name="choix-site" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
                             <input type="hidden" id="ResultatSiteId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Impression
+                        </td>
+                        <td>
+                             <table id="TableResultatImpression" class="table-donnees">
+                                <th>Marque</th>
+                                <th>Modèle</th>
+                                <th width="10px"><button class="btn btn-default btn-danger delete-selection-impression">X</button></th>
+                            </table>
                         </td>
                     </tr>
                     <tr>
@@ -171,21 +177,21 @@
                 </table>   
             </div>
             <div class="finaliser">
-	            <a href="" class="" id="ToValidation" onClick="scrollto('#SectionSuite');">
-	            	<button class="btn btn-default vers-suivant">
-	            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-	            		<span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-	            		Finaliser
-	            		<span class="glyphicon glyphicon-option-vertical float-droite"></span>
-	            		<span class="glyphicon glyphicon-option-vertical float-droite"></span>
-	            	</button>
-	            </a>
+                <a href="" class=""  id="{{#if ajouterElements}}ToValidationAjouter{{else}}ToValidation{{/if}}" onClick="scrollto('#SectionSuite');">
+                    <button class="btn btn-default vers-suivant">
+                        <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                        <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                        Finaliser
+                        <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                        <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                    </button>
+                </a>
             </div>
         </div>
 
         <div class="module-suite">
             <div>
-                <a href="" class="ajouter" id="ToAjouter" onClick="scrollto('#SectionToner'); scrollto('#SectionImpression');">
+                <a href="" class="ajouter ajouter-elements" id="ToAjouter" onClick="scrollto('#SectionToner'); scrollto('#SectionSite');">
                     <button class="btn btn-default">Ajouter de nouveaux éléments à ce toner
                     </button>
                 </a>

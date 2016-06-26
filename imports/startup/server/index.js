@@ -60,11 +60,6 @@ Meteor.startup(() => {
 	Meteor.publish('historiques', function (){
 	return Historiques.find({});
 	});
-
-	Meteor.publish('aperçu-historiques', function (){
-	return Historiques.find({}, {sort: {date: -1}, limit: 5 });
-	});
-
   
 });
 

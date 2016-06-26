@@ -10,33 +10,40 @@ Template.SelectionImpression.onCreated(function() {
 });
 
 Template.SelectionImpression.helpers({
-	impressions: ()=> {
-		return Impressions.find({});
-	},
-	totalCount() {
-  		return Impressions.find({ _id: {$ne: true }}).count();
-  	},
+  impressions: ()=> {
+    return Impressions.find({});
+  },
+  totalCount() {
+      return Impressions.find({ _id: {$ne: true }}).count();
+    },
     impressionsIndex: function () {
-	    return ModuleImpressionsIndex;   
-	},
-	resultsCount: function () {
+      return ModuleImpressionsIndex;   
+  },
+  resultsCount: function () {
       return ModuleImpressionsIndex.getComponentDict().get('count');
     },
 });
-
 
 Template.SelectionImpression.events({
     'click .table-donnees .row-donnees':function(evt){
         if (!$(evt.currentTarget).hasClass("highlight")) {
           $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
-          $('#ChoixImpression').val(this.gabarit + "   //   " + this.marque + " " + this.modele);
-          $('#ChoixImpressionId').val(this._id);
+/*          $('#ChoixImpression').val(this.gabarit + "   //   " + this.marque + " " + this.modele);
+          $('#ChoixImpressionId').val(this._id);*/
+        const table = document.getElementById("TableChoixImpression");
+        const row = table.insertRow(0);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        cell1.innerHTML = this.marque;
+        cell2.innerHTML = this.modele;
+        cell3.innerHTML = "<label hidden>"+ this._id +"</label>";
         }
-        else {
+/*        else {
           $(evt.currentTarget).removeClass('highlight');
           $('#ChoixImpression').val("");
           $('#ChoixImpressionId').val("");
-        }
+        }*/
     },
 });
 
@@ -53,9 +60,15 @@ Template.CreationImpression.events({
         const modele = target.modele.value;
         const nombretoner = Number(target.nombretoner.value);
         Meteor.call('impressions.alt-insert', gabarit, uppermarque, modele, nombretoner, function(error, result){
-        $('#ChoixImpressionId').val(result);
+        const table = document.getElementById("TableChoixImpression");
+        const row = table.insertRow(0);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        cell1.innerHTML = marque;
+        cell2.innerHTML = modele;
+        cell3.innerHTML = "<label hidden>"+ result +"</label>";
         });
-        $('#ChoixImpression').val("[ " + gabarit + " ] " + marque + " " + modele);
         const verification = Marques.find({nom: uppermarque}, {limit: 1}).count()>0;
         if (verification === true) {
             throw new Meteor.Error('Cette marque existe déjà dans la collection et ne sera donc pas insérée.');

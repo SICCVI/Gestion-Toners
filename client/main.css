@@ -1,232 +1,251 @@
 /* CSS declarations go here */
 html, body {
-	margin:0;
-	padding:0;
-	background-color: #F5EEF8;
-	color: #154360;
+    margin:0;
+    padding:0;
+    background-color: #F5EEF8;
+    color: #154360;
 }
-
+ 
 #menu-toggle {
-	position:fixed;
-	z-index: 999;
-	color: white;
-	margin: 10px;
-	font-size: 1.5em;
+    position:fixed;
+    z-index: 999;
+    color: white;
+    margin: 10px;
+    font-size: 1.5em;
 }
-
+ 
 #menu-toggle .glyphicon:hover {
-	opacity: 0.7;
+    opacity: 0.7;
 }
-
+ 
 #Header {
-	position:fixed;
-	z-index: 100;
-	left:0px;
-	top:0px;
-	right:0px;
-	height:60px;
-	background-color: #900C3F;
-	color: white;
-	padding-right: 20px;
-	padding-top: 3px;
+    position:fixed;
+    z-index: 100;
+    left:0px;
+    top:0px;
+    right:0px;
+    height:60px;
+    background-color: #900C3F;
+    color: white;
+    padding-right: 20px;
+    padding-top: 3px;
 }
-
+ 
 #Header .entete {
-	text-align: right;
-	margin: -20px;
-	margin-right: 120px;
-	padding: 15px;
-	border-right: 1px solid #F5EEF8;
+    text-align: right;
+    margin: -20px;
+    margin-right: 120px;
+    padding: 15px;
+    border-right: 1px solid #F5EEF8;
 }
-
+ 
 #Header .logo {
-	position: absolute;
-	float: right;
-	top: 5px;
-	right: 20px;
+    position: absolute;
+    float: right;
+    top: 5px;
+    right: 20px;
 }
-
+ 
 #Header .logo:hover {
-	opacity:0.7;
+    opacity:0.7;
 }
-
+ 
 #Content {
-	margin-top: 60px;
-	background-color: #F5EEF8;
-	height:auto;
-	min-height: 1000px;
+    margin-top: 60px;
+    background-color: #F5EEF8;
+    height:auto;
+    min-height: 1000px;
+}
+ 
+#Footer {
+    height:40px;
+    background-color: #900C3F;
+    color: white;
+    margin-right: -20px;
+    margin-left: -20px;
+    margin-bottom: -20px;
+    padding-left: 20px;
+    padding-top: 3px;
 }
 
-#Footer {
-	height:40px;
-	background-color: #900C3F;
-	color: white;
-	margin-right: -20px;
-	margin-left: -20px;
-	margin-bottom: -20px;
-	padding-left: 20px;
-	padding-top: 3px;
+.home-separation {
+    background-color: black;
+    height: 5px;
+}
+
+.home-icone-notification .glyphicon {
+    font-size: 600%;
 }
 
 .table-donnees {
-	border: 1px solid black;
-	width: 100%;
-	margin-top: 10px;
+    border: 1px solid black;
+    width: 100%;
+    margin-top: 10px;
 }
-
+ 
 .table-donnees th {
-	background: #900C3F;
-	color: white;
+    background: #900C3F;
+    color: white;
 }
-
+ 
 .table-donnees tr:nth-child(even) {
-	background: #F9EBEA;
+    background: #F9EBEA;
 }
-
+ 
 .table-donnees tr:nth-child(odd) {
-	background: #F2D7D5;
+    background: #F2D7D5;
 }
-
+ 
 .table-donnees th, td {
-	padding: 5px;
+    padding: 5px;
 }
-
+ 
 .row-donnees {
-	border: 1px solid white;
-	background-color: lightgreen;
-	margin: 10px;
-	padding: 10px;
+    border: 1px solid white;
+    background-color: lightgreen;
+    margin: 10px;
+    padding: 10px;
 }
-
+ 
 .colonne-icone {
-	width: 5%;
+    width: 5%;
 }
-
+ 
 .td-icon {
-	width: 40px;
+    width: 40px;
 }
-
+ 
 .input-group {
-	margin-bottom: 20px;
+    margin-bottom: 20px;
 }
-
+ 
 .input-group select {
-	height: 34px;
+    height: 34px;
 }
-
+ 
 .modal-header, .modal-footer {
-	background-color: #80AFB9;
+    background-color: #80AFB9;
 }
-
+ 
 .modal-body {
-	background-color: #E5EFF1;
+    background-color: #E5EFF1;
 }
-
+ 
 .insert-button {
-
+ 
 }
-
+ 
 .to-right {
-	float: right;
+    float: right;
+}
+ 
+.to-left {
+    float: left;
 }
 
-.to-left {
-	float: left;
+.select-reduce {
+    width: 7px;
 }
 
 .search-section {
-	margin-top: 10px;
+    margin-top: 10px;
 }
-
+ 
 .search-section .glyphicon {
-	top: 0px;
+    top: 0px;
 }
-
+ 
 .search-section input {
-	height: 28px;
+    height: 28px;
 }
-
+ 
 .results-count {
-	font-size: 11px;
-	margin-top: -10px;
+    font-size: 11px;
+    margin-top: -10px;
 }
-
+ 
 table tr.highlight td {
     background-color: #AA80AA;
 }
-
+ 
 table tr:hover>td, table>tr:hover>th {
   background-color: #550055;
   color:#eeeeee;
 }
-
+ 
 table tr:hover>td .glyphicon {
   color:red;
 }
-
+ 
 .warning-al {
-	background-color: red !important;
-	color:#eeeeee;
+    background-color: red !important;
+    color:#eeeeee;
 }
-
+ 
 .warning-av {
-	background-color: orange !important;
+    background-color: orange !important;
 }
-
+ 
 .table-donnees .dropdown-menu {
-	background-color: white !important;
-	color: #154360 !important;
-	margin-left: -120px;
-	width: 250px !important;
-	padding: 10px ! important;
+    background-color: white !important;
+    color: #154360 !important;
+    margin-left: -120px;
+    width: 250px !important;
+    padding: 10px ! important;
 }
-
+ 
 .table-donnees .dropdown-menu.suppression {
-	background-color: white !important;
-	color: #154360 !important;
-	margin-left: -202px;
+    background-color: white !important;
+    color: #154360 !important;
+    margin-left: -202px;
 }
 
+.table-donnees .dropdown-menu.parametre {
+    background-color: yellow !important;
+    color: #154360 !important;
+    margin-left: 0px;
+}
+ 
 .table-donnees .dropdown-menu.unlock {
-	background-color: white !important;
-	color: #154360 !important;
-	margin-left: -202px;
+    background-color: white !important;
+    color: #154360 !important;
+    margin-left: -202px;
 }
-
+ 
 .table-donnees .dropdown-menu.glyphicon {
-	color: #154360 !important;
+    color: #154360 !important;
 }
-
+ 
 .lightgreen {
-	background-color: #82E0AA !important;
+    background-color: #82E0AA !important;
 }
-
-
+ 
+ 
 .lightred {
-	background-color: #F1948A !important;
+    background-color: #F1948A !important;
 }
-
+ 
 .lightorange {
-	background-color: yellow !important;
+    background-color: yellow !important;
 }
-
+ 
 .half {
-	width: 30%;
-
+    width: 30%;
+ 
 }
-
+ 
 #content-wrap {
     width: 100%;
 }
-
+ 
 .module {
-	margin-bottom: 150px !important;
+    margin-bottom: 150px !important;
     -moz-border-radius: 6px; 
     border-radius: 6px;
 }
-
+ 
 .titre-module {
-	width: 100%;
+    width: 100%;
     text-align:center;
     background-color:  #C22326;
     color: white;
@@ -235,7 +254,7 @@ table tr:hover>td .glyphicon {
      -moz-border-radius: 6px 6px 0 0;
     border-radius: 6px 6px 0 0;
 }
-
+ 
 .infocomplet {
     width: 100%;
     height: 370px;
@@ -247,7 +266,7 @@ table tr:hover>td .glyphicon {
     padding: 20px;
     color: white;
 }
-
+ 
 .info {
     width: 20%;
     min-width: 100px;
@@ -260,16 +279,16 @@ table tr:hover>td .glyphicon {
     -moz-border-bottom-left-radius: 6px; 
     border-bottom-left-radius: 6px;
 }
-
+ 
 .titre-module .glyphicon {
     font-size: 250% !important;
 }
-
+ 
 .titre-module label {
     font-size: 20px;
     margin-top: 5px;
 }
-
+ 
 .creation, .selection {
     float: left;
     min-width: 350px;
@@ -282,93 +301,114 @@ table tr:hover>td .glyphicon {
     padding: 5px;
 }
 
+.info-mod-toner {
+height: 661px;
+}
+
+.creation-mod-toner, .selection-mod-toner {
+height: 625px;
+}
+
 .creation {
-	width: 35%;
+    width: 35%;
     background-color: #FDB632;
     color: white;
 }
-
-
+ 
+ 
 .creation .insert-donnees {
-	border: 5px solid #FDBF4C;
-	margin: 5px;
-	padding: 5px;
-	margin-top: 20px;
+    border: 5px solid #FDBF4C;
+    margin: 5px;
+    padding: 5px;
+    margin-top: 20px;
+}
+ 
+.selection {
+    width: 45%;
+    background-color: #F37338;
+     
 }
 
-.selection {
-	width: 45%;
-	background-color: #F37338;
-    
+#TableChoixImpression {
+	width: 100%;
+	margin-top: -15px;
+	margin-bottom: 25px;
+}
+
+#TableResultatImpression {
+    color: black;
+}
+
+.selectionner-impression {
+	width: 80%;
 }
 
 .suivant {
-	width: 100%;
+    width: 100%;
     min-height: 50px;
     margin-bottom: 150px !important;
 }
-
+ 
 .finaliser {
     width: 100%;
     margin-bottom: 250px !important;
 }
-    
-
+     
+ 
 .vers-suivant {
-	width: 100%;
+    width: 100%;
     margin-top: -22px;
 }
-
+ 
 .float-gauche {
-	float:left;
+    float:left;
 }
-
+ 
 .float-droite {
-	float:right;
+    float:right;
 }
-
+ 
 a.anchor {
     display: block;
     position: relative;
     top: -65px;
     visibility: hidden;
 }
-
+ 
 .module {
-	margin-top: 0px;
+    margin-top: 0px;
 }
-
+ 
 .cellule {
     overflow-y: scroll;
     max-height: 20px;
 }
-
+ 
 #Resultats {
     width: 100%;
 }
-
+ 
 .module-suite {
-	width: 100%;
+    width: 100%;
 }
-
+ 
 .module-suite .ajouter {
-	background-color:green;
-	width: 50%;
+    width: 50%;
 }
-
+ 
 .module-suite .reset {
-	background-color:red;
-	width: 50%;
+    width: 50%;
 }
-
+ 
 .module-suite button {
-	width: 100%;
-	height: 150px;
-	margin-bottom: 50px;
+    width: 100%;
+    height: 150px;
+    margin-bottom: 50px;
+}
+ 
+.toner-fournisseur {
+    border: 1px solid #80AFB9;
+    padding: 10px;
+    margin-bottom: 10px;
 }
 
-.toner-fournisseur {
-	border: 1px solid #80AFB9;
-	padding: 10px;
-	margin-bottom: 10px;
-}

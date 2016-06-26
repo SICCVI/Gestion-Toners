@@ -13,10 +13,13 @@ Stocks.allow({
 });
 
 Meteor.methods({
-  'stocks.insert'(tonerId, impressionId, siteId, contactId, serviceId, index) {
-    Stocks.insert({
+  'stocks.remove'(stockId) {
+    check(stockId, String);
+    Stocks.remove(stockId);
+  },
+  'stocks.insert'(tonerId, siteId, contactId, serviceId) {
+    const newElement = Stocks.insert({
       toner : tonerId,
-      index : index,
       seuil : 0,
       nvAvertissement : 0,
       alerte : false,
@@ -24,12 +27,41 @@ Meteor.methods({
       quantite : 0,
       consommateur : [
         { site : siteId,
-          impression : impressionId,
+          impression : [],
           contact : contactId,
           service : serviceId,
           consommation : 0,
           historique : []},
         ]
+    });
+    return newElement;
+  },
+  'stocks.update'(stockId, tonerId, siteId, contactId, serviceId) {
+    Stocks.update(stockId, {
+    $addToSet: {
+      consommateur :
+        { site : siteId,
+          impression : [],
+          contact : contactId,
+          service : serviceId,
+          consommation : 0,
+          historique : [] },
+      }
+  });
+  },
+  'stocks.add-impression'(stockId, parametre1, parametre2, impressionId) {
+    Stocks.update( { _id: stockId,'consommateur.site' : parametre1, 'consommateur.service' : parametre2 },
+      { $addToSet: {
+        'consommateur.$.impression': impressionId
+        }
+      }
+  )
+  },
+  'stocks.add-index'(stockId, index) {
+    Stocks.update(stockId, {
+      $set: {
+        index : index
+      }
     });
   },
   'stocks.augmente-quantite' (stockId) {

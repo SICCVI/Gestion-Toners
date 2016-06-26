@@ -199,6 +199,9 @@ Template.ListeStocks.events({
 		const note = null;
 		Meteor.call('historiques.insert', objet, auteur, date, sortie, entree, commande, note, objetId);	
 	},
+	'click .supprimer': function() {
+		Meteor.call('stocks.remove', this._id);
+	},
 });
 
 checkStock = function (quantite, seuil, avertissement, id) {

@@ -10,27 +10,41 @@ import { reporterSelect } from '../../scripts/myFunctions.js';
 Template.NewToner.events({
     'submit .new-toner'(event) {
         event.preventDefault();
+        let tonerId;
         const target = event.target;
         const constructeur = target.constructeur.value;
         const constructeurUpper = constructeur.toUpperCase();
         const referenceC = target.referenceC.value;
         const couleur = target.couleur.value;
-
-        if (typeof fournisseurId !== "undefined") {
-            Meteor.call('toners.insert', constructeurUpper, referenceC, couleur, fournisseurId, referenceF);
-            console.log('test2');
-        }
-        else {
-            Meteor.call('toners.insert-simple', constructeurUpper, referenceC, couleur);
-            console.log('test1');
-        }
         const verification = Marques.find({nom: constructeurUpper}, {limit: 1}).count()>0;
-        if (verification === true) {
-            throw new Meteor.Error('Cette élément existe déjà dans la collection et ne sera donc pas insérée.');
-        }
-        else {
-            Meteor.call('marques.add', constructeurUpper);
-        }
+
+        Meteor.call('toners.alt-insert-simple', constructeurUpper, referenceC, couleur, function(error, result){
+            tonerId = result;
+
+            const oTable = document.getElementById('TableFournisseur');
+            const rowLength = oTable.rows.length;
+            let cell1;
+            let cell2;  
+            let cell3;   
+            for (let i = 0; i < rowLength; i++) { 
+               const oCells = oTable.rows.item(i).cells;
+               const cellLength = oCells.length;
+               for(let  j = 0; j < cellLength; j++){
+                      cell1 = oCells.item(0).innerHTML;
+                      cell2 = oCells.item(1).innerHTML;
+                      cell3 = oCells.item(2).textContent;
+                }
+              let fournisseurId = cell3;
+              let referenceF = cell2;
+              Meteor.call('toners.add-fournisseur', tonerId, fournisseurId, referenceF);
+            }
+        });
+            if (verification === true) {
+                throw new Meteor.Error('Cette élément existe déjà dans la collection et ne sera donc pas insérée.');
+            }
+            else {
+                Meteor.call('marques.add', constructeurUpper);
+            }
     },
     'click .selection-fournisseur'(event) {
         event.preventDefault();
@@ -40,19 +54,47 @@ Template.NewToner.events({
         const cell1 = row.insertCell(0);
         const cell2 = row.insertCell(1);
         const cell3 = row.insertCell(2);
-        cell1.innerHTML = $("#SelectFournisseur").val();
+        cell1.innerHTML = $("#SelectFournisseur").find(':selected').text();
         cell2.innerHTML = $("#InputFournisseur").val();
-        //cell3.innerHTML = $("#SelectFournisseur").getAttribute('data-id');
-        //console.log($("#SelectFournisseur").getAttribute('data-id'));
-        console.log($("#SelectFournisseur").data('id'));
-        console.log($("#SelectFournisseur").attr("data-id"));
+        cell3.innerHTML = "<label hidden>"+ $("#SelectFournisseur").val() +"</label>";
     },
     'click .delete-selection-fournisseur'(event) {
         event.preventDefault();
         document.getElementById("TableFournisseur").deleteRow(0);
-    }
+    }/*,
+    'click #CHECK' (event) {
+        event.preventDefault();
+        var oTable = document.getElementById('TableFournisseur');
+        var rowLength = oTable.rows.length;   
+        for (i = 0; i < rowLength; i++) { 
+           var oCells = oTable.rows.item(i).cells;
+           var cellLength = oCells.length;
+           for(var j = 0; j < cellLength; j++){
+                  var cell1 = oCells.item(0).innerHTML;
+                  var cell2 = oCells.item(1).innerHTML;
+                  var cell3 = oCells.item(2).textContent;
+            }
+            console.log("NOM = " + cell1);
+                  console.log("REF = " + cell2);
+                  console.log("ID  = " + cell3);
+        }
+    }*/
 });
+/*
+function savedata1() { 
 
+var obj = $('#myTable tbody tr').map(function() {
+var $row = $(this);
+var t1 = $row.find(':nth-child(1)').text();
+var t2 = $row.find(':nth-child(2)').text();
+var t3 = $row.find(':nth-child(3)').text();
+return {
+    td_1: $row.find(':nth-child(1)').text(),
+    td_2: $row.find(':nth-child(2)').text(),
+    td_3: $row.find(':nth-child(3)').text()
+   };
+}).get();
+*/
 Template.NewToner.onCreated(function() {
   this.autorun(() => {
     this.subscribe('marques');

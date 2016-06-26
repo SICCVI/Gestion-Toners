@@ -14,303 +14,272 @@ import { Historiques } from '../../api/historiquesCollection.js';
 //ALIMENTATION DE DONNEES AU DEMARRAGE
 //
 
-//CONTACTS
-const contact_nom = [
-  "Pierre",
-  "Paul",
-  "Jacques",
-  "Guillaume",
-  "Bertrand",
-  "Thomas",
-  "Marie",
-  "Sophie",
-  "Nathalie",
-  "Lisa",
-  "Karen",
-  "Elise",
-  "Thierry",
-  "François",
-  "Hélène"
-],
-contact_telephone = ["01 01 01 01 01", "02 02 02 02 02", "03 03 03 03 03", "04 04 04 04 04", "05 05 05 05 05", "06 06 06 06 06", "07 07 07 07 07", "08 08 08 08 08", "09 09 09 09 09"];;
-
-Meteor.startup(function () {
-if (Contacts.find().count() < 10) {
-  for (var i = 0; i < 10; i++) {
-    Contacts.insert({
-      prenom: Random.choice(contact_nom),
-      nom: Random.choice(contact_nom),
-      telephone: Random.choice(contact_telephone)
-    });
-  }
-}
-});
-
 //SITES
-const site_nom = [
-  "Site A",
-  "Site B",
-  "Cybersite",
-  "Etablissement A",
-  "Etablissement B"
-],
-site_adresse = [
-  "10 rue du haut",
-  "15 rue du bas",
-  "20 rue de gauche",
-  "25 rue de droite"
-],
-site_codepostal = [
-  "80 000",
-  "80 130",
-  "80 390",
-  "80 100",
-  "80 200"
-],
-site_ville = [
-  "Friville-Escarbotin",
-  "Fressenneville",
-  "Feucquières-en-vimeu",
-  "Tully",
-  "Béthencourt-sur-mer"
-],
-site_telephone = ["01 01 01 01 01", "02 02 02 02 02", "03 03 03 03 03", "04 04 04 04 04", "05 05 05 05 05", "06 06 06 06 06", "07 07 07 07 07", "08 08 08 08 08", "09 09 09 09 09"];;
-
 Meteor.startup(function () {
-if (Sites.find().count() < 5) {
-  for (var i = 0; i < 5; i++) {
+if (Sites.find().count() < 3) {
     Sites.insert({
-      nom: Random.choice(site_nom),
-      adresse: Random.choice(site_adresse),
-      codepostal: Random.choice(site_codepostal),
-      ville: Random.choice(site_ville),
-      telephone: Random.choice(site_telephone)
+      _id: "SITE01",
+      nom: "SITE AAA",
+      adresse: "10 rue du haut",
+      codepostal: "80111",
+      ville: "VILFOU1",
+      telephone: "01 01 01 01 01"
     });
-  }
+    Sites.insert({
+      _id: "SITE02",
+      nom: "SITE BBB",
+      adresse: "10 rue du centre",
+      codepostal: "80222",
+      ville: "VILFOU2",
+      telephone: "02 02 02 02 02"
+    });
+    Sites.insert({
+      _id: "SITE03",
+      nom: "SITE CCC",
+      adresse: "10 rue du bas",
+      codepostal: "80333",
+      ville: "VILFOU3",
+      telephone: "03 03 03 03 03"
+    });
 }
 });
-
 //IMPRESSIONS
-const impression_gabarit = [
-  "Imprimante",
-  "Photocopieur"
-],
-impression_marque = [
-  "CANON",
-  "EPSON",
-  "BROTHER",
-  "HP",
-  "KONICA",
-  "SAMSUNG"
-],
-impression_modele = [
-  "AQW 123",
-  "ZSX 456",
-  "EDC 789",
-  "RFV 234",
-  "TGB 567",
-  "YHN 891",
-  "PLO 345",
-  "JUY 678",
-  "GTR 912",
-  "DEZ 000"
-],
-impression_nombretoner = [
-  "1",
-  "2",
-  "3",
-  "4",
-  "5"
-];;
-
 Meteor.startup(function () {
-if (Impressions.find().count() < 5) {
-  for (var i = 0; i < 5; i++) {
+if (Impressions.find().count() < 3) {
     Impressions.insert({
-      gabarit: Random.choice(impression_gabarit),
-      marque: Random.choice(impression_marque),
-      modele: Random.choice(impression_modele),
-      nombretoner: Random.choice(impression_nombretoner)
+      _id: "IMPR01",
+      gabarit: "Imprimante",
+      marque: "MARQUE A",
+      modele: "EDC 789",
+      nombretoner: "4"
     });
-  }
+    Impressions.insert({
+      _id: "IMPR02",
+      gabarit: "Imprimante",
+      marque: "MARQUE B",
+      modele: "ZSX 456",
+      nombretoner: "2"
+    });
+    Impressions.insert({
+      _id: "IMPR03",
+      gabarit: "Photocopieur",
+      marque: "MARQUE C",
+      modele: "AQW 123",
+      nombretoner: "1"
+    });
 }
 });
-
-/*//TONERS
-const toner_constructeur = [
-  "ConstructeurA",
-  "ConstructeurB",
-  "ConstructeurC",
-  "ConstructeurD",
-  "ConstructeurE",
-  "ConstructeurF"
-],
-toner_referenceC = [
-  "AQW 123",
-  "ZSX 456",
-  "EDC 789",
-  "RFV 234",
-  "TGB 567",
-  "YHN 891",
-  "PLO 345",
-  "JUY 678",
-  "GTR 912",
-  "DEZ 000"
-],
-toner_fournisseur = [
-  nom: F
-],
-toner_couleur = [
-  "Noir",
-  "Rouge",
-  "Bleu",
-  "Jaune",
-  "Cyan",
-  "Magenta"
-];;
-
+//CONTACTS
 Meteor.startup(function () {
-if (Toners.find().count() < 5) {
-  for (var i = 0; i < 5; i++) {
-    Toners.insert({
-      libelle: Random.choice(toner_libelle),
-      constructeur: Random.choice(toner_constructeur),
-      referenceC: Random.choice(toner_referenceC),
-      couleur: Random.choice(toner_couleur)
+if (Contacts.find().count() < 3) {
+    Contacts.insert({
+      _id: "CONT01",
+      nom: "PAUL",
+      prenom: "Henri",
+      telephone: "01 01 01 01 01"
     });
-  }
+    Contacts.insert({
+      _id: "CONT02",
+      nom: "PIERRE",
+      prenom: "Marie",
+      telephone: "02 02 02 02 02"
+    });
+    Contacts.insert({
+      _id: "CONT03",
+      nom: "JACQUES",
+      prenom: "Nathalie",
+      telephone: "03 03 03 03 03"
+    });
 }
 });
-*/
-//MARQUE
+//MARQUES
 Meteor.startup(function () {
-if (Marques.find().count() < 5) {
+if (Marques.find().count() < 3) {
     Marques.insert({
+      _id: "MARQ01",
       nom: "MARQUE A"
     });
     Marques.insert({
+      _id: "MARQ02",
       nom: "MARQUE B"
     });
     Marques.insert({
+      _id: "MARQ03",
       nom: "MARQUE C"
-    });
-    Marques.insert({
-      nom: "MARQUE D"
-    });
-    Marques.insert({
-      nom: "MARQUE E"
     });
 }
 });
 
-//SERVICE
+//SERVICES
 Meteor.startup(function () {
-if (Services.find().count() < 5) {
+if (Services.find().count() < 3) {
     Services.insert({
+      _id: "SERV01",
       nom: "Service A"
     });
     Services.insert({
+      _id: "SERV02",
       nom: "Service B"
     });
     Services.insert({
+      _id: "SERV03",
       nom: "Service C"
-    });
-    Services.insert({
-      nom: "Service D"
-    });
-    Services.insert({
-      nom: "Service E"
     });
 }
 });
 
 //FOURNISSEURS
-const fournisseur_nom = [
-  "Fournisseur A",
-  "Fournisseur B",
-  "Vendeur A",
-  "Vendeur B"
-],
-fournisseur_adresse = [
-  "10 rue du haut",
-  "15 rue du bas",
-  "20 rue de gauche",
-  "25 rue de droite"
-],
-fournisseur_codepostal = [
-  "11 000",
-  "22 130",
-  "33 390",
-],
-fournisseur_ville = [
-  "Paris",
-  "Lille",
-  "Amiens"
-],
-fournisseur_telephone = ["01 01 01 01 01", "02 02 02 02 02", "03 03 03 03 03", "04 04 04 04 04", "05 05 05 05 05", "06 06 06 06 06", "07 07 07 07 07", "08 08 08 08 08", "09 09 09 09 09"];;
-
 Meteor.startup(function () {
-if (Fournisseurs.find().count() < 5) {
-  for (var i = 0; i < 5; i++) {
+if (Fournisseurs.find().count() < 3) {
     Fournisseurs.insert({
-      nom: Random.choice(fournisseur_nom),
-      adresse: Random.choice(fournisseur_adresse),
-      codepostal: Random.choice(fournisseur_codepostal),
-      ville: Random.choice(fournisseur_ville),
-      telephone: Random.choice(fournisseur_telephone),
-      website: "www.website.com"
+      _id: "FOUR01",
+      nom: "FOURNISSEUR AAA",
+      adresse: "10 rue du haut",
+      codepostal: "80111",
+      ville: "VILFOU1",
+      telephone: "01 01 01 01 01",
+      website: "www.site.com"
     });
-  }
+    Fournisseurs.insert({
+      _id: "FOUR02",
+      nom: "FOURNISSEUR BBB",
+      adresse: "10 rue du centre",
+      codepostal: "80222",
+      ville: "VILFOU2",
+      telephone: "02 02 02 02 02",
+      website: "www.site.com"
+    });
+    Fournisseurs.insert({
+      _id: "FOUR03",
+      nom: "FOURNISSEUR CCC",
+      adresse: "10 rue du bas",
+      codepostal: "80333",
+      ville: "VILFOU3",
+      telephone: "03 03 03 03 03",
+      website: "www.site.com"
+    });
 }
 });
 
 //TONERS
 Meteor.startup(function () {
-if (Toners.find().count() < 2) {
+if (Toners.find().count() < 3) {
     Toners.insert({
-      constructeur : "Constructeur A",
-      referenceC : "AZE",
+      _id: "TONE01",
+      constructeur : "MARQUE A",
+      referenceC : "REF 19865",
       couleur : "black",
       fournisseur : [
-        { fournisseurId : "WWW",
-          referenceF : "XSZ"},
-        { fournisseurId : "YYY",
-          referenceF : "CDE"}
+        { fournisseurId : "FOUR02",
+          referenceF : "REF 14598"},
+        { fournisseurId : "FOUR03",
+          referenceF : "REF 32574"}
         ]
     });
      Toners.insert({
-      constructeur : "Constructeur B",
-      referenceC : "RTY",
-      couleur : "cyan",
+      _id: "TONE02",
+      constructeur : "MARQUE B",
+      referenceC : "REF 79310",
+      couleur : "jaune",
       fournisseur : [
-        { fournisseurId : "XXX",
-          referenceF : "QSD"},
-        { fournisseurId : "ZZZ",
-          referenceF : "WXC"}
+        { fournisseurId : "FOUR03",
+          referenceF : "REF 36984"},
+        { fournisseurId : "FOUR01",
+          referenceF : "REF 10846"}
         ]
     });
-/*    STOCKS.INSERT({
-      TONER : "KHYYQQUFFGVWBFZTA",
-      INDEX : ["LIBELLEC", "CONSTRUCTEURF", "ZSX 456", "ROUGE"],
-      SEUIL : 0,
-      NVAVERTISSEMENT : 1,
-      ALERTE : FALSE,
-      AVERTISSEMENT : FALSE,
-      QUANTITE : 5,
-      CONSOMMATEUR : [
-        { SITE : "N9J2TU22H9AUBXDYU",
-          IMPRESSION : ["BJFVMKE587VCM7HRO"],
-          CONTACT : "5ZBKGH5DQZDC2EXYF",
-          SERVICE : "TOQ4XS83VMPDEMRNA",
-          CONSOMMATION : 0,
-          HISTORIQUE : []},
-        { SITE : "DN5CHV5JYRZBLFMWB",
-          IMPRESSION : ["YAOMDTAMGTBJWVNYY"],
-          CONTACT : "WMT6PMJYBSAHMBRQK",
-          SERVICE : "COXRBTT9JZP6OWFA8",
-          CONSOMMATION : 0,
-          HISTORIQUE : []}
+     Toners.insert({
+      _id: "TONE03",
+      constructeur : "MARQUE C",
+      referenceC : "REF 86441",
+      couleur : "cyan",
+      fournisseur : [
+        { fournisseurId : "FOUR01",
+          referenceF : "REF 36984"},
+        { fournisseurId : "FOUR02",
+          referenceF : "REF 10846"}
+        ]
+    });
+  }
+});
+
+//STOCKS
+Meteor.startup(function () {
+if (Stocks.find().count() < 3) {
+    Stocks.insert({
+      toner : "TONE01",
+      index : ["AAA"],
+      seuil : 1,
+      nvavertissement : 3,
+      alerte : false,
+      avertissement : false,
+      quantite : 5,
+      consommateur : [
+        { site : "SITE01",
+          impression : ["IMPR01", "IMPR02", "IMPR03"],
+          contact : "CONT01",
+          service : "SERV01",
+          consommation : 0,
+          historique : []},
+        { site : "SITE02",
+          impression : ["IMPR01"],
+          contact : "CONT02",
+          service : "SERV02",
+          consommation : 0,
+          historique : []}
           ]
-    });*/
+    });
+     Stocks.insert({
+      toner : "TONE02",
+      index : ["AAA"],
+      seuil : 2,
+      nvavertissement : 4,
+      alerte : false,
+      avertissement : true,
+      quantite : 3,
+      consommateur : [
+        { site : "SITE02",
+          impression : ["IMPR03", "IMPR02"],
+          contact : "CONT02",
+          service : "SERV02",
+          consommation : 0,
+          historique : []},
+        { site : "SITE03",
+          impression : ["IMPR03"],
+          contact : "CONT03",
+          service : "SERV03",
+          consommation : 0,
+          historique : []}
+          ]
+    });
+     Stocks.insert({
+      toner : "TONE03",
+      index : ["AAA"],
+      seuil : 3,
+      nvavertissement : 5,
+      alerte : true,
+      avertissement : true,
+      quantite : 2,
+      consommateur : [
+        { site : "SITE01",
+          impression : ["IMPR01", "IMPR02"],
+          contact : "CONT01",
+          service : "SERV01",
+          consommation : 0,
+          historique : []},
+        { site : "SITE02",
+          impression : ["IMPR01"],
+          contact : "CONT02",
+          service : "SERV02",
+          consommation : 0,
+          historique : []},
+        { site : "SITE03",
+          impression : ["IMPR02"],
+          contact : "CONT03",
+          service : "SERV03",
+          consommation : 0,
+          historique : []}
+          ]
+    });
   }
 });

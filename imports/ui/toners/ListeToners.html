@@ -21,7 +21,6 @@
 						<th class="colonne-toner">Fournisseurs</th>
 						<th class="colonne-toner">Couleur</th>
 						<th class="colonne-icone"></th>
-						<th class="colonne-icone"></th>
 					</tr>
 					{{#EasySearch.IfNoResults index=tonersIndex}}
 					<tr>
@@ -35,10 +34,6 @@
 					{{/EasySearch.Each}}
 				</table>
 				{{> EasySearch.Pagination index=tonersIndex customRenderPagination="Pagination"}}
-				{{#each toners}}
-					{{> ModalEditToner}}
-					{{> ModalAddToner}}
-				{{/each}}
 
 		{{else}}
 			<p>En attente</p>

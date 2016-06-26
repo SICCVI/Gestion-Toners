@@ -1,3 +1,3 @@
 import './Home.html';
-import './NotificationsAlerte.html';
-import './NotificationsHistorique.html';
+import './NotificationsStock.js';
+import './NotificationsHistorique.js';

@@ -1,3 +1,86 @@
-<template name="NotificationsAlerte">
-AA
+<template name="NotificationsHistorique">
+	<div class="row">
+      <div class="col-lg-12">
+        <h3 class="page-header">Aperçu de l'historique</h3>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <ul class="nav nav-tabs">
+              <li class="active"><a href="#historiquecomplet" data-toggle="tab">Tous</a></li>
+              <li><a href="#historiquecommandes" data-toggle="tab">Commandes</a></li>
+              <li><a href="#historiqueentrees" data-toggle="tab">Entrées</a></li>
+              <li><a href="#historiquesorties" data-toggle="tab">Sorties</a></li>
+            </ul>
+            <div class="tab-content">
+              <div id="historiquecomplet" class="tab-pane fade in active">
+                <table>
+		            {{#each historiqueComplet}}
+                  {{#if commande}}
+                      <tr class="lightorange">
+                        <td>{{date}}</td>
+                        <td>Commande de " {{objet}} ".</td>
+                      </tr>
+                  {{/if}}
+                  {{#if entree}}
+                      <tr class="lightgreen">
+                        <td>{{date}}</td>
+                        <td>Ajout d'un " {{objet}} ".</td>
+                      </tr>
+                  {{/if}}
+                  {{#if sortie}}
+                      <tr class="lightred">
+                        <td>{{date}}</td>
+                        <td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
+                      </tr>
+                  {{/if}}
+		            {{else}}
+		            	<tr colspan="2">Pas de résultat</tr>
+		            {{/each}}
+                </table>
+              </div>
+              <div id="historiquecommandes" class="tab-pane fade">
+                <table>
+		            {{#each historiqueCommandes}}
+		            	<tr>
+		            		<td>{{date}}</td>
+		            		<td>Commande de " {{objet}} ".</td>
+		            	</tr>
+		            	{{else}}
+		            	<tr colspan="2">Pas de résultat</tr>
+		            {{/each}}
+                </table>
+              </div>
+              <div id="historiqueentrees" class="tab-pane fade">
+                <table>
+		            {{#each historiqueEntrees}}
+		            	<tr>
+		            		<td>{{date}}</td>
+		            		<td>Ajout d'un " {{objet}} ".</td>
+		            	</tr>
+		            	{{else}}
+		            	<tr colspan="2">Pas de résultat</tr>
+		            {{/each}}
+                </table>
+              </div>
+              <div id="historiquesorties" class="tab-pane fade">
+                <table>
+		            {{#each historiqueSorties}}
+		            	<tr>
+		            		<td>{{date}}</td>
+		            		<td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
+		            	</tr>
+		            	{{else}}
+		            	<tr colspan="2">Pas de résultat</tr>
+		            {{/each}}
+                </table>
+              </div>
+            </div>
+          </div>
+          <a href="/historiques"><div class="panel-footer">Cliquez ici pour accéder à l'historique complet</div></a>
+        </div>
+      </div>
+    </div>
 </template>
