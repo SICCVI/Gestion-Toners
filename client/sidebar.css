@@ -26,7 +26,8 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #337F8F;
+    background: #F2F3F4;
+    box-shadow: 5px 0px 10px #888888;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -67,13 +68,13 @@
 .sidebar-nav li a {
     display: block;
     text-decoration: none;
-    color: white;
+    color: #154360;
 }
 
 .sidebar-nav li a:hover, .sidebar-nav .dropdown li a:hover {
     text-decoration: none;
-    color: #fff;
-    background: rgba(255,255,255,0.2);
+    color: orange;
+    background: white;
 }
 
 .sidebar-nav li a:active,
@@ -142,8 +143,22 @@
 
 .sidebar-nav .dropdown-menu {
     margin-top: 0px;
-    background-color: #337F8F;
+    background-color: #F2F3F4;
     -webkit-box-shadow: none !important;
     border: none !important;
     width: 250px;
+}
+ 
+.sidebar-brand img:hover {
+    opacity:0.7;
+}
+
+.sidebar-brand {
+    margin-top: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.sidebar-nav .sidebar-brand {
+    text-indent: 0px !important;
 }

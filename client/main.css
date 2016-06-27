@@ -9,14 +9,17 @@ html, body {
 #menu-toggle {
     position:fixed;
     z-index: 999;
-    color: white;
-    margin: 10px;
     font-size: 1.5em;
+    margin-top: 15px;
+    margin-left: 20px;
+    color: white;
 }
- 
-#menu-toggle .glyphicon:hover {
-    opacity: 0.7;
+
+#menu-toggle:hover {
+    cursor: hand !important;
+    cursor: pointer !important;
 }
+
  
 #Header {
     position:fixed;
@@ -25,29 +28,17 @@ html, body {
     top:0px;
     right:0px;
     height:60px;
-    background-color: #900C3F;
+    background-color: #154360  ;
     color: white;
     padding-right: 20px;
     padding-top: 3px;
+    box-shadow: 5px 0px 10px #888888;
 }
  
 #Header .entete {
     text-align: right;
     margin: -20px;
-    margin-right: 120px;
     padding: 15px;
-    border-right: 1px solid #F5EEF8;
-}
- 
-#Header .logo {
-    position: absolute;
-    float: right;
-    top: 5px;
-    right: 20px;
-}
- 
-#Header .logo:hover {
-    opacity:0.7;
 }
  
 #Content {
@@ -59,7 +50,7 @@ html, body {
  
 #Footer {
     height:40px;
-    background-color: #900C3F;
+    background-color: #154360;
     color: white;
     margin-right: -20px;
     margin-left: -20px;
@@ -68,13 +59,77 @@ html, body {
     padding-top: 3px;
 }
 
-.home-separation {
-    background-color: black;
-    height: 5px;
+.panel {
+    font-size: 12px;
+
+    box-shadow: 5px 0px 10px #888888;
 }
 
-.home-icone-notification .glyphicon {
+.home-title {
+    text-indent: 10px;
+}
+
+.home-icone-notification {
+    text-align: center;
+}
+
+.panel-heading {
+    color: #154360!important; 
+    text-align:center;
+    font-weight: bold;
+}
+
+.home-icone-notification table {
+    border-collapse: collapse;
+    margin-top: 10px;
+    text-align: left;
+    width: 100%;
+}
+
+.home-icone-notification table, th, td {
+    border-bottom: 1px solid #F2F3F4;
+}
+
+.home-icone-notification .gly-icone {
     font-size: 600%;
+}
+
+.home-icone-notification button {
+    margin-bottom: 10px;
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -ms-transition: all 1s ease; /* IE 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+}
+
+.home-icone-notification button:hover {
+    -webkit-transform:scale(1.05); /* Safari and Chrome */
+    -moz-transform:scale(1.05); /* Firefox */
+    -ms-transform:scale(1.05); /* IE 9 */
+    -o-transform:scale(1.05); /* Opera */
+     transform:scale(1.05);
+}
+
+.home-icone-notification .nav.nav-tabs li a {
+    color:#154360;
+}
+
+.home-icone-notification .nav.nav-tabs li a:hover {
+    background-color: #F2F3F4;
+    color:#154360;
+}
+
+table tr:nth-child(even) {
+    background: #FBFCFC;
+}
+ 
+table tr:nth-child(odd) {
+    background: #F8F9F9;
+}
+ 
+table th, td {
+    padding: 5px;
 }
 
 .table-donnees {
@@ -89,7 +144,7 @@ html, body {
 }
  
 .table-donnees tr:nth-child(even) {
-    background: #F9EBEA;
+    background: #FDFEFE;
 }
  
 .table-donnees tr:nth-child(odd) {
@@ -164,16 +219,16 @@ html, body {
     margin-top: -10px;
 }
  
-table tr.highlight td {
+.table-donnees tr.highlight td {
     background-color: #AA80AA;
 }
  
-table tr:hover>td, table>tr:hover>th {
+.table-donnees tr:hover>td, table>tr:hover>th {
   background-color: #550055;
   color:#eeeeee;
 }
  
-table tr:hover>td .glyphicon {
+.table-donnees tr:hover>td .glyphicon {
   color:red;
 }
  

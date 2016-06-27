@@ -1,42 +1,43 @@
 <template name="NotificationsStock">
     <div class="row">
       <div class="col-lg-12">
-        <h3 class="page-header">Niveau des stocks</h3>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-lg-6">
         <div class="panel panel-danger">
           <div class="panel-heading">Critique</div>
           <div class="panel-body">
+            <div class="col-lg-4 home-icone-notification">
+              <a href="/stocks"><button class="btn btn-danger" type="button">
+                <span class="glyphicon glyphicon-bell gly-icone"></span>
+                <span class="badge">{{totalCountAlerte}}</span>
+              </button></a>
+            </div>          
             <div class="col-lg-8">
               <table>
                 {{#each stockAlerte}}
                 <tr>
                   {{#with getToner toner}}
-                    <td>
-                    {{constructeur}} - {{referenceC}} ( {{couleur}} )
-                    </td>
+                    <td> {{constructeur}}</td>
+                    <td>{{referenceC}}</td>
+                    <td>{{couleur}}</td>
                   {{/with}}
                 </tr>
                 {{else}}
-                <tr>Pas de résultats</tr>
+                <tr colspan="3">Pas de résultats</tr>
                 {{/each}}
               </table>
-            </div>
-            <div class="col-lg-4 home-icone-notification">
-              <a href="/stocks"><button class="btn btn-danger" type="button">
-                <span class="glyphicon glyphicon-bell"></span>
-                <span class="badge">{{totalCountAlerte}}</span>
-              </button></a>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <div class="panel panel-warning">
           <div class="panel-heading">Avertissement</div>
           <div class="panel-body">
+            <div class="col-lg-4 home-icone-notification">
+              <a href="/stocks"><button class="btn btn-warning" type="button">
+                <span class="glyphicon glyphicon-flag gly-icone"></span>
+                <span class="badge">{{totalCountAvertissement}}</span>
+              </button></a>
+            </div>
             <div class="col-lg-8">
               <table>
                 {{#each stockAvertissement}}
@@ -51,12 +52,6 @@
                 <tr>Pas de résultats</tr>
                 {{/each}}
               </table>
-            </div>
-            <div class="col-lg-4 home-icone-notification">
-              <a href="/stocks"><button class="btn btn-warning" type="button">
-                <span class="glyphicon glyphicon-flag"></span>
-                <span class="badge">{{totalCountAvertissement}}</span>
-              </button></a>
             </div>
           </div>
         </div>

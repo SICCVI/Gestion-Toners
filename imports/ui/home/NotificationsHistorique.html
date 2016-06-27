@@ -1,13 +1,13 @@
 <template name="NotificationsHistorique">
-	<div class="row">
-      <div class="col-lg-12">
-        <h3 class="page-header">Aperçu de l'historique</h3>
-      </div>
-    </div>
     <div class="row">
-      <div class="col-lg-12">
-        <div class="panel panel-default">
+      <div class="col-lg-12 home-icone-notification">
+        <div class="panel panel-info">
+        <div class="panel-heading">Aperçu de l'historique</div>
           <div class="panel-body">
+            <a href="/historiques"><button class="btn btn-info" type="button">
+                <span class="glyphicon glyphicon-time gly-icone"></span>
+                <span class="glyphicon glyphicon-eye-open gly-badge"></span>
+            </button></a>
             <ul class="nav nav-tabs">
               <li class="active"><a href="#historiquecomplet" data-toggle="tab">Tous</a></li>
               <li><a href="#historiquecommandes" data-toggle="tab">Commandes</a></li>
@@ -19,24 +19,25 @@
                 <table>
 		            {{#each historiqueComplet}}
                   {{#if commande}}
-                      <tr class="lightorange">
+                      <tr>
                         <td>{{date}}</td>
                         <td>Commande de " {{objet}} ".</td>
                       </tr>
                   {{/if}}
                   {{#if entree}}
-                      <tr class="lightgreen">
+                      <tr>
                         <td>{{date}}</td>
                         <td>Ajout d'un " {{objet}} ".</td>
                       </tr>
                   {{/if}}
                   {{#if sortie}}
-                      <tr class="lightred">
+                      <tr>
                         <td>{{date}}</td>
                         <td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
                       </tr>
                   {{/if}}
 		            {{else}}
+                  <tr></tr>
 		            	<tr colspan="2">Pas de résultat</tr>
 		            {{/each}}
                 </table>
@@ -79,7 +80,6 @@
               </div>
             </div>
           </div>
-          <a href="/historiques"><div class="panel-footer">Cliquez ici pour accéder à l'historique complet</div></a>
         </div>
       </div>
     </div>
