@@ -41,7 +41,15 @@
 						</td>
 						{{#with getToner toner}}
 						<td>
-							 	{{constructeur}} - {{referenceC}} ( {{couleur}} )
+							 	{{constructeur}} - {{referenceC}} ( {{couleur}} )<br />
+							 	<ul>
+							 		{{#each fournisseur}}<li>
+							 			{{#with getFournisseur fournisseurId}}
+							 			 {{nom}}
+							 			{{/with}}
+							 			{{referenceF}}</li>
+							 		{{/each}}
+							 	</ul>
 						</td>
 						{{/with}}
 						<td>

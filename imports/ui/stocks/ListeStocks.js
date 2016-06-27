@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating';
 import { Stocks } from '../../api/stocksCollection.js';
 import { Historiques } from '../../api/historiquesCollection.js';
 import { Toners } from '../../api/tonersCollection.js';
+import { Fournisseurs } from '../../api/fournisseursCollection.js';
 import { Impressions } from '../../api/impressionsCollection.js';
 import { Sites } from '../../api/sitesCollection.js';
 import { Contacts } from '../../api/contactsCollection.js';
@@ -24,6 +25,9 @@ Template.ListeStocks.onCreated(function() {
   });
   this.autorun(() => {
     this.subscribe('toners');
+  });
+  this.autorun(() => {
+    this.subscribe('fournisseurs');
   });
   this.autorun(() => {
     this.subscribe('impressions');
@@ -54,6 +58,9 @@ Template.ListeStocks.helpers({
     },
 	getToner: function(id) {
         return Toners.findOne({_id: id});
+    },
+	getFournisseur: function(id) {
+        return Fournisseurs.findOne({_id: id});
     },
     getImpression: function(id) {
         return Impressions.findOne({_id: id});
