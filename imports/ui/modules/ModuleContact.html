@@ -1,8 +1,44 @@
+<template name="ModuleContact">
+	<div class="row module">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading titre-module"><span class="glyphicon glyphicon-user float-gauche" aria-hidden="true"></span><label>Module Choix Contact</label></div>
+                <div class="panel-body">
+                    <div class="col-lg-6 bordure-droite">
+                        <div class="panel-heading">Création</div>
+                        {{>CreationContact}}
+                    </div>
+                    <div class="col-lg-6 bordure-gauche">
+                        <div class="panel-heading">Sélection</div>
+                        {{>SelectionContact}}
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+		              <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
+		              <input type="text" id="ChoixContact" name="choix-contact" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+		              <input type="hidden" id="ChoixContactId" name="choix-contact-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+		            </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="" class="vers-suivant" id="ToSectionService"  onClick="scrollto('#SectionService');">
+		                <button class="btn btn-primary vers-suivant">
+		                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+		                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+		                    Etape suivante
+		                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+		                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+		                </button>
+		            </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="CreationContact">
-<span class="label label-info to-left">Creation</span>
 	<div class="insert-donnees">
  		<form class="new-contact">
-
 		    <div class="input-group">
 			  <span class="input-group-addon" id="sizing-addon2">Nom</span>
 			  <input type="text" name="nom" class="form-control" placeholder="..." aria-describedby="sizing-addon2" required>
@@ -24,14 +60,6 @@
 </template>
 
 <template name="SelectionContact">
-<span class="label label-info to-left">Selection</span>
-<!-- 
-	<button class="check-selected">check</button>
-	<button class="envoi-selection1">tous</button>
-	<button class="envoi-selection2">un par un</button>
-	<button class="envoi-selection3">tous ID</button>
-	<button class="envoi-selection4">insert ID</button>
-	<button class="test">XXXX</button> -->
 	<div class="input-group search-section">
 	  <span class="to-right">{{> EasySearch.Input index=contactsIndex }}</span>
 	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>

@@ -1,7 +1,7 @@
 <template name="NotificationsStock">
     <div class="row">
       <div class="col-lg-12">
-        <div class="panel panel-danger">
+        <div class="panel panel-danger panel-danger-custom">
           <div class="panel-heading">Critique</div>
           <div class="panel-body">
             <div class="col-lg-4 home-icone-notification">
@@ -17,7 +17,7 @@
                   {{#with getToner toner}}
                     <td> {{constructeur}}</td>
                     <td>{{referenceC}}</td>
-                    <td>{{couleur}}</td>
+                    <td>({{couleur}})</td>
                   {{/with}}
                 </tr>
                 {{else}}
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="col-lg-12">
-        <div class="panel panel-warning">
+        <div class="panel panel-warning panel-warning-custom">
           <div class="panel-heading">Avertissement</div>
           <div class="panel-body">
             <div class="col-lg-4 home-icone-notification">

@@ -1,5 +1,46 @@
+<template name="ModuleImpression">
+	<div class="row module">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading titre-module"><span class="glyphicon glyphicon-print float-gauche" aria-hidden="true"></span><label>Module Choix Impression</label></div>
+                <div class="panel-body">
+                    <div class="col-lg-6 bordure-droite">
+                        <div class="panel-heading">Création</div>
+                        {{>CreationImpression}}
+                    </div>
+                    <div class="col-lg-6 bordure-gauche">
+                        <div class="panel-heading">Sélection</div>
+                        {{>SelectionImpression}}
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="selection-impression">
+		                <button class="btn btn-default selectionner-impression" disabled>Choix sélectionné&ensp;<span class="glyphicon glyphicon-arrow-down"></span></button>
+
+		                <table id="TableChoixImpression" class="table-donnees">
+		                    <th>Marque</th>
+		                    <th>Modèle</th>
+		                    <th width="10px"><button class="btn btn-default btn-danger delete-selection-impression">X</button></th>
+		                </table>
+		            </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="" class="vers-suivant" id="ToSectionFin"  onClick="scrollto('#SectionFin');">
+		                <button class="btn btn-primary vers-suivant">
+		                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+		                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+		                    Etape finale
+		                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+		                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+		                </button>
+		            </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="CreationImpression">
-<span class="label label-info to-left">Creation</span>
 <div class="insert-donnees">
  		<form class="new-impression">
 
@@ -46,7 +87,6 @@
 </template>
 
 <template name="SelectionImpression">
-<span class="label label-info to-left">Selection</span>
 	<div class="input-group search-section">
 	  <span class="to-right">{{> EasySearch.Input index=impressionsIndex }}</span>
 	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>

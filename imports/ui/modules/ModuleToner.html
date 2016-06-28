@@ -1,5 +1,42 @@
+<template name="ModuleToner">
+	<div class="row module">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading titre-module"><span class="glyphicon glyphicon-tint float-gauche" aria-hidden="true"></span><label>Module Choix Toner</label></div>
+                <div class="panel-body">
+                    <div class="col-lg-6 bordure-droite">
+                        <div class="panel-heading">Création</div>
+                        {{>CreationToner}}
+                    </div>
+                    <div class="col-lg-6 bordure-gauche">
+                        <div class="panel-heading">Sélection</div>
+                        {{>SelectionToner}}
+                    </div>
+                </div>
+                <div class="panel-footer">
+					<div class="input-group">
+		              <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
+		              <input type="text" id="ChoixToner" name="choix-toner" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
+		              <input type="hidden" id="ChoixTonerId" name="choix-toner-id" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
+		            </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="" class="vers-suivant" id="ToSectionSite" onClick="scrollto('#SectionSite');">
+		                <button class="btn btn-primary vers-suivant">
+		                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+		                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+		                    Etape suivante
+		                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+		                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+		                </button>
+		            </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="CreationToner">
-<span class="label label-info to-left">Creation</span>
 	<div class="insert-donnees">
  		<form class="new-toner">
 
@@ -53,9 +90,9 @@
 				<button class="btn btn-default selection-fournisseur"><span class="glyphicon glyphicon-arrow-down"></span></button>
 
 				<table id="TableFournisseur" class="table-donnees">
-					<th>Fournisseur</th>
-					<th>Référence</th>
-					<th width="10px"><button class="btn btn-default btn-danger delete-selection-fournisseur">X</button></th>
+						<th>Fournisseur</th>
+						<th>Référence</th>
+						<th width="10px"><button class="btn btn-default btn-danger delete-selection-fournisseur">X</button></th>
 				</table>
 
 			</fieldset>
@@ -67,7 +104,6 @@
 
 <template name="SelectionToner">
 
-<span class="label label-info to-left">Selection</span>
 	<div class="input-group search-section">
 	  <span class="to-right">{{> EasySearch.Input index=tonersIndex }}</span>
 	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>

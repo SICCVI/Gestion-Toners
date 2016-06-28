@@ -3,11 +3,6 @@ import "./Modules.html";
 import "./ModuleToner.js";
 import "./ModuleImpression.js";
 import "./ModuleSite.js";
-import "./ModuleContact.js";import "./Modules.html";
-
-import "./ModuleToner.js";
-import "./ModuleImpression.js";
-import "./ModuleSite.js";
 import "./ModuleContact.js";
 import "./ModuleService.js";
 
@@ -108,6 +103,7 @@ Template.Modules.events({
     'click .delete-selection-impression'(event) {
         event.preventDefault();
         document.getElementById("TableImpression").deleteRow(0);
+        console.log("test");
     }
 });
 

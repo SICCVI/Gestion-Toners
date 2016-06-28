@@ -1,5 +1,42 @@
+<template name="ModuleService">
+	<div class="row module">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading titre-module"><span class="glyphicon glyphicon-folder-open float-gauche" aria-hidden="true"></span><label>Module Choix Service</label></div>
+                <div class="panel-body">
+                    <div class="col-lg-6 bordure-droite">
+                        <div class="panel-heading">Création</div>
+                        {{>CreationService}}
+                    </div>
+                    <div class="col-lg-6 bordure-gauche">
+                        <div class="panel-heading">Sélection</div>
+                        {{>SelectionService}}
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+		              <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
+		              <input type="text" id="ChoixService" name="choix-service" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+		              <input type="hidden" id="ChoixServiceId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+		            </div>
+                </div>
+                <div class="panel-footer">
+                    <a href="" class="vers-suivant" id="ToSectionImpression"  onClick="scrollto('#SectionImpression');">
+		                <button class="btn btn-primary vers-suivant">
+		                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+		                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+		                    Etape suivante
+		                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+		                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+		                </button>
+		            </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
 <template name="CreationService">
-<span class="label label-info to-left">Creation</span>
 	<div class="insert-donnees">
  		<form class="new-service">
 
@@ -15,7 +52,6 @@
 </template>
 
 <template name="SelectionService">
-<span class="label label-info to-left">Selection</span>
  	<div class="input-group search-section">
 	  <span class="to-right">{{> EasySearch.Input index=servicesIndex }}</span>
 	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>

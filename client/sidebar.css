@@ -26,7 +26,7 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #F2F3F4;
+    background: #FDFEFE;
     box-shadow: 5px 0px 10px #888888;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
@@ -73,8 +73,8 @@
 
 .sidebar-nav li a:hover, .sidebar-nav .dropdown li a:hover {
     text-decoration: none;
-    color: orange;
-    background: white;
+    color: white;
+    background: #F7923A;
 }
 
 .sidebar-nav li a:active,
@@ -128,7 +128,7 @@
 /* Ajouts */
 
 #sideMenuTitle {
-    color: white;
+    color: #FDFEFE;
     text-align: center;
     text-indent: 0px;
 }
@@ -143,16 +143,31 @@
 
 .sidebar-nav .dropdown-menu {
     margin-top: 0px;
-    background-color: #F2F3F4;
+    background-color: #FDFEFE;
     -webkit-box-shadow: none !important;
     border: none !important;
     width: 250px;
 }
- 
+
+.sidebar-brand img {
+    -webkit-transition: all 1s ease; /* Safari and Chrome */
+    -moz-transition: all 1s ease; /* Firefox */
+    -ms-transition: all 1s ease; /* IE 9 */
+    -o-transition: all 1s ease; /* Opera */
+    transition: all 1s ease;
+} 
+
 .sidebar-brand img:hover {
-    opacity:0.7;
+    -webkit-transform:scale(0.97); /* Safari and Chrome */
+    -moz-transform:scale(0.97); /* Firefox */
+    -ms-transform:scale(0.97); /* IE 9 */
+    -o-transform:scale(0.97); /* Opera */
+     transform:scale(0.97);
 }
 
+.home-icone-notification button:hover {
+
+}
 .sidebar-brand {
     margin-top: 10px;
     margin-bottom: 30px;

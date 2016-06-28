@@ -15,13 +15,13 @@
 					<th class="colonne-stocks" >Toners</th>
 					<th class="colonne-stocks">Quantité</th>
 					<th class="colonne-stocks">Services</th>
-					<th class="colonne-stocks">Statut</th>
+					<th class="colonne-stocks" colspan="2">Statut</th>
 					<th class="colonne-icone"></th>
 					<th class="colonne-icone"></th>
 				</tr>
 					{{#EasySearch.Each index=stocksIndex }}
 					
-					<tr class="row-donnees {{#if avertissement}}{{#if alerte}}warning-al{{else}}warning-av{{/if}}{{/if}}">
+					<tr>
 
 						<td>
 							<div class="dropdown">
@@ -89,8 +89,8 @@
 								</ul>
 					      	{{/each}}
 						</td>
-						<td>
-							{{#if avertissement}}
+						<td class="{{#if avertissement}}{{#if alerte}}stock-al{{else}}stock-av{{/if}}{{else}}stock-ok{{/if}}">&emsp;</td>
+						<td>{{#if avertissement}}
 								{{#if alerte}}
 									ALERTE
 								{{else}}

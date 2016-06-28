@@ -22,10 +22,13 @@
 	<section class="historiques">
 		{{#if Template.subscriptionsReady}}
 					<table class="table-donnees">
-						<th>Date</th>
-						<th>Objet</th>
-						<th>Note</th>
-						<th></th>
+						<tr>
+							<th>Date</th>
+							<th></th>
+							<th>Objet</th>
+							<th>Note</th>
+							<th></th>	
+						</tr>
 						{{#EasySearch.IfNoResults index=historiquesIndex}}
 						<tr>
 							<td colspan="4">Pas de résultats trouvés!</td>
@@ -34,8 +37,9 @@
 						{{#EasySearch.Each index=historiquesIndex }}
 							{{#if commande}}
 								{{#if showCommandes }}
-									<tr class="lightorange">
+									<tr>
 										<td>{{date}}</td>
+										<td class="lightorange"></td>
 										<td>Commande de " {{objet}} ".</td>
 										<td>{{> NoteHistorique}}</td>
 										<td>{{> SuppressionHistorique}}</td>
@@ -44,8 +48,9 @@
 							{{/if}}
 							{{#if entree}}
 								{{#if showEntrees }}
-									<tr class="lightgreen">
+									<tr>
 										<td>{{date}}</td>
+										<td class="lightgreen"></td>
 										<td>Ajout d'un " {{objet}} ".</td>
 										<td>{{> NoteHistorique}}</td>
 										<td>{{> SuppressionHistorique}}</td>
@@ -54,8 +59,9 @@
 							{{/if}}
 							{{#if sortie}}
 								{{#if showSorties }}
-									<tr class="lightred">
+									<tr>
 										<td>{{date}}</td>
+										<td class="lightred"></td>
 										<td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
 										<td>{{> NoteHistorique}}</td>
 										<td>{{> SuppressionHistorique}}</td>
