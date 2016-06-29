@@ -99,11 +99,6 @@ Template.Modules.events({
         clearModule();
         clearToner();
         $("#NewStockId").val("");
-    },
-    'click .delete-selection-impression'(event) {
-        event.preventDefault();
-        document.getElementById("TableImpression").deleteRow(0);
-        console.log("test");
     }
 });
 

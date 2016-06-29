@@ -1,102 +1,122 @@
 <template name="Modules">
+
     <div id="page-wrapper">
+
         <a class="anchor" id="SectionToner"></a>
         {{>ModuleToner}}
+
         <a class="anchor" id="SectionSite"></a>
         {{>ModuleSite}}
+
         <a class="anchor" id="SectionContact"></a>
         {{>ModuleContact}}
+
         <a class="anchor" id="SectionService"></a>
         {{>ModuleService}}
+
         <a class="anchor" id="SectionImpression"></a>
         {{>ModuleImpression}}
+
         <a class="anchor" id="SectionFin"></a>
+        <div class="row module">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading titre-module"><span class="glyphicon glyphicon-check float-gauche" aria-hidden="true"></span><label>Récapitulatif complet</label></div>
+
+                    <div class="panel-body">
+                        <input type="hidden" id="NewStockId" name="stock-id" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
+
+                        <table id="Resultats">
+                            <tr>
+                                <td>
+                                    Toner
+                                </td>
+                                <td>
+                                    <input type="text" id="ResultatToner" name="choix-toner" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                    <input type="hidden" id="ResultatTonerId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Site
+                                </td>
+                                <td>
+                                    <input type="text" id="ResultatSite" name="choix-site" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                    <input type="hidden" id="ResultatSiteId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Contact
+                                </td>
+                                <td>
+                                    <input type="text" id="ResultatContact" name="choix-contact" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                    <input type="hidden" id="ResultatContactId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Service
+                                </td>
+                                <td>
+                                    <input type="text" id="ResultatService" name="choix-service" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                    <input type="hidden" id="ResultatServiceId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Impression
+                                </td>
+                                <td>
+                                     <table id="TableResultatImpression" class="table-donnees">
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>   
+
+                    </div>
+
+                    <div class="panel-footer">
+                        <a href="" class=""  id="{{#if ajouterElements}}ToValidationAjouter{{else}}ToValidation{{/if}}" onClick="scrollto('#SectionSuite');">
+                            <button class="btn btn-primary vers-suivant">
+                                <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                                <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+                                Finaliser
+                                <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                                <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+                            </button>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <a class="anchor" id="SectionSuite"></a>
+
+        <div class="row module">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+
+                        <div class="col-lg-6">
+                            <a href="" class="ajouter ajouter-elements" id="ToAjouter" onClick="scrollto('#SectionToner'); scrollto('#SectionSite');">
+                                <button class="btn btn-success btn-suite">Ajouter de nouveaux éléments à ce toner
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="" class="reset" id="ToReset" onClick="scrollto('#SectionToner');">
+                                <button class="btn btn-info btn-suite">Enregistrer une nouvelle association
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-        
-        <a class="anchor" id="SectionFin"></a>
-        <div class="module">
-            <div class="titre-module"><span class="glyphicon glyphicon-check float-gauche" aria-hidden="true"></span><label>Récapitulatif complet</label></div>
-            <div class="infocomplet">
-                <input type="hidden" id="NewStockId" name="stock-id" class="form-control choix-reset" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                <table id="Resultats">
-                    <tr>
-                        <td>
-                            Toner
-                        </td>
-                        <td>
-                            <input type="text" id="ResultatToner" name="choix-toner" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatTonerId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Site
-                        </td>
-                        <td>
-                            <input type="text" id="ResultatSite" name="choix-site" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatSiteId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Impression
-                        </td>
-                        <td>
-                             <table id="TableResultatImpression" class="table-donnees">
-                                <th>Marque</th>
-                                <th>Modèle</th>
-                                <th width="10px"><button class="btn btn-default btn-danger delete-selection-impression">X</button></th>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Contact
-                        </td>
-                        <td>
-                            <input type="text" id="ResultatContact" name="choix-contact" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatContactId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            Service
-                        </td>
-                        <td>
-                            <input type="text" id="ResultatService" name="choix-service" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                            <input type="hidden" id="ResultatServiceId" name="choix-service-id" class="form-control choix-reset choix-ajout" placeholder="..." aria-describedby="sizing-addon2" disabled>
-                        </td>
-                    </tr>
-                </table>   
-            </div>
-            <div class="finaliser">
-                <a href="" class=""  id="{{#if ajouterElements}}ToValidationAjouter{{else}}ToValidation{{/if}}" onClick="scrollto('#SectionSuite');">
-                    <button class="btn btn-default vers-suivant">
-                        <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-                        <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
-                        Finaliser
-                        <span class="glyphicon glyphicon-option-vertical float-droite"></span>
-                        <span class="glyphicon glyphicon-option-vertical float-droite"></span>
-                    </button>
-                </a>
-            </div>
-        </div>
-
-        <div class="module-suite">
-            <div>
-                <a href="" class="ajouter ajouter-elements" id="ToAjouter" onClick="scrollto('#SectionToner'); scrollto('#SectionSite');">
-                    <button class="btn btn-default">Ajouter de nouveaux éléments à ce toner
-                    </button>
-                </a>
-            </div>
-            <a class="anchor" id="SectionSuite"></a>
-            <div>
-                <a href="" class="reset" id="ToReset" onClick="scrollto('#SectionToner');">
-                    <button class="btn btn-default">Enregistrer une nouvelle association
-                    </button>
-                </a>
-            </div>
-
-        </div>
 
 </template>

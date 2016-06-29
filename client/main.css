@@ -63,6 +63,7 @@ html, body {
     padding-left: 20px;
     text-align: center;
     padding: 3px;
+    min-height: 30px;
 }
 
 #Footer img {
@@ -171,7 +172,7 @@ table tr:nth-child(odd) {
 table th, td {
     padding: 5px;
     border-bottom: 1px solid lightgrey;
-    border-left: 1px solid lightgrey;
+    border-right: 1px solid lightgrey;
 }
 
 table th {
@@ -238,7 +239,7 @@ form .input-group {
  
 .results-count {
     font-size: 11px;
-    margin-top: -10px;
+    margin-top: 0px;
     margin-bottom: 15px;
 }
  
@@ -265,11 +266,17 @@ form .input-group {
 }
 
 .table-donnees .dropdown-menu {
-    background-color: white !important;
+    background-color: #F5EEF8 !important;
     color: #154360 !important;
     margin-left: -120px;
     width: 250px !important;
     padding: 10px ! important;
+    box-shadow: 5px 3px 8px #888888;
+    text-align: center;
+}
+
+.table-donnees .dropdown-menu .glyphicon:hover{
+    color: red !important;
 }
  
 .table-donnees .dropdown-menu.suppression {
@@ -324,6 +331,14 @@ form .input-group {
     padding: 10px;
     margin-bottom: 10px;
 }
+
+.selection-fournisseur {
+    width: 100% !important;
+}
+
+.selectionner-impression {
+    width: 100% !important;
+}
 /* 
 .creation .insert-donnees {
     border: 5px solid #FDBF4C;
@@ -362,9 +377,6 @@ form .input-group {
 .finaliser {
     width: 100%;
 }
-     
- 
-
  
 .float-gauche {
     float:left;
@@ -382,7 +394,7 @@ a.anchor {
 }
  
 .module {
-    margin-bottom: 30px;
+    margin-bottom: 90px;
 }
  
 .cellule {
@@ -394,16 +406,9 @@ a.anchor {
     width: 100%;
 }
  
-.module-suite {
+.btn-suite {
     width: 100%;
-}
- 
-.module-suite .ajouter {
-    width: 50%;
-}
- 
-.module-suite .reset {
-    width: 50%;
+    height: 75px;
 }
  
 .module-suite button {

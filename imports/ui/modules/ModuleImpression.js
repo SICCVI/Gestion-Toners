@@ -3,6 +3,14 @@ import { Impressions } from '../../api/impressionsCollection.js';
 
 import './ModuleImpression.html';
 
+Template.ModuleImpression.events({
+    'click .delete-selection-impression'(event) {
+        event.preventDefault();
+        document.getElementById("TableChoixImpression").deleteRow(0);
+        console.log("test");
+    }
+});
+
 Template.SelectionImpression.onCreated(function() {
   this.autorun(() => {
     this.subscribe('impressions');
@@ -28,8 +36,6 @@ Template.SelectionImpression.events({
     'click .table-donnees .row-donnees':function(evt){
         if (!$(evt.currentTarget).hasClass("highlight")) {
           $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
-/*          $('#ChoixImpression').val(this.gabarit + "   //   " + this.marque + " " + this.modele);
-          $('#ChoixImpressionId').val(this._id);*/
         const table = document.getElementById("TableChoixImpression");
         const row = table.insertRow(0);
         const cell1 = row.insertCell(0);
@@ -39,11 +45,6 @@ Template.SelectionImpression.events({
         cell2.innerHTML = this.modele;
         cell3.innerHTML = "<label hidden>"+ this._id +"</label>";
         }
-/*        else {
-          $(evt.currentTarget).removeClass('highlight');
-          $('#ChoixImpression').val("");
-          $('#ChoixImpressionId').val("");
-        }*/
     },
 });
 
