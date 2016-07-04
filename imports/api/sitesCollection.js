@@ -33,6 +33,11 @@ SiteSchema = new SimpleSchema({
     type: String,
     label: "Téléphone",
   },
+  note: {
+    type: String,
+    label: "Note",
+    optional: true,
+  },
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -84,6 +89,14 @@ Meteor.methods({
       telephone: updateTelephone,
     }});
   },
+  'sites.note'(siteId, updateNote) {
+    check(siteId, String);
+    check(updateNote, String);
+    Sites.update(siteId, {
+    $set: {
+      note: updateNote,
+    }});
+  },
   'toggleEditSite'(siteId, currentState) {
     check(siteId, String);
     check(currentState, Boolean);
@@ -96,14 +109,14 @@ Meteor.methods({
 
 SitesIndex = new EasySearch.Index({
   collection: Sites,
-  fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone'],
+  fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
 
 ModuleSitesIndex = new EasySearch.Index({
   collection: Sites,
-  fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone'],
+  fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

@@ -25,6 +25,11 @@ ContactSchema = new SimpleSchema({
     type: String,
     label: "Téléphone",
   },
+  note : {
+    type: String,
+    label: "Note",
+    optional: true,
+  },
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -68,6 +73,14 @@ Meteor.methods({
       telephone: updateTelephone,
     }});
   },
+    'contacts.note'(contactId, updateNote) {
+    check(contactId, String);
+    check(updateNote, String);
+    Contacts.update(contactId, {
+    $set: {
+      note: updateNote,
+    }});
+  },
   'toggleEditContact'(contactId, currentState) {
     check(contactId, String);
     check(currentState, Boolean);
@@ -75,20 +88,20 @@ Meteor.methods({
       $set: {
         editMode: !currentState
       }});
-  },
+  }
 });
 
 
 ContactsIndex = new EasySearch.Index({
   collection: Contacts,
-  fields: ['nom', 'prenom', 'telephone'],
+  fields: ['nom', 'prenom', 'telephone', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
 
 ModuleContactsIndex = new EasySearch.Index({
   collection: Contacts,
-  fields: ['nom', 'prenom', 'telephone'],
+  fields: ['nom', 'prenom', 'telephone', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

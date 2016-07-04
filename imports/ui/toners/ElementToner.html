@@ -1,28 +1,94 @@
 <template name="ElementToner">
     <!-- <tr class="row-donnees"> -->
     <td>
-        {{constructeur}} - {{referenceC}}
+        {{modele}}
+    </td>
+    <td>
+        {{constructeur}}
+    </td>
+    <td>
+        {{referenceC}}
     </td>
     <td>
       {{#each fournisseur}}
-        - {{#with getFournisseur fournisseurId}}{{nom}}{{/with}} - {{referenceF}}<br />
+        <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-minus remove-fournisseur" data-id="{{../_id}}"></button>
+        {{#with getFournisseur fournisseurId}}
+             {{nom}} -
+        {{/with}}{{referenceF}}<br />
       {{/each}}
+        <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-plus" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddFournisseur-{{_id}}" ></button>
     </td>
     <td>
         {{couleur}}
     </td>
-        <td>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-trash" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-                <ul class="dropdown-menu suppression">
-                    <li>Etes-vous sûrs de vouloir supprimer cet élément?</li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="" class="supprimer">Oui, je veux le supprimer.</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="" data-toggle="dropdown">Non</a></li>
-                </ul>
-            </div>
-        </td>
+    <td>
+        {{> NoteToner}}
+    </td>
+    <td>
+    {{ #if editMode}}
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-lock" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
+            <ul class="dropdown-menu unlock">
+                <li>Un module d'édition est déjà ouvert pour cet élément.<br />Souhaitez-vous tout de même y accéder?</li>
+                <li role="separator" class="divider"></li>
+                <li><a href="" class="toggle-editing">Oui, je veux le débloquer.</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="" data-toggle="dropdown">Non</a></li>
+            </ul>
+        </div>
+    {{else}}
+        <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-pencil toggle-editing" data-id="{{_id}}" data-toggle="modal" data-target="#ModalEdit-{{_id}}" data-backdrop="static"></button>
+    {{ /if }}
+    </td>
+    <td>
+        <div class="btn-group">
+            <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-trash" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+            <ul class="dropdown-menu suppression">
+                <li>Etes-vous sûrs de vouloir supprimer cet élément?</li>
+                <li role="separator" class="divider"></li>
+                <li><a href="" class="supprimer">Oui, je veux le supprimer.</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="" data-toggle="dropdown">Non</a></li>
+            </ul>
+        </div>
+    </td>
+          
     <!-- 	</tr> -->
 </template>
 
+<template name="NoteToner">
+    <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-comment add-note" data-id="{{_id}}" data-toggle="modal" data-target="#ModalNote-{{_id}}" ></button>
+    {{> ModalNoteToner}}
+    {{note}}
+</template>
+
+<template name="ModalNoteToner">
+    <div id="ModalNote-{{_id}}" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">Attacher une note</h4>
+          </div>
+          <div class="modal-body">
+                <div class="add-note">
+                    <form id="addNote-{{_id}}" class="add-note">
+
+                        <div class="input-group">
+                          <input type="text" class="form-control" placeholder="{{note}}" aria-describedby="basic-addon2" name="note" id="Note-{{_id}}">
+                          <span class="input-group-addon add-note" id="basic-addon2"><span class="glyphicon glyphicon-comment"></span></span>
+                        </div>
+                        <button id="SubmitAddNote-{{_id}}" class="btn btn-success" type="submit" onClick="$('#closeModalNote-{{_id}}').click();">Sauvegarder</button>
+
+                    </form>
+                </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="closeModalNote-{{_id}}" class="btn btn-default" data-dismiss="modal">Fermer</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+</template>

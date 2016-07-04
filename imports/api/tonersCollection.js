@@ -24,6 +24,10 @@ ReferenceFournisseur = new SimpleSchema({
 });
 
 TonerSchema = new SimpleSchema({
+  modele: {
+    type: String,
+    label: "Modèle",
+  },
   constructeur: {
     type: String,
     label: "Constructeur",
@@ -41,6 +45,11 @@ TonerSchema = new SimpleSchema({
     type: String,
     label: "Couleur",
   },
+  note: {
+    type: String,
+    label: "Note",
+    optional: true,
+  },
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -55,22 +64,26 @@ Meteor.methods({
     check(tonerId, String);
     Toners.remove(tonerId);
   },
- 'toners.insert-simple'(constructeur, referenceC, couleur) {
+ 'toners.insert-simple'(modele, constructeur, referenceC, couleur) {
+    check(modele, String);
     check(constructeur, String);
     check(referenceC, String);
     check(couleur, String);
     Toners.insert({
+      modele: modele,
       constructeur : constructeur,
       referenceC : referenceC,
       couleur : couleur,
     });
   },
- 'toners.insert'(constructeur, referenceC, couleur, fournisseurId, referenceF) {
+ 'toners.insert'(modele, constructeur, referenceC, couleur, fournisseurId, referenceF) {
+    check(modele, String);
     check(constructeur, String);
     check(referenceC, String);
     check(fournisseur, []);
     check(couleur, String);
     Toners.insert({
+      modele: modele,
       constructeur : constructeur,
       referenceC : referenceC,
       couleur : couleur,
@@ -79,27 +92,39 @@ Meteor.methods({
           referenceF :  referenceF} ]
     });
   },
-  'toners.alt-insert-simple'(constructeur, referenceC, couleur) {
+  'toners.alt-insert-simple'(modele, constructeur, referenceC, couleur) {
+    check(modele, String);
     check(constructeur, String);
     check(referenceC, String);
     check(couleur, String);
     const newElement = Toners.insert({
+      modele: modele,
       constructeur : constructeur,
       referenceC : referenceC,
       couleur : couleur,
     });
     return newElement;
   },
-  'toners.update'(tonerId, updateConstructeur, updateCouleur) {
+  'toners.update'(tonerId, updateModele, updateConstructeur, updateReferenceC, updateCouleur) {
     check(tonerId, String);
+    check(updateModele, String);
     check(updateConstructeur, String);
     check(updateReferenceC, String);
     check(updateCouleur, String);
     Toners.update(tonerId, {
     $set: {
+      modele: updateModele,
       constructeur: updateConstructeur,
       referenceC: updateReferenceC,
       couleur: updateCouleur,
+    }});
+  },
+  'toners.note'(tonerId, updateNote) {
+    check(tonerId, String);
+    check(updateNote, String);
+    Toners.update(tonerId, {
+    $set: {
+      note: updateNote,
     }});
   },
   'toners.add-fournisseur'(tonerId, fournisseurId, referenceF) {
@@ -110,7 +135,20 @@ Meteor.methods({
       $addToSet: {
         fournisseur : {
           fournisseurId: fournisseurId,
-          referenceF: referenceF
+          referenceF: referenceF,
+        }
+      }
+    });
+  },
+  'toners.remove-fournisseur'(tonerId, fournisseurId, referenceF) {
+    check(tonerId, String);
+    check(fournisseurId, String);
+    check(referenceF, String);
+    Toners.update(tonerId, {
+      $pull: {
+        fournisseur : {
+          fournisseurId: fournisseurId,
+          referenceF: referenceF,
         }
       }
     });
@@ -122,12 +160,12 @@ Meteor.methods({
       $set: {
         editMode: !currentState
       }});
-  },
+  }
 });
 
 TonersIndex = new EasySearch.Index({
   collection: Toners,
-  fields: ['constructeur', 'referenceC', 'couleur', 'referenceF'],
+  fields: ['modele', 'constructeur', 'referenceC', 'couleur', 'referenceF', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
@@ -135,7 +173,7 @@ TonersIndex = new EasySearch.Index({
 
 ModuleTonersIndex = new EasySearch.Index({
   collection: Toners,
-  fields: ['constructeur', 'referenceC', 'couleur', 'referenceF'],
+  fields: ['modele', 'constructeur', 'referenceC', 'couleur', 'referenceF', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

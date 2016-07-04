@@ -15,4 +15,11 @@ Template.ElementContact.events({
 	'click .supprimer': function() {
 		Meteor.call('contacts.remove', this._id);
 	},
+	'submit .add-note'(event) {
+        event.preventDefault();
+        const target = event.target;
+        const addNote = target.note.value;
+        const contactId = this._id;
+        Meteor.call('contacts.note', contactId, addNote);
+    },
 });

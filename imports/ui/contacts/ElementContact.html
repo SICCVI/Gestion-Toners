@@ -10,6 +10,9 @@
 			{{telephone}}
 		</td>
 		<td>
+			{{> NoteContact}}
+		</td>
+		<td>
 		    {{ #if editMode}}
 		        <div class="btn-group">
 		            <button type="button" class="btn btn-default glyphicon glyphicon-lock" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></button>
@@ -40,3 +43,39 @@
 <!-- 	</tr> -->
 </template>
 
+<template name="NoteContact">
+	<button type="button" class="btn btn-default btn-sm glyphicon glyphicon-comment add-note" data-id="{{_id}}" data-toggle="modal" data-target="#ModalNote-{{_id}}" ></button>
+	{{> ModalNoteContact}}
+	{{note}}
+</template>
+
+<template name="ModalNoteContact">
+	<div id="ModalNote-{{_id}}" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Attacher une note</h4>
+	      </div>
+	      <div class="modal-body">
+	        	<div class="add-note">
+			 		<form id="addNote-{{_id}}" class="add-note">
+
+					    <div class="input-group">
+						  <input type="text" class="form-control" placeholder="{{note}}" aria-describedby="basic-addon2" name="note" id="Note-{{_id}}">
+						  <span class="input-group-addon add-note" id="basic-addon2"><span class="glyphicon glyphicon-comment"></span></span>
+						</div>
+						<button id="SubmitAddNote-{{_id}}" class="btn btn-success" type="submit" onClick="$('#closeModalNote-{{_id}}').click();">Sauvegarder</button>
+
+				 	</form>
+				</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" id="closeModalNote-{{_id}}" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      </div>
+	    </div>
+
+	  </div>
+	</div>
+</template>

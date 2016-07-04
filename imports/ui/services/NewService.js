@@ -1,6 +1,7 @@
 import './NewService.html';
 
 import { Template } from 'meteor/templating';
+import { Services } from '../../api/servicesCollection.js';
 
 import '../../scripts/disableEnterKey.js';
 
@@ -18,6 +19,7 @@ Template.NewService.events({
         }
         target.nom.value = "";
         target.nom.focus();
+        $("#closeModalNew").click();
     },
 });
 

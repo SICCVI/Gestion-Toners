@@ -24,4 +24,11 @@ Template.ElementImpression.events({
 	'click .supprimer': function () {
 		Meteor.call('impressions.remove', this._id);
 	},
+	'submit .add-note'(event) {
+        event.preventDefault();
+        const target = event.target;
+        const addNote = target.note.value;
+        const impressionId = this._id;
+        Meteor.call('impressions.note', impressionId, addNote);
+    },
 });

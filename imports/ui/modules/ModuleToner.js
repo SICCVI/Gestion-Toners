@@ -29,7 +29,7 @@ Template.SelectionToner.events({
     'click .table-donnees .row-donnees':function(evt){
         if (!$(evt.currentTarget).hasClass("highlight")) {
           $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
-          $('#ChoixToner').val(this.constructeur + " " + this.referenceC + " ( " + this.couleur + " )");
+          $('#ChoixToner').val(this.modele + " / " + this.constructeur + " " + this.referenceC + " ( " + this.couleur + " )");
           $('#ChoixTonerId').val(this._id);
         }
         else {
@@ -51,13 +51,14 @@ Template.CreationToner.events({
         event.preventDefault();
         let tonerId;
         const target = event.target;
+        const modele = target.modele.value;
         const constructeur = target.constructeur.value;
         const constructeurUpper = constructeur.toUpperCase();
         const referenceC = target.referenceC.value;
         const couleur = target.couleur.value;
         const verification = Marques.find({nom: constructeurUpper}, {limit: 1}).count()>0;
 
-        Meteor.call('toners.alt-insert-simple', constructeurUpper, referenceC, couleur, function(error, result){
+        Meteor.call('toners.alt-insert-simple', modele, constructeurUpper, referenceC, couleur, function(error, result){
             tonerId = result;
             $('#ChoixTonerId').val(result);
 
@@ -79,7 +80,7 @@ Template.CreationToner.events({
               Meteor.call('toners.add-fournisseur', tonerId, fournisseurId, referenceF);
             }
         });
-        $('#ChoixToner').val(constructeur + " " + referenceC + " ( " + couleur + " )");
+        $('#ChoixToner').val(modele + " / " + constructeur + " " + referenceC + " ( " + couleur + " )");
         if (verification === true) {
                 throw new Meteor.Error('Cette élément existe déjà dans la collection et ne sera donc pas insérée.');
             }

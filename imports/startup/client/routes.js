@@ -13,6 +13,7 @@ import '../../ui/sites/ListeSites.js';
 import '../../ui/services/ListeServices.js';
 
 import '../../ui/stocks/ListeStocks.js';
+
 import '../../ui/historiques/ListeHistoriques.js';
 
 import '../../ui/modules/Modules.js';

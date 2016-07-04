@@ -17,9 +17,13 @@
 			
 				<table class="table-donnees">
 					<tr>
+						<th class="colonne-toner">Modèle</th>
 						<th class="colonne-toner">Constructeur</th>
+						<th class="colonne-toner">Référence Constructeur</th>
 						<th class="colonne-toner">Fournisseurs</th>
 						<th class="colonne-toner">Couleur</th>
+						<th class="colonne-toner">Note</th>
+						<th class="colonne-icone"></th>
 						<th class="colonne-icone"></th>
 					</tr>
 					{{#EasySearch.IfNoResults index=tonersIndex}}
@@ -34,7 +38,10 @@
 					{{/EasySearch.Each}}
 				</table>
 				{{> EasySearch.Pagination index=tonersIndex customRenderPagination="Pagination"}}
-
+				{{#each toners}}
+					{{> ModalAddFournisseur}}
+					{{> ModalEditToner}}
+ 				{{/each}}
 		{{else}}
 			<p>En attente</p>
 		{{/if}}

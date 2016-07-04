@@ -16,6 +16,7 @@ Template.NewContact.events({
         target.prenom.value = "";
         target.telephone.value = "";
         target.nom.focus();
+        $("#closeModalNew").click();
     },
 });
 

@@ -59,6 +59,9 @@ Template.Modules.events({
             $('#ResultatContactId').val("");
             $('#ResultatServiceId').val("");
         }
+      $("#LabelSuccess").show().delay(5000).queue(function(n) {
+        $(this).hide(); n();
+      });
     },
     'click #ToValidationAjouter'(event) {
         event.preventDefault();
@@ -90,9 +93,14 @@ Template.Modules.events({
                 }
         }
     },
-    'click #ToAjouter'(event) {
+    'click #ToAjouterSite'(event) {
         clearRecapitulatif();
         clearModule();
+    },
+    'click #ToAjouterToner'(event) {
+        clearRecapitulatif();
+        clearToner();
+        $("#NewStockId").val("");
     },
     'click #ToReset'(event) {
         clearRecapitulatif();
@@ -134,17 +142,28 @@ clearTableImpression = function (cible) {
 }
 
 Template.Modules.events({
-  'click .ajouter-elements': function(event, template) {
-    template.ajouterElements.set(!template.ajouterElements.get());
+  'click .module-ajouter-toner': function(event, template) {
+    template.reactiveVarModule.set(true);
+  },
+  'click .module-ajouter-site': function(event, template) {
+    template.ajouterElements.set(true);
+  },
+  'click .module-new': function(event, template) {
+    template.reactiveVarModule.set(false);
+    template.ajouterElements.set(false);
   },
 });
 
 Template.Modules.onCreated(function(){
+  this.reactiveVarModule = new ReactiveVar(false);
   this.ajouterElements = new ReactiveVar(false);
 });
 
 Template.Modules.helpers({
+    reactiveVarModule: function() {
+      return Template.instance().reactiveVarModule.get();
+  },
     ajouterElements: function() {
-    return Template.instance().ajouterElements.get();
+      return Template.instance().ajouterElements.get();
   },
 });

@@ -5,23 +5,24 @@
           <div class="panel-heading">Critique</div>
           <div class="panel-body">
             <div class="col-lg-4 home-icone-notification">
-              <a href="/stocks"><button class="btn btn-danger" type="button">
+              <a href="/stocks"><button class="btn btn-danger" type="button" >
                 <span class="glyphicon glyphicon-bell gly-icone"></span>
                 <span class="badge">{{totalCountAlerte}}</span>
               </button></a>
             </div>          
             <div class="col-lg-8">
-              <table>
+              <table class="table-donnees">
                 {{#each stockAlerte}}
                 <tr>
                   {{#with getToner toner}}
+                    <td>{{modele}}</td>
                     <td>{{constructeur}}</td>
                     <td>{{referenceC}}</td>
                     <td>({{couleur}})</td>
                   {{/with}}
                 </tr>
                 {{else}}
-                <tr colspan="3">Pas de résultats</tr>
+                <tr colspan="4">&emsp;Vous n'avez pas d'éléments remplissant cette condition</tr>
                 {{/each}}
               </table>
             </div>
@@ -39,17 +40,18 @@
               </button></a>
             </div>
             <div class="col-lg-8">
-              <table>
+              <table class="table-donnees">
                 {{#each stockAvertissement}}
                 <tr>
                   {{#with getToner toner}}
+                    <td>{{modele}}</td>
                     <td>{{constructeur}}</td>
                     <td>{{referenceC}}</td>
                     <td>({{couleur}})</td>
                   {{/with}}
                 </tr>
                 {{else}}
-                <tr>Pas de résultats</tr>
+                <tr colspan="4">&emsp;Vous n'avez pas d'éléments remplissant cette condition</tr>
                 {{/each}}
               </table>
             </div>

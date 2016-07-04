@@ -32,6 +32,11 @@ ImpressionSchema = new SimpleSchema({
     label: "Nombre de toner(s)",
     min: 0,
   },
+  note: {
+    type: String,
+    label: "Note",
+    optional: true,
+  },
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -79,6 +84,14 @@ Meteor.methods({
       nombretoner: updateNombretoner
     }});
   },
+    'impressions.note'(impressionId, updateNote) {
+    check(impressionId, String);
+    check(updateNote, String);
+    Impressions.update(impressionId, {
+    $set: {
+      note: updateNote,
+    }});
+  },
   'toggleEditImpression'(impressionId, currentState) {
     check(impressionId, String);
     check(currentState, Boolean);
@@ -111,14 +124,14 @@ Meteor.methods({
 
 ImpressionsIndex = new EasySearch.Index({
   collection: Impressions,
-  fields: ['gabarit', 'marque', 'modele', 'nombretoner'],
+  fields: ['gabarit', 'marque', 'modele', 'nombretoner', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
 
 ModuleImpressionsIndex = new EasySearch.Index({
   collection: Impressions,
-  fields: ['gabarit', 'marque', 'modele', 'nombretoner'],
+  fields: ['gabarit', 'marque', 'modele', 'nombretoner', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

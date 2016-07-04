@@ -37,6 +37,11 @@ FournisseurSchema = new SimpleSchema({
     type: String,
     label: "Website",
   },
+  note : {
+    type: String,
+    label: "Note",
+    optional: true,
+  },
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -92,6 +97,14 @@ Meteor.methods({
       website: updateWebsite,
     }});
   },
+    'fournisseurs.note'(fournisseurId, updateNote) {
+    check(fournisseurId, String);
+    check(updateNote, String);
+    Fournisseurs.update(fournisseurId, {
+    $set: {
+      note: updateNote,
+    }});
+  },
   'toggleEditFournisseur'(fournisseurId, currentState) {
     check(fournisseurId, String);
     check(currentState, Boolean);
@@ -99,12 +112,12 @@ Meteor.methods({
       $set: {
         editMode: !currentState
       }});
-  },
+  }
 });
 
 FournisseursIndex = new EasySearch.Index({
   collection: Fournisseurs,
-  fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone', 'website'],
+  fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone', 'website', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });

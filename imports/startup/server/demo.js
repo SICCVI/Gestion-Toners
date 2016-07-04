@@ -166,9 +166,10 @@ Meteor.startup(function () {
 if (Toners.find().count() < 3) {
     Toners.insert({
       _id: "TONE01",
+      modele : "MODELE A",
       constructeur : "MARQUE A",
       referenceC : "REF 19865",
-      couleur : "black",
+      couleur : "Noir",
       fournisseur : [
         { fournisseurId : "FOUR02",
           referenceF : "REF 14598"},
@@ -178,9 +179,10 @@ if (Toners.find().count() < 3) {
     });
      Toners.insert({
       _id: "TONE02",
+      modele : "MODELE B",
       constructeur : "MARQUE B",
       referenceC : "REF 79310",
-      couleur : "jaune",
+      couleur : "Jaune",
       fournisseur : [
         { fournisseurId : "FOUR03",
           referenceF : "REF 36984"},
@@ -190,9 +192,10 @@ if (Toners.find().count() < 3) {
     });
      Toners.insert({
       _id: "TONE03",
+      modele : "MODELE C",
       constructeur : "MARQUE C",
       referenceC : "REF 86441",
-      couleur : "cyan",
+      couleur : "Cyan",
       fournisseur : [
         { fournisseurId : "FOUR01",
           referenceF : "REF 36984"},

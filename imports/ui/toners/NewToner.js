@@ -12,13 +12,14 @@ Template.NewToner.events({
         event.preventDefault();
         let tonerId;
         const target = event.target;
+        const modele = target.modele.value;
         const constructeur = target.constructeur.value;
         const constructeurUpper = constructeur.toUpperCase();
         const referenceC = target.referenceC.value;
         const couleur = target.couleur.value;
         const verification = Marques.find({nom: constructeurUpper}, {limit: 1}).count()>0;
 
-        Meteor.call('toners.alt-insert-simple', constructeurUpper, referenceC, couleur, function(error, result){
+        Meteor.call('toners.alt-insert-simple', modele, constructeurUpper, referenceC, couleur, function(error, result){
             tonerId = result;
 
             const oTable = document.getElementById('TableFournisseur');
@@ -39,6 +40,18 @@ Template.NewToner.events({
               Meteor.call('toners.add-fournisseur', tonerId, fournisseurId, referenceF);
             }
         });
+        target.modele.value="";
+        target.constructeur.value="";
+        target.referenceC.value="";
+        target.couleur.value="";
+        $("#SelectFournisseur").val("");
+        $("#InputFournisseur").val("");
+        const deleteTable = document.getElementById('TableFournisseur');
+        const rowLength = deleteTable.rows.length;  
+        for (let i = 0; i < rowLength; i++) { 
+           deleteTable.deleteRow(0);
+        }
+        $("#closeModalNew").click();
             if (verification === true) {
                 throw new Meteor.Error('Cette élément existe déjà dans la collection et ne sera donc pas insérée.');
             }

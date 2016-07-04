@@ -13,17 +13,28 @@ Historiques.allow({
 });
 
 Meteor.methods({
-  'historiques.insert'(objet, auteur, date, sortie, entree, commande, note, objetId) {
+  'historiques.insert-retrait'(date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerNom, categorie) {
     const newElement = Historiques.insert({
-      objet, auteur, date, sortie, entree, commande, note, objetId,
+      date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerNom, categorie
     });
     return newElement;
+  },
+  'historiques.insert-entree'(date, tonerId, tonerNom, categorie) {
+    Historiques.insert({
+      date, tonerId, tonerNom, categorie
+    });
+  },
+  'historiques.insert-commande'(date, tonerId, tonerNom, categorie) {
+    Historiques.insert({
+      date, tonerId, tonerNom, categorie
+    });
   },
   'historiques.remove'(historiqueId) {
     Historiques.remove(historiqueId);
   },
-  'historiques.remove-ligne'(objetId) {
-    const removeLigne = Historiques.findOne({objetId: objetId});
+  'historiques.fin-commande'(tonerId) {
+    console.log("method call FC");
+    const removeLigne = Historiques.findOne({tonerId: tonerId, categorie: "Commande"});
     if (typeof removeLigne === "undefined") {
     }
     else {

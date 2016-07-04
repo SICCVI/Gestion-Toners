@@ -17,6 +17,11 @@ ServiceSchema = new SimpleSchema({
     type: String,
     label: "Nom",
   },
+  note: {
+    type: String,
+    label: "Note",
+    optional: true,
+  },
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -52,6 +57,14 @@ Meteor.methods({
       nom: updateNom,
     }});
   },
+  'services.note'(serviceId, updateNote) {
+    check(serviceId, String);
+    check(updateNote, String);
+    Services.update(serviceId, {
+    $set: {
+      note: updateNote,
+    }});
+  },
   'toggleEditService'(serviceId, currentState) {
     check(serviceId, String);
     check(currentState, Boolean);
@@ -64,14 +77,14 @@ Meteor.methods({
 
 ServicesIndex = new EasySearch.Index({
   collection: Services,
-  fields: ['nom'],
+  fields: ['nom', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
 
 ModuleServicesIndex = new EasySearch.Index({
   collection: Services,
-  fields: ['nom'],
+  fields: ['nom', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });

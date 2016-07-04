@@ -20,6 +20,7 @@ Template.NewSite.events({
         target.ville.value = "";
         target.telephone.value = "";
         target.nom.focus();
+        $("#closeModalNew").click();
     },
 });
 

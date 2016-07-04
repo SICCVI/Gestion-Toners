@@ -22,6 +22,7 @@ Template.NewFournisseur.events({
         target.telephone.value = "";
         target.website.value = "";
         target.nom.focus();
+        $("#closeModalNew").click();
     },
 });
 

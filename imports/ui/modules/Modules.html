@@ -3,7 +3,7 @@
     <div id="page-wrapper">
 
         <a class="anchor" id="SectionToner"></a>
-        {{>ModuleToner}}
+        {{>ModuleToner reactiveVarModule=reactiveVarModule}}
 
         <a class="anchor" id="SectionSite"></a>
         {{>ModuleSite}}
@@ -87,6 +87,9 @@
                             </button>
                         </a>
                     </div>
+                    <div hidden class="panel-footer label-success" id="LabelSuccess">
+                        <h5>Vous avez terminé !!!</h5>
+                    </div>
 
                 </div>
             </div>
@@ -98,21 +101,26 @@
             <div class="col-lg-12">
                 <div class="panel panel-default">
 
-                    <div class="panel-body">
-
-                        <div class="col-lg-6">
-                            <a href="" class="ajouter ajouter-elements" id="ToAjouter" onClick="scrollto('#SectionToner'); scrollto('#SectionSite');">
-                                <button class="btn btn-success btn-suite">Ajouter de nouveaux éléments à ce toner
-                                </button>
-                            </a>
-                        </div>
-                        <div class="col-lg-6">
+                    <div class="panel-body module-suite">
+                        <div class="col-lg-12">
                             <a href="" class="reset" id="ToReset" onClick="scrollto('#SectionToner');">
-                                <button class="btn btn-info btn-suite">Enregistrer une nouvelle association
+                                <button class="btn btn-success btn-suite">Enregistrer une nouvelle association
                                 </button>
                             </a>
                         </div>
-
+                        <div class="col-lg-6">
+                            <a href="" class="ajouter module-ajouter-site" id="ToAjouterSite" onClick="scrollto('#SectionToner'); scrollto('#SectionSite');">
+                                <button class="btn btn-warning btn-suite">Ajouter une nouvelle combinaison à ce toner
+                                </button>
+                            </a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="" class="ajouter module-ajouter-toner" id="ToAjouterToner"
+                            onClick="scrollto('#SectionSite'); scrollto('#SectionToner');">
+                                <button class="btn btn-info btn-suite">Affilier ce Site / Service / Contact à un autre toner
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

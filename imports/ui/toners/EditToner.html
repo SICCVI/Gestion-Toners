@@ -1,0 +1,52 @@
+<template name="EditToner">
+	<div class="edit-donnee">
+ 		<form id="editForm-{{_id}}" class="update-toner">
+
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Modèle</span>
+			  <input type="text" id="editModele-{{_id}}" name="modele" class="form-control edit-toner-{{_id}}" value="{{modele}}" aria-describedby="sizing-addon2" onChange="editCheck('#editModele-{{_id}}', '{{modele}}', this.value);" required>
+			</div>
+
+		    <div class="input-group">
+		    	<span class="input-group-addon" id="sizing-addon2">Constructeur</span>
+		      	<input id="editConstructeur-{{_id}}" type="text" name="constructeur" class="form-control edit-toner-{{_id}}" aria-label="..." value="{{constructeur}}" onChange="editCheck('#editConstructeur-{{_id}}', '{{constructeur}}', this.value);" required>
+		      	<div class="input-group-btn">
+			      	<select type="button" id="select-editConstructeur-{{_id}}" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('select-editConstructeur-{{_id}}', 'editConstructeur-{{_id}}'); editCheck('#editConstructeur-{{_id}}', '{{constructeur}}', this.value);">
+		 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
+				        {{#each marques}}
+				          <option value="{{nom}}">{{nom}}</option>
+				        {{/each}}
+				    </select>
+		      	</div><!-- /btn-group -->
+		    </div><!-- /input-group -->
+
+		    <div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">ReferenceC</span>
+			  <input type="text" id="editReferenceC-{{_id}}" name="referenceC" class="form-control edit-toner-{{_id}}" value="{{referenceC}}" aria-describedby="sizing-addon2" onChange="editCheck('#editReferenceC-{{_id}}', '{{referenceC}}', this.value);" required>
+			</div>
+
+			<div class="input-group">
+					<span class="input-group-addon" id="sizing-addon2">Couleur</span>
+				<select type="button" id="editCouleur-{{_id}}" class="btn btn-default dropdown-toggle formselect edit-toner-{{_id}}" aria-haspopup="true" aria-expanded="false" name="couleur" onChange="editCheck('#editCouleur-{{_id}}', '{{couleur}}', this.value);">
+	 		    	<option value="Noir" selected="{{compare couleur Noir}}">Noir</option>
+			        <option value="Cyan" selected="{{compare couleur Cyan}}">Cyan</option>
+	 		    	<option value="Jaune" selected="{{compare couleur Jaune}}">Jaune</option>
+			        <option value="Magenta" selected="{{compare couleur Magenta}}">Magenta</option>
+	 		    	<option value="Couleur" selected="{{compare couleur Couleur}}">Couleur</option>
+			    </select>
+		    </div><!-- /input-group -->
+
+			<button id="SubmitEdit-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
+
+	 	</form>
+	</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#SubmitEdit-{{_id}}").click(function(){
+		$('.edit-toner-{{_id}}').css({'background-color' : 'white'});
+    }); 
+});
+</script>
+
+</template>

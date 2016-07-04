@@ -19,14 +19,14 @@ Template.NewImpression.events({
         target.marque.value='';
         target.modele.value='';
         target.nombretoner.value='1';
-        
+        $("#closeModalNew").click();
         const verification = Marques.find({nom: nom}, {limit: 1}).count()>0;
         if (verification === true) {
             throw new Meteor.Error('Cette marque existe déjà dans la collection et ne sera donc pas insérée.');
         }
         else {
             Meteor.call('marques.add', nom);
-        }
+        }  
     },
 });
 

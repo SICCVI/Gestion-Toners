@@ -1,0 +1,22 @@
+<template name="AddFournisseur">
+	<div class="add-fournisseur">
+ 		<form id="addFournisseur-{{_id}}" class="add-fournisseur">
+
+	      	<select type="button" id="SelectAddFournisseur" name="fournisseurId" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+ 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
+		        {{#each fournisseurs}}
+		          <option value="{{_id}}">{{nom}}</option>
+		        {{/each}}
+		    </select>
+
+			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Reference</span>
+			  <input type="text" id="" name="referenceF" class="form-control" aria-describedby="sizing-addon2" required>
+			</div>
+
+			<button id="SubmitAddFournisseur-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
+
+	 	</form>
+	</div>
+
+</template>

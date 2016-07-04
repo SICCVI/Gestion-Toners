@@ -53,6 +53,14 @@ Meteor.startup(() => {
 	return Stocks.find({});
 	});
 
+	Meteor.publish('stocks-alerte', function (){
+	return Stocks.find({alerte: true});
+	});
+
+	Meteor.publish('stocks-avertissement', function (){
+	return Stocks.find({alerte: false, avertissement: true});
+	});
+
 	Meteor.publish('services', function (){
 	return Services.find({});
 	});

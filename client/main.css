@@ -2,7 +2,9 @@
 html, body {
     margin:0;
     padding:0;
-    background-color: #F5EEF8;
+    background: no-repeat url(./images/bg-content.png) 0 0;
+    background-color: #EBEBEB;
+    background-repeat: repeat;
     color: #154360;
 }
  
@@ -48,7 +50,9 @@ html, body {
 
 #Content {
     margin-top: 60px;
-    background-color: #F5EEF8;
+    background: no-repeat url(./images/bg-content.png) 0 0;
+    background-color: #EBEBEB;
+    background-repeat: repeat;
     height:auto;
     min-height: 700px;
 }
@@ -63,7 +67,7 @@ html, body {
     padding-left: 20px;
     text-align: center;
     padding: 3px;
-    min-height: 30px;
+    min-height: 20px;
 }
 
 #Footer img {
@@ -162,11 +166,11 @@ h3 {
 }
 
 table tr:nth-child(even) {
-    background: #FBFCFC;
+    background: #F8F9F9;
 }
  
 table tr:nth-child(odd) {
-    background: #F8F9F9;
+    background: #F2F3F4;
 }
  
 table th, td {
@@ -185,7 +189,7 @@ table th {
 }
  
 .colonne-icone {
-    width: 5%;
+    width: 45px !important;
 }
  
 .td-icon {
@@ -242,37 +246,40 @@ form .input-group {
     margin-top: 0px;
     margin-bottom: 15px;
 }
+
+.table-donnees tr:hover>td {
+    background-color: #EBEDEF;
+    border-bottom: 0.5px solid #154360;
+/*   text-shadow: 0px 0.5px black;
+   box-shadow: 0px 0px 10px #888888;
+   -webkit-box-shadow: 0px 0px 10px #888888;
+   -moz-box-shadow: 0px 0px 10px #888888;*/
+}
  
 .table-donnees tr.highlight td {
-    background-color: #00A1E5;
-    color: white;
+    background-color: orange;
 }
  
-.table-donnees tr:hover>td {
-  background-color: #F7923A;
-  color:white;
-}
-
 .stock-al {
-    background-color: rgba(217, 83, 79, 0.8)!important;
+    background-color: rgba(217, 83, 79, 1.0)!important;
 }
  
 .stock-av {
-    background-color: rgba(240, 173, 78, 0.8)!important;
+    background-color: rgba(240, 173, 78, 1.0)!important;
 }
 
 .stock-ok {
-    background-color: rgba(92, 184, 92, 0.8)!important;
+    background-color: rgba(92, 184, 92, 1.0)!important;
 }
 
 .table-donnees .dropdown-menu {
     background-color: #F5EEF8 !important;
     color: #154360 !important;
-    margin-left: -120px;
-    width: 250px !important;
+    width: 450px !important;
     padding: 10px ! important;
     box-shadow: 5px 3px 8px #888888;
     text-align: center;
+    z-index: 10;
 }
 
 .table-donnees .dropdown-menu .glyphicon:hover{
@@ -280,21 +287,42 @@ form .input-group {
 }
  
 .table-donnees .dropdown-menu.suppression {
-    margin-left: -215px;
+    margin-left: -415px !important;
 }
 
 .table-donnees .dropdown-menu.parametre {
-    margin-left: 0px;
+    margin-left: 0px !important;
 }
  
 .table-donnees .dropdown-menu.unlock {
-    margin-left: -202px;
+    margin-left: -225px !important;
+}
+
+.table-donnees .dropdown-menu.historique {
+    margin-left: -225px !important;
+}
+
+.table-donnees .dropdown-menu.impression {
+    margin-left: -225px !important;
 }
  
+.table-donnees .dropdown-menu.contact{
+    margin-left: -225px !important;
+}
+
 .table-donnees .dropdown-menu.glyphicon {
     color: #154360 !important;
 }
- 
+
+.table-donnees .dropdown-menu.fournisseur {
+    margin-left: 0px;
+}
+
+.table-donnees i {
+    cursor: hand !important;
+    cursor: pointer !important;
+}
+
 .lightgreen {
     background-color: #82E0AA !important;
 }
@@ -414,7 +442,43 @@ a.anchor {
 .module-suite button {
     width: 100%;
     height: 150px;
-    margin-bottom: 50px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
+.label-success {
+    text-align: center;
+    background-color: green;
+    color: white;
+}
 
+.consommateur-info li {
+    margin-left: 65px;
+}
+
+.bordure-basse {
+    border-bottom: 0.5px solid lightgrey;
+}
+
+.consommer .glyphicon {
+    font-size: 150%;
+}
+
+.consommer .badge {
+    margin-top: -6px;
+}
+
+button .glyphicon {
+    pointer-events:none;
+}
+
+.consommer {
+    margin: 2px;
+    width: 95px;
+    max-width: 95px;
+}
+
+.checkbox {
+    border-left: 1px solid grey;
+    text-indent: 3px;
+}

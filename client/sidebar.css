@@ -26,8 +26,10 @@
     height: 100%;
     margin-left: -250px;
     overflow-y: auto;
-    background: #FDFEFE;
-    box-shadow: 5px 0px 10px #888888;
+    background: no-repeat url(./images/bg-sidemenu.png) 0 0;
+    background-color: #EBEBEB;
+    background-repeat: repeat;
+    box-shadow: 5px 61px 35px #888888 inset;
     -webkit-transition: all 0.5s ease;
     -moz-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
@@ -77,9 +79,21 @@
     background: #F7923A;
 }
 
+.sidebar-nav .dropdown li a:hover {
+    width: 250px;
+    margin-left: -30px;
+    padding-left: 50px;
+}
+
 .sidebar-nav li a:active,
 .sidebar-nav li a:focus {
     text-decoration: none;
+}
+
+.sidebar-nav .dropdown li a {
+    background: no-repeat url(./images/bg-sidemenu.png) 0 0;
+    background-color: #EBEBEB;
+    background-repeat: repeat;
 }
 
 .sidebar-nav > .sidebar-brand {
@@ -143,35 +157,33 @@
 
 .sidebar-nav .dropdown-menu {
     margin-top: 0px;
-    background-color: #FDFEFE;
+    background: no-repeat url(./images/bg-sidemenu.png) 0 0;
+    background-color: #EBEBEB;
+    background-repeat: repeat;
     -webkit-box-shadow: none !important;
     border: none !important;
-    width: 250px;
+    width: 190px;
+    margin-left: 30px;
 }
 
 .sidebar-brand img {
-    -webkit-transition: all 1s ease; /* Safari and Chrome */
-    -moz-transition: all 1s ease; /* Firefox */
-    -ms-transition: all 1s ease; /* IE 9 */
-    -o-transition: all 1s ease; /* Opera */
-    transition: all 1s ease;
-} 
-
-.sidebar-brand img:hover {
-    -webkit-transform:scale(0.97); /* Safari and Chrome */
-    -moz-transform:scale(0.97); /* Firefox */
-    -ms-transform:scale(0.97); /* IE 9 */
-    -o-transform:scale(0.97); /* Opera */
-     transform:scale(0.97);
+    max-width: 30px;
+    height: auto;
+    margin-right: 10px;
+    margin-top: -5px;
+    margin-left: -5px;
 }
 
 .home-icone-notification button:hover {
 
 }
 .sidebar-brand {
-    margin-top: 10px;
-    margin-bottom: 75px;
+    margin-top: 0px;
+    margin-bottom: 20px;
     text-align: center;
+    background-color: #154360;
+    color: white;
+    height: 60px !important;
 }
 
 .sidebar-nav .sidebar-brand {

@@ -21,6 +21,17 @@
 		            </div>
                 </div>
                 <div class="panel-footer">
+                {{#if reactiveVarModule}}
+                	<a href="" class="vers-suivant" id="ToSectionFin"  onClick="scrollto('#SectionFin');">
+		                <button class="btn btn-primary vers-suivant">
+		                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
+		                    <span class="glyphicon glyphicon-option-vertical float-gauche"></span>
+		                    Etape finale
+		                    <span class="glyphicon glyphicon-option-vertical float-droite"></span>
+		                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
+		                </button>
+		            </a>
+		        {{else}}
                     <a href="" class="vers-suivant" id="ToSectionSite" onClick="scrollto('#SectionSite');">
 		                <button class="btn btn-primary vers-suivant">
 		                    <span class="glyphicon glyphicon-menu-down float-gauche"></span>
@@ -30,6 +41,7 @@
 		                    <span class="glyphicon glyphicon-menu-down float-droite"></span>
 		                </button>
 		            </a>
+		        {{/if}}
                 </div>
             </div>
         </div>
@@ -40,6 +52,10 @@
 	<div class="insert-donnees">
  		<form class="new-toner">
 
+ 			<div class="input-group">
+			  <span class="input-group-addon" id="sizing-addon2">Modèle</span>
+			  <input type="text" name="modele" class="form-control" placeholder="..." aria-describedby="sizing-addon2" required>
+			</div>
 		    <div class="input-group">
 		    	<span class="input-group-addon" id="sizing-addon2" >Constructeur</span>
 		    	<input id="new-inputmarque" type="text" name="constructeur" class="form-control" aria-label="..." placeholder="..." required>
@@ -63,10 +79,10 @@
 			  <select type="button" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false" name="couleur">
 		 		    	<option value="" disabled selected>Sélectionner une couleur</option>
 				        <option value="Noir">Noir</option>
-				        <option value="Noir">Cyan</option>
-				        <option value="Noir">Jaune</option>
-				        <option value="Noir">Magenta</option>
-				        <option value="Noir">Couleur</option>
+				        <option value="Cyan">Cyan</option>
+				        <option value="Jaune">Jaune</option>
+				        <option value="Magenta">Magenta</option>
+				        <option value="Couleur">Couleur</option>
 				    </select>
 			</div>
 
@@ -87,7 +103,7 @@
 				  <input type="text" id="InputFournisseur" class="form-control" placeholder="..." aria-describedby="sizing-addon2">
 				</div>
 
-				<button class="btn btn-default selection-fournisseur"><span class="glyphicon glyphicon-arrow-down"></span></button>
+				<button class="btn btn-default selection-fournisseur">Cliquez ici pour selectionner ce fournisseur&ensp;<span class="glyphicon glyphicon-arrow-down"></span></button>
 
 				<table id="TableFournisseur" class="table-donnees">
 						<th>Fournisseur</th>

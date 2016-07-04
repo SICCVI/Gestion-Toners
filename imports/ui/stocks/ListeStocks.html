@@ -1,6 +1,19 @@
 <template name="ListeStocks">
 	<h3><span class="glyphicon glyphicon-barcode"></span>&emsp;Gestion du stock</h3>
 
+	<div class="to-left">
+		<div><strong>Filtres :</strong></div>
+		<div class="checkbox">
+			<span class="stock-ok">&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-stock-ok" name="">Ok</label>
+		</div>
+		<div class="checkbox">
+			<span class="stock-av">&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-stock-avertissement" name=""> Avertissement</label>
+		</div>
+		<div class="checkbox">
+			<span class="stock-al">&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-stock-alerte" name=""> Alerte</label>
+		</div>
+	</div>
+
 	<div class="input-group search-section">
 	  <span class="to-right">{{> EasySearch.Input index=stocksIndex }}</span>
 	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
@@ -10,113 +23,30 @@
 	<section class="stocks">
 		{{#if Template.subscriptionsReady}}
 			<table class="table-donnees">
-				<tr>
 					<th class="colonne-icone"></th>
 					<th class="colonne-stocks" >Toners</th>
 					<th class="colonne-stocks">Quantité</th>
 					<th class="colonne-stocks">Services</th>
-					<th class="colonne-stocks" colspan="2">Statut</th>
+					<th class="colonne-stocks">Statut</th>
 					<th class="colonne-icone"></th>
 					<th class="colonne-icone"></th>
-				</tr>
-					{{#EasySearch.Each index=stocksIndex }}
-					
-					<tr>
-
-						<td>
-							<div class="dropdown">
-							  <button class="btn btn-default glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
-							  <ul class="dropdown-menu parametre" aria-labelledby="dropdownMenu1">
-							  	<li>Niveau de seuil</li>
-							    <li><button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus diminue-seuil"></button>
-								<button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus augmente-seuil"></button>  {{seuil}}</li>
-							    <li role="separator" class="divider"></li>
-							    <li>Niveau d'avertissement</li>
-							    <li>
-							    	<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus diminue-avertissement"></button>
-									<button id="diminueA-{{_id}}" class=" glyphicon glyphicon-plus augmente-avertissement"></button>  {{nvAvertissement}}
-								</li>
-							  </ul>
-							</div>
-						</td>
-						{{#with getToner toner}}
-						<td>
-							 	{{constructeur}} - {{referenceC}} ( {{couleur}} )<br />
-							 	<ul>
-							 		{{#each fournisseur}}<li>
-							 			{{#with getFournisseur fournisseurId}}
-							 			 {{nom}}
-							 			{{/with}}
-							 			{{referenceF}}</li>
-							 		{{/each}}
-							 	</ul>
-						</td>
-						{{/with}}
-						<td>
-							<button id="diminueQ-{{_id}}" class="btn btn-default btn-sm diminue-quantite glyphicon glyphicon-minus"></button>
-							<button id="augmenteQ-{{_id}}" class="btn btn-default glyphicon glyphicon-plus augmente-quantite"></button>  {{quantite}}
-						</td>
-						<td>
-							{{#each consommateur}}
-					        	<button id="consommer-{{../_id}}" class="btn btn-default btn-sm glyphicon glyphicon-share consommer" data-id="{{../_id}}"></button>
-					        	{{#with getSite site}}
-					        		{{nom}}
-								{{/with}}
-								/
-								{{#with getService service}}
-					        		{{nom}}
-								{{/with}}
-								{{#with getContact contact}}
-									( {{nom}} {{prenom}} )
-								{{/with}}
-					        	<span class="dropdown">
-								  <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="label label-info">{{consommation}}</span></a>
-								  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
-								  	<li>Historique de la consommation :</li>
-								  	{{#each (limit historique -6)}}
-								  		{{#with getHistorique this}}
-								            <li class=""><button class="glyphicon glyphicon-remove-sign consommations-remove" onClick="getGrandParentDataId(this);"></button>&nbsp;Retrait le {{date}}</li>
-								        {{/with}}
-								  	{{/each}}
-								  </ul>
-								</span>
-								<br />
-								<ul>
-									{{#each impression}}
-										{{#with getImpression this}}
-										<li>{{gabarit}} {{marque}} {{modele}}</li>
-										{{/with}}
-									{{/each}}
-								</ul>
-					      	{{/each}}
-						</td>
-						<td class="{{#if avertissement}}{{#if alerte}}stock-al{{else}}stock-av{{/if}}{{else}}stock-ok{{/if}}">&emsp;</td>
-						<td>{{#if avertissement}}
-								{{#if alerte}}
-									ALERTE
-								{{else}}
-									Avertissement
-								{{/if}}
-							{{else}}
-								OK
+				{{#EasySearch.Each index=stocksIndex }}
+					{{#if avertissement}}
+						{{#if alerte}}
+							{{#if showStockAlerte}}
+								{{> ElementStock}}
 							{{/if}}
-						</td>
-						<td>
-							<button class="btn btn-default glyphicon glyphicon-shopping-cart commander" aria-haspopup="true" aria-expanded="true"></button>
-						</td>
-						<td>
-						<div class="btn-group">
-				            <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-trash" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
-				            <ul class="dropdown-menu suppression">
-				                <li>Etes-vous sûrs de vouloir supprimer cet élément?</li>
-				                <li role="separator" class="divider"></li>
-				                <li><a href="" class="supprimer">Oui, je veux le supprimer.</a></li>
-				                <li role="separator" class="divider"></li>
-				                <li><a href="" data-toggle="dropdown">Non</a></li>
-				            </ul>
-				        </div>
-						</td>
-					</tr>
+						{{else}}
+							{{#if showStockAvertissement}}
+								{{> ElementStock}}
+							{{/if}}
+						{{/if}}
+					{{/if}}
+					{{#unless avertissement}}
+						{{#if showStockOk}}
+							{{> ElementStock}}
+						{{/if}}
+					{{/unless}}
 				{{/EasySearch.Each}}
 			</table>
 		{{else}}

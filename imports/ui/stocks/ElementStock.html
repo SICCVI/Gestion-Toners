@@ -1,0 +1,110 @@
+<template name="ElementStock">
+<tr class="row-donnees">
+	<td>
+		<div class="dropdown">
+		  <button class="btn btn-default btn-sm glyphicon glyphicon-cog  dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"></button>
+		  <ul class="dropdown-menu parametre" aria-labelledby="dropdownMenu1">
+		  	<li>Quantité</li>
+		  	<li>
+		  		<button id="diminueQ-{{_id}}" class="diminue-quantite glyphicon glyphicon-minus"></button>&emsp;{{quantite}}&emsp;<button id="augmenteQ-{{_id}}" class="glyphicon glyphicon-plus augmente-quantite"></button>
+			</li>
+			<li role="separator" class="divider"></li>
+		  	<li>Niveau de seuil</li>
+		    <li>
+		    	<button id="augmenteS-{{_id}}" class="glyphicon glyphicon-minus diminue-seuil"></button>&emsp;{{seuil}}&emsp;<button id="diminueS-{{_id}}" class="glyphicon glyphicon-plus augmente-seuil"></button>
+			</li>
+		    <li role="separator" class="divider"></li>
+		    <li>Niveau d'avertissement</li>
+		    <li>
+		    	<button id="augmenteA-{{_id}}" class="glyphicon glyphicon-minus diminue-avertissement"></button>&emsp;{{nvAvertissement}}&emsp;<button id="diminueA-{{_id}}" class=" glyphicon glyphicon-plus augmente-avertissement"></button>
+			</li>
+		  </ul>
+		</div>
+	</td>
+	{{#with getToner toner}}
+	<td valign="top">
+		 	Modèle : {{modele}}<br />
+		 	Constructeur : {{constructeur}} | Réf : {{referenceC}}<br />
+		 	Couleur : {{couleur}}<br />
+		 	<span class="dropdown fournisseur">
+				<i class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-road"></span></i>
+				<ul class="dropdown-menu fournisseur" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
+			 		{{#each fournisseur}}
+			 			<li><i><strong>Fournisseur&nbsp;:</strong></i>&nbsp;
+			 			{{#with getFournisseur fournisseurId}}
+			 			 {{nom}}
+			 			{{/with}}
+			 			&nbsp;|&nbsp;<i><strong>Réf&nbsp;:</strong></i>{{referenceF}}</li>
+			 		{{/each}}
+				</ul>
+			</span>&nbsp;
+	</td>
+	{{/with}}
+	<td align="center">
+		<h2>{{quantite}}</h2>
+	</td>
+	<td>
+		{{#each consommateur}}
+        	{{> ElementConsommateur}}
+      	{{/each}}<br />
+	</td>
+	<td class="{{#if avertissement}}{{#if alerte}}stock-al{{else}}stock-av{{/if}}{{else}}stock-ok{{/if}}">&emsp;</td>
+	<td>
+		<button class="btn btn-default btn-sm glyphicon glyphicon-shopping-cart commander" aria-haspopup="true" aria-expanded="true"></button>
+	</td>
+	<td>
+	<div class="btn-group">
+        <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-trash" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></button>
+        <ul class="dropdown-menu suppression">
+            <li>Etes-vous sûrs de vouloir supprimer cet élément?</li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" class="supprimer">Oui, je veux le supprimer.</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" data-toggle="dropdown">Non</a></li>
+        </ul>
+    </div>
+	</td>
+</tr>
+</template>
+
+<template name="ElementConsommateur">
+	<div>
+		<button type="button" id="consommer-{{../_id}}" class="btn btn-default btn-primary consommer" data-id="{{../_id}}"><span class="glyphicon glyphicon-share"></span>&emsp;<span class="badge">{{consommation}}</span></button>&nbsp;
+    	<span class="dropdown historique">
+			<i class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-time"></span></i>
+			<ul class="dropdown-menu historique" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
+				<li><i><strong>Historique de la consommation :</strong></i></li>
+				{{#each (limit historique -6)}}
+					{{#with getHistorique this}}
+				    <li class=""><button class="glyphicon glyphicon-remove-sign consommations-remove" onClick="getGrandParentDataId(this);"></button>&nbsp;Retrait le {{date}}</li>
+					{{/with}}
+				{{else}}
+				Pas de données...
+				{{/each}}
+			</ul>
+		</span>&nbsp;
+		<span class="dropdown contact">
+			<i class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-user"></span></i>
+			<ul class="dropdown-menu contact" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
+				{{#with getContact contact}}
+					<li><i><strong>Contact&nbsp;:</strong></i>&nbsp;{{nom}}&nbsp;{{prenom}}</li>
+					<li><i class="glyphicon glyphicon-phone-alt">&nbsp;:</i>&nbsp;&nbsp;{{telephone}}</li>
+				{{/with}}
+			</ul>
+		</span>&nbsp;
+		<span class="dropdown impression">
+		<i class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-print"></span></i>
+		<ul class="dropdown-menu impression" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
+			<li><i><strong>Imprimante(s) concernée(s) :</strong></i></li>
+			{{#each impression}}
+				{{#with getImpression this}}
+				<li><i>[&nbsp;{{gabarit}}&nbsp;]&nbsp;{{marque}}&nbsp;-&nbsp;{{modele}}</i></li>
+				{{/with}}
+			{{/each}}
+		</ul>
+		</span>&nbsp;
+		{{#with getSite site}}{{nom}}{{/with}}
+		&nbsp;/&nbsp;
+		{{#with getService service}}{{nom}}{{/with}}
+	</div>
+</template>

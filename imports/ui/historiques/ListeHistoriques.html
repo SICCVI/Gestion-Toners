@@ -24,8 +24,9 @@
 					<table class="table-donnees">
 						<tr>
 							<th>Date</th>
-							<th></th>
+							<th>Categorie</th>
 							<th>Objet</th>
+							<th>Auteur</th>
 							<th>Note</th>
 							<th></th>	
 						</tr>
@@ -35,7 +36,16 @@
 						</tr>
 						{{/EasySearch.IfNoResults}}
 						{{#EasySearch.Each index=historiquesIndex }}
-							{{#if commande}}
+
+						<tr>
+							<td>{{date}}</td>
+							<td>{{categorie}}</td>
+							<td>{{tonerNom}}</td>
+							<td>{{siteNom}} - {{serviceNom}}</td>
+							<td>{{> NoteHistorique}}</td>
+							<td>{{> SuppressionHistorique}}</td>
+						</tr>
+<!-- 							{{#if commande}}
 								{{#if showCommandes }}
 									<tr>
 										<td>{{date}}</td>
@@ -67,7 +77,7 @@
 										<td>{{> SuppressionHistorique}}</td>
 									</tr>
 								{{/if}}
-							{{/if}}
+							{{/if}} -->
 						{{/EasySearch.Each}}
 					</table>
 				{{> EasySearch.Pagination index=historiquesIndex customRenderPagination="Pagination"}}
@@ -111,7 +121,7 @@
 			 		<form id="addNote-{{_id}}" class="add-note">
 
 					    <div class="input-group">
-						  <input type="text" class="form-control" placeholder="..." aria-describedby="basic-addon2" name="note" id="Note-{{_id}}">
+						  <input type="text" class="form-control" placeholder="{{note}}" aria-describedby="basic-addon2" name="note" id="Note-{{_id}}">
 						  <span class="input-group-addon add-note" id="basic-addon2"><span class="glyphicon glyphicon-comment"></span></span>
 						</div>
 						<button id="SubmitAddNote-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>

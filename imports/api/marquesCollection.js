@@ -16,6 +16,11 @@ MarqueSchema = new SimpleSchema({
     type: String,
     label: "Nom",
   },
+  note: {
+    type: String,
+    label: "Note",
+    optional: true,
+  },
   editMode: {
     type: Boolean,
     defaultValue: false,
@@ -50,6 +55,14 @@ Meteor.methods({
       nom: updateNom,
     }});
   },
+  'marques.note'(marqueId, updateNote) {
+    check(marqueId, String);
+    check(updateNote, String);
+    Marques.update(marqueId, {
+    $set: {
+      note: updateNote,
+    }});
+  },
   'toggleEditMarque'(marqueId, currentState) {
     check(marqueId, String);
     check(currentState, Boolean);
@@ -62,7 +75,7 @@ Meteor.methods({
 
 MarquesIndex = new EasySearch.Index({
   collection: Marques,
-  fields: ['nom'],
+  fields: ['nom', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
