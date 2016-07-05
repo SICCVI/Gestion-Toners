@@ -161,6 +161,16 @@ html, body {
     margin: -0.5px;
 }
 
+.bordure-basse {
+    border-bottom: 0.5px solid lightgrey;
+    margin: -0.5px;
+}
+
+.bordure-haute {
+    border-top: 0.5px solid lightgrey;
+    margin: -0.5px;
+}
+
 h3 {
     text-indent: 5px;
 }
@@ -248,12 +258,8 @@ form .input-group {
 }
 
 .table-donnees tr:hover>td {
-    background-color: #EBEDEF;
-    border-bottom: 0.5px solid #154360;
-/*   text-shadow: 0px 0.5px black;
-   box-shadow: 0px 0px 10px #888888;
-   -webkit-box-shadow: 0px 0px 10px #888888;
-   -moz-box-shadow: 0px 0px 10px #888888;*/
+    background-color: #D6DBDF;
+    border-bottom: 0.5px solid #85929E;
 }
  
 .table-donnees tr.highlight td {
@@ -273,7 +279,9 @@ form .input-group {
 }
 
 .table-donnees .dropdown-menu {
-    background-color: #F5EEF8 !important;
+    background: no-repeat url(./images/bg-content.png) 0 0;
+    background-color: #EBEBEB;
+    background-repeat: repeat;
     color: #154360 !important;
     width: 450px !important;
     padding: 10px ! important;
@@ -367,36 +375,6 @@ form .input-group {
 .selectionner-impression {
     width: 100% !important;
 }
-/* 
-.creation .insert-donnees {
-    border: 5px solid #FDBF4C;
-    margin: 5px;
-    padding: 5px;
-    margin-top: 20px;
-}
- 
-.selection {
-    width: 45%;
-    background-color: #F37338;
-}
-*/
-/*#TableChoixImpression {
-	width: 100%;
-	margin-top: -15px;
-	margin-bottom: 25px;
-}
-
-#TableResultatImpression {
-    color: black;
-}
-
-.selectionner-impression {
-	width: 80%;
-}*/
-
-/*.suivant {
-    width: 100%;
-}*/
 
 .vers-suivant {
     width: 100%;
@@ -481,4 +459,38 @@ button .glyphicon {
 .checkbox {
     border-left: 1px solid grey;
     text-indent: 3px;
+}
+
+.row.filtre {
+    text-align: center;
+}
+
+.historique-search input {
+    width: 250px;
+}
+
+.historique-filter {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.gly-filtre {
+    font-size: 250%;
+    margin-top: -10px;
+    float: right;
+    cursor: hand !important;
+    cursor: pointer !important;
+}
+
+.filtre .panel-heading {
+    height: 40px;
+}
+
+.panel-footer.choix {
+    font-weight: bold !important;
+    background-color: rgba(240, 173, 78, 1.0);
+}
+
+#Resultats {
+    font-weight: bold !important;
 }

@@ -1,13 +1,10 @@
 <template name="ElementToner">
     <!-- <tr class="row-donnees"> -->
-    <td>
-        {{modele}}
-    </td>
-    <td>
-        {{constructeur}}
-    </td>
-    <td>
-        {{referenceC}}
+    <td valign="top">
+            Modèle : {{modele}}<br />
+            Constructeur : {{constructeur}}<br />
+            Réf : {{referenceC}}<br />
+            Couleur : {{couleur}}<br />
     </td>
     <td>
       {{#each fournisseur}}
@@ -17,9 +14,6 @@
         {{/with}}{{referenceF}}<br />
       {{/each}}
         <button type="button" class="btn btn-default btn-sm glyphicon glyphicon-plus" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddFournisseur-{{_id}}" ></button>
-    </td>
-    <td>
-        {{couleur}}
     </td>
     <td>
         {{> NoteToner}}

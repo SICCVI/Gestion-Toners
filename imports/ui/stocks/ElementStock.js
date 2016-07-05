@@ -64,7 +64,7 @@ Template.ElementStock.events({
 		checkStock(Q, S, A, I);
 		const toner = Toners.findOne({_id: this.toner});
 		const date = getDate();
-		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / Référence : " + toner.referenceC;
+		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / " + toner.referenceC;
 		const tonerId = toner._id;
 		const categorie = "Entrée";
 		Meteor.call('historiques.insert-entree', date, tonerId, tonerNom, categorie);
@@ -126,7 +126,7 @@ Template.ElementStock.events({
 		Meteor.call('stocks.diminue-quantite', parent._id);
 
 		const toner = Toners.findOne({_id: parent.toner});
-		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / Référence : " + toner.referenceC;
+		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / " + toner.referenceC;
 		const tonerId = toner._id;
 		const date = getDate();
 		const siteId = site;
@@ -165,7 +165,7 @@ Template.ElementStock.events({
 	},
 	'click .commander': function () {
 		const toner = Toners.findOne({_id: this.toner});
-		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / Référence : " + toner.referenceC;
+		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / " + toner.referenceC;
 		const tonerId = toner._id;
 		const date = getDate();
 		const categorie = "Commande";
@@ -196,16 +196,25 @@ checkStock = function (quantite, seuil, avertissement, id) {
 
 getDate = function () {
 	const today = new Date();
+	let min = today.getMinutes();
+	let h = today.getHours();
 	let dd = today.getDate();
 	let mm = today.getMonth()+1;
 	let yyyy = today.getFullYear();
+	if(min<10) {
+	    min='0'+min
+	} 
+	if(h<10) {
+	    h='0'+h
+	} 
 	if(dd<10) {
 	    dd='0'+dd
 	} 
 	if(mm<10) {
 	    mm='0'+mm
 	} 
-	const date = dd+'/'+mm+'/'+yyyy;
+	const date = dd+'/'+mm+'/'+yyyy+' ('+h+':'+min+')';
+	console.log(date);
 	return date;
 }
 

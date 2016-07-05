@@ -33,4 +33,13 @@ getParentDataId = function (element) {
 
 scrollto = function (module) {
     $('html, body').animate({'scrollTop':   $(module).offset().top }, 1000);
+},
+
+historiqueFiltre = function (select) {
+	if ($(select).val() !== "") {
+		$(select).css({'background-color' : '#FABB84'});
+	}
+	else {
+		$(select).css({'background-color' : 'white'});
+	}
 }

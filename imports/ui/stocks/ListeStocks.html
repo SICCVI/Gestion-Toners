@@ -30,6 +30,11 @@
 					<th class="colonne-stocks">Statut</th>
 					<th class="colonne-icone"></th>
 					<th class="colonne-icone"></th>
+				{{#EasySearch.IfNoResults index=stocksIndex}}
+				<tr>
+					<td colspan="7">Pas de résultats trouvés!</td>
+				</tr>
+				{{/EasySearch.IfNoResults}}
 				{{#EasySearch.Each index=stocksIndex }}
 					{{#if avertissement}}
 						{{#if alerte}}

@@ -1,83 +1,99 @@
 <template name="ListeHistoriques">
 	<h3><span class="glyphicon glyphicon-time"></span>&emsp;Consultation de l'historique</h3>
 
-	<div class="to-left">
-		<div class="checkbox">
-			<span class="lightorange">&emsp;&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-commandes" name=""> Commande</label>
-		</div>
-		<div class="checkbox">
-			<span class="lightgreen">&emsp;&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-entrees" name=""> Entrée</label>
-		</div>
-		<div class="checkbox">
-			<span class="lightred">&emsp;&emsp;&emsp;</span>&ensp;<label><input type="checkbox" checked class="btn-default show-sorties" name=""> Sortie</label>
-		</div>
-	</div>
+		<div class="row filtre">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                	<div class="panel-heading filtre">
+                		<label>Filtres</label>
+                		<span class="gly-filtre">
+							{{#if filtreToggle}}
+                				<i class="glyphicon glyphicon-collapse-up filtre-toggle"></i>
+							{{else}}
+                				<i class="glyphicon glyphicon-collapse-down filtre-toggle"></i>
+							{{/if}}
+                		</span>
+                	</div>
 
-	<div class="input-group search-section">
-	  <span class="to-right">{{> EasySearch.Input index=historiquesIndex }}</span>
-	  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
-	</div>
-	<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+                	{{#if filtreToggle}}
+                    <div class="panel-body filtre">
+                        <div class="col-lg-6 bordure-droite bordure-basse">
+                        	<div class="panel-heading select">Categorie</div>
+							<select class="btn btn-default category-filter historique-filter" onChange="historiqueFiltre(this);">
+								<option value="" selected>Afficher toutes les catégories</option>
+							    <option value="Entrée">Entrees</option>
+							    <option value="Retrait">Retraits</option>
+							    <option value="Commande">Commandes</option>
+							</select>
+                        </div>
+                        <div class="col-lg-6 bordure-gauche bordure-basse">
+                        	<div class="panel-heading select">Site</div>
+							<select class="btn btn-default site-filter historique-filter" onChange="historiqueFiltre(this);">
+								<option value="" selected>Afficher tout les sites</option>
+								{{#each sites}}
+									<option value="{{_id}}">{{nom}}</option>
+								{{/each}}
+							</select>
+                        </div>
+                        <div class="col-lg-6 bordure-droite bordure-haute">
+                        	<div class="panel-heading select">Toner</div>
+							<select class="btn btn-default toner-filter historique-filter" onChange="historiqueFiltre(this);">
+								<option value="" selected>Afficher tout les toners</option>
+								{{#each toners}}
+									<option value="{{_id}}">{{modele}} / {{constructeur}} / {{referenceC}}</option>
+								{{/each}}
+							</select>
+                        </div>
+                        <div class="col-lg-6 bordure-gauche bordure-haute">
+                        	<div class="panel-heading select">Service</div>
+							<select class="btn btn-default service-filter historique-filter" onChange="historiqueFiltre(this);">
+								<option value="" selected>Afficher tout les services</option>
+								{{#each services}}
+									<option value="{{_id}}">{{nom}}</option>
+								{{/each}}
+							</select>
+                        </div>
+                    </div>
+                    {{/if}}
+                    <div class="panel-footer">
+                    	<div class="historique-search">
+						  {{> EasySearch.Input index=historiquesIndex }}
+						  <i class="glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></i>
+						</div>
+						<span class="results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+                	</div>
+                </div>
+            </div>
+        </div>
 
 	<section class="historiques">
 		{{#if Template.subscriptionsReady}}
 					<table class="table-donnees">
 						<tr>
 							<th>Date</th>
-							<th>Categorie</th>
+							<th></th>
 							<th>Objet</th>
-							<th>Auteur</th>
+							<th>Personne</th>
 							<th>Note</th>
 							<th></th>	
 						</tr>
 						{{#EasySearch.IfNoResults index=historiquesIndex}}
 						<tr>
-							<td colspan="4">Pas de résultats trouvés!</td>
+							<td colspan="6">Pas de résultats trouvés!</td>
 						</tr>
 						{{/EasySearch.IfNoResults}}
 						{{#EasySearch.Each index=historiquesIndex }}
 
 						<tr>
 							<td>{{date}}</td>
-							<td>{{categorie}}</td>
-							<td>{{tonerNom}}</td>
+							<td style="color:{{#if compare categorie 'Retrait'}}red;{{/if}}{{#if compare categorie 'Entrée'}}green;{{/if}}{{#if compare categorie 'Commande'}}yellow;{{/if}}">
+								<i class="glyphicon glyphicon-certificate"></i>
+							</td>
+							<td>{{categorie}} de [{{tonerNom}}]</td>
 							<td>{{siteNom}} - {{serviceNom}}</td>
 							<td>{{> NoteHistorique}}</td>
 							<td>{{> SuppressionHistorique}}</td>
 						</tr>
-<!-- 							{{#if commande}}
-								{{#if showCommandes }}
-									<tr>
-										<td>{{date}}</td>
-										<td class="lightorange"></td>
-										<td>Commande de " {{objet}} ".</td>
-										<td>{{> NoteHistorique}}</td>
-										<td>{{> SuppressionHistorique}}</td>
-									</tr>
-								{{/if}}
-							{{/if}}
-							{{#if entree}}
-								{{#if showEntrees }}
-									<tr>
-										<td>{{date}}</td>
-										<td class="lightgreen"></td>
-										<td>Ajout d'un " {{objet}} ".</td>
-										<td>{{> NoteHistorique}}</td>
-										<td>{{> SuppressionHistorique}}</td>
-									</tr>
-								{{/if}}
-							{{/if}}
-							{{#if sortie}}
-								{{#if showSorties }}
-									<tr>
-										<td>{{date}}</td>
-										<td class="lightred"></td>
-										<td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
-										<td>{{> NoteHistorique}}</td>
-										<td>{{> SuppressionHistorique}}</td>
-									</tr>
-								{{/if}}
-							{{/if}} -->
 						{{/EasySearch.Each}}
 					</table>
 				{{> EasySearch.Pagination index=historiquesIndex customRenderPagination="Pagination"}}
@@ -85,7 +101,6 @@
 			<p>En attente</p>
 		{{/if}}
 	</section>
-	<br /><br /><br /><br /><br />
 </template>
 
 <template name="SuppressionHistorique">
@@ -102,13 +117,13 @@
 </template>
 
 <template name="NoteHistorique">
-	<button type="button" class="btn btn-default btn-sm glyphicon glyphicon-comment add-note" data-id="{{_id}}" data-toggle="modal" data-target="#ModalNote-{{_id}}" ></button>
+	<button type="button" class="btn btn-default btn-sm glyphicon glyphicon-comment add-note" data-id="{{__originalId}}" data-toggle="modal" data-target="#ModalNote-{{__originalId}}" ></button>
 	{{> ModalNoteHistorique}}
 	{{note}}
 </template>
 
 <template name="ModalNoteHistorique">
-	<div id="ModalNote-{{_id}}" class="modal fade" role="dialog">
+	<div id="ModalNote-{{__originalId}}" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 
 	    <div class="modal-content">
@@ -118,19 +133,19 @@
 	      </div>
 	      <div class="modal-body">
 	        	<div class="add-note">
-			 		<form id="addNote-{{_id}}" class="add-note">
+			 		<form id="addNote-{{__originalId}}" class="add-note">
 
 					    <div class="input-group">
-						  <input type="text" class="form-control" placeholder="{{note}}" aria-describedby="basic-addon2" name="note" id="Note-{{_id}}">
+						  <input type="text" class="form-control" placeholder="{{note}}" aria-describedby="basic-addon2" name="note" id="Note-{{__originalId}}">
 						  <span class="input-group-addon add-note" id="basic-addon2"><span class="glyphicon glyphicon-comment"></span></span>
 						</div>
-						<button id="SubmitAddNote-{{_id}}" class="btn btn-success" type="submit">Sauvegarder</button>
+						<button id="SubmitAddNote-{{__originalId}}" class="btn btn-success" type="submit" onClick="$('#closeModalNote-{{__originalId}}').click();">Sauvegarder</button>
 
 				 	</form>
 				</div>
 	      </div>
 	      <div class="modal-footer">
-	        <button type="button" id="closeModalNew" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	        <button type="button" id="closeModalNote-{{__originalId}}" class="btn btn-default" data-dismiss="modal">Fermer</button>
 	      </div>
 	    </div>
 
