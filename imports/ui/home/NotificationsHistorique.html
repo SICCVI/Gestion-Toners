@@ -17,24 +17,13 @@
               <div id="historiquecomplet" class="tab-pane fade in active">
                 <table>
 		            {{#each historiqueComplet}}
-                  {{#if commande}}
                       <tr>
                         <td>{{date}}</td>
-                        <td>Commande de " {{objet}} ".</td>
+                        <td style="color:{{#if compare categorie 'Retrait'}}red;{{/if}}{{#if compare categorie 'Entrée'}}green;{{/if}}{{#if compare categorie 'Commande'}}yellow;{{/if}}">
+                          <i class="glyphicon glyphicon-certificate"></i>
+                        </td>
+                        <td>{{tonerNom}}</td>
                       </tr>
-                  {{/if}}
-                  {{#if entree}}
-                      <tr>
-                        <td>{{date}}</td>
-                        <td>Ajout d'un " {{objet}} ".</td>
-                      </tr>
-                  {{/if}}
-                  {{#if sortie}}
-                      <tr>
-                        <td>{{date}}</td>
-                        <td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
-                      </tr>
-                  {{/if}}
 		            {{else}}
                   <tr></tr>
 		            	<tr colspan="2">Pas de résultat</tr>
@@ -46,7 +35,7 @@
 		            {{#each historiqueCommandes}}
 		            	<tr>
 		            		<td>{{date}}</td>
-		            		<td>Commande de " {{objet}} ".</td>
+		            		<td>{{tonerNom}}</td>
 		            	</tr>
 		            	{{else}}
 		            	<tr colspan="2">Pas de résultat</tr>
@@ -58,7 +47,7 @@
 		            {{#each historiqueEntrees}}
 		            	<tr>
 		            		<td>{{date}}</td>
-		            		<td>Ajout d'un " {{objet}} ".</td>
+		            		<td>{{tonerNom}}</td>
 		            	</tr>
 		            	{{else}}
 		            	<tr colspan="2">Pas de résultat</tr>
@@ -70,7 +59,7 @@
 		            {{#each historiqueSorties}}
 		            	<tr>
 		            		<td>{{date}}</td>
-		            		<td>Retrait d'un " {{objet}} " par {{auteur}}.</td>
+		            		<td>{{tonerNom}}</td>
 		            	</tr>
 		            	{{else}}
 		            	<tr colspan="2">Pas de résultat</tr>
