@@ -214,7 +214,6 @@ getDate = function () {
 	    mm='0'+mm
 	} 
 	const date = dd+'/'+mm+'/'+yyyy+' ('+h+':'+min+')';
-	console.log(date);
 	return date;
 }
 
