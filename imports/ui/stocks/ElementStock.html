@@ -69,7 +69,7 @@
 </template>
 
 <template name="ElementConsommateur">
-	<div>
+	<div data-site="{{site}}" data-service="{{service}}">
 		<button type="button" id="consommer-{{../_id}}" class="btn btn-default btn-primary consommer" data-id="{{../_id}}"><span class="glyphicon glyphicon-share"></span>&emsp;<span class="badge">{{consommation}}</span></button>&nbsp;
     	<span class="dropdown historique">
 			<i class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-time"></span></i>
@@ -91,21 +91,170 @@
 					<li><i><strong>Contact&nbsp;:</strong></i>&nbsp;{{nom}}&nbsp;{{prenom}}</li>
 					<li><i class="glyphicon glyphicon-phone-alt">&nbsp;:</i>&nbsp;&nbsp;{{telephone}}</li>
 				{{/with}}
+				<li><button type="button" class="btn btn-default btn-sm glyphicon glyphicon-edit" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddContact-{{../_id}}-{{site}}-{{service}}"></button></li>
 			</ul>
 		</span>&nbsp;
 		<span class="dropdown impression">
 		<i class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-print"></span></i>
-		<ul class="dropdown-menu impression" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
+		<ul class="dropdown-menu impression" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}" data-site="{{site}}" data-service="{{service}}">
 			<li><i><strong>Imprimante(s) concernée(s) :</strong></i></li>
 			{{#each impression}}
 				{{#with getImpression this}}
-				<li><i>[&nbsp;{{gabarit}}&nbsp;]&nbsp;{{marque}}&nbsp;-&nbsp;{{modele}}</i></li>
+				<li><i>[&nbsp;{{gabarit}}&nbsp;]&nbsp;{{marque}}&nbsp;-&nbsp;{{modele}}</i>&nbsp;&nbsp;<button class="btn btn-default btn-sm remove-impression glyphicon glyphicon-remove-sign" onClick="getGrandParentDataId(this); getGrandParentDataSite(this);  getGrandParentDataService(this);"></button></li>
 				{{/with}}
 			{{/each}}
+			<li><button type="button" class="btn btn-default btn-sm glyphicon glyphicon-plus" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddImpression-{{../_id}}-{{site}}-{{service}}"></button></li>
 		</ul>
 		</span>&nbsp;
+		<!-- <button class="remove-site">DELETE</button> -->
 		{{#with getSite site}}{{nom}}{{/with}}
 		&nbsp;/&nbsp;
 		{{#with getService service}}{{nom}}{{/with}}
+		{{> ModalAddImpression}}
+		{{> ModalAddContact}}
+	</div>
+</template>
+
+<template name="ModalAddImpression">
+	<div id="ModalAddImpression-{{../_id}}-{{site}}-{{service}}" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Associer une imprimante</h4>
+	      </div>
+
+	      <div class="modal-body" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}" >
+
+	      		<div class="input-group search-section">
+			  		<span class="to-right">{{> EasySearch.Input index=impressionsIndex }}</span>
+			  		<span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+				</div>
+
+				<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+				<section class="impressions" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}">
+					{{#if Template.subscriptionsReady}}
+						<table class="table-donnees" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}">
+							<thead>
+								<tr>
+									<th class="colonne-impression">Marque</th>
+									<th class="colonne-impression">Modele</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#EasySearch.IfNoResults index=impressionsIndex}}
+								<tr>
+									<td colspan="5">Pas de résultats trouvés!</td>
+								</tr>
+								{{/EasySearch.IfNoResults}}
+								{{#EasySearch.Each index=impressionsIndex }}
+									<tr class="row-donnees">
+										<td>
+											<div class="cellule">{{marque}}</div>
+										</td> 
+										<td>
+											<div class="cellule">{{modele}}</div>
+										</td> 
+									</tr>
+								{{/EasySearch.Each}}
+							</tbody>
+						</table>
+						{{> EasySearch.Pagination index=impressionsIndex customRenderPagination="Pagination"}}
+					{{else}}
+						<p>En attente</p>
+					{{/if}}
+				</section>
+
+	      		<div class="selection-impression">
+            		<button class="btn btn-default selectionner-impression" disabled>Choix sélectionné&ensp;<span class="glyphicon glyphicon-arrow-down"></span></button>
+
+            		<table id="TableChoixImpression-{{../_id}}-{{site}}-{{service}}" class="table-donnees" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}">
+		                <th>Marque</th>
+		                <th>Modèle</th>
+		                <th width="10px"><button class="btn btn-default btn-danger delete-selection-impression">X</button></th>
+		            </table>
+        		</div>
+        		
+        		<button id="SubmitAddImpression-{{../_id}}-{{site}}-{{service}}" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}" class="btn btn-success add-impression" type="submit" data-dismiss="modal">Sauvegarder</button>
+           </div>
+	      
+	      	<div class="modal-footer">
+	        	<button type="button" id="closeModalImpression" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      	</div>
+	    </div>
+
+	  </div>
+	</div>
+</template>
+
+<template name="ModalAddContact">
+	<div id="ModalAddContact-{{../_id}}-{{site}}-{{service}}" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        <h4 class="modal-title">Associer un contact</h4>
+	      </div>
+
+	      <div class="modal-body" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}" >
+
+				<div class="input-group search-section">
+				  <span class="to-right">{{> EasySearch.Input index=contactsIndex }}</span>
+				  <span class="input-group-addon glyphicon glyphicon-search" aria-hidden="true" id="sizing-addon2"></span>
+				</div>
+
+				<span class="to-right results-count"><i>Nombre de résultat(s) : {{resultsCount}}</i></span>
+
+				<section class="contacts" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}">
+					{{#if Template.subscriptionsReady}}
+						<table class="table-donnees" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}">
+							<thead>
+								<tr>
+									<th class="colonne-contact">Nom</th>
+									<th class="colonne-contact">Prénom</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#EasySearch.IfNoResults index=contactsIndex}}
+								<tr>
+									<td colspan="5">Pas de résultats trouvés!</td>
+								</tr>
+								{{/EasySearch.IfNoResults}}
+								{{#EasySearch.Each index=contactsIndex }}
+									<tr class="row-donnees">
+										<td>
+											<div class="cellule">{{nom}}</div>
+										</td> 
+										<td>
+											<div class="cellule">{{prenom}}</div>
+										</td> 
+									</tr>
+								{{/EasySearch.Each}}
+							</tbody>
+						</table>
+						{{> EasySearch.Pagination index=contactsIndex customRenderPagination="Pagination"}}
+					{{else}}
+						<p>En attente</p>
+					{{/if}}
+				</section>
+<br /><br />
+				<div class="input-group">
+	              <span class="input-group-addon" id="sizing-addon2">Choix sélectionné</span>
+	              <input type="text" id="ChoixContact-{{../_id}}-{{site}}-{{service}}" name="choix-contact" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+	              <input type="hidden" id="ChoixContactId-{{../_id}}-{{site}}-{{service}}" name="choix-contact-id" class="form-control" placeholder="..." aria-describedby="sizing-addon2" disabled>
+	            </div>
+<br />
+        		<button id="SubmitAddContact-{{../_id}}-{{site}}-{{service}}" data-site="{{site}}" data-service="{{service}}" data-id="{{../_id}}" class="btn btn-success update-contact" type="submit"  data-dismiss="modal">Sauvegarder</button>
+           </div>
+	      
+	      	<div class="modal-footer">
+	        	<button type="button" id="closeModalContact" class="btn btn-default" data-dismiss="modal">Fermer</button>
+	      	</div>
+	    </div>
+
+	  </div>
 	</div>
 </template>

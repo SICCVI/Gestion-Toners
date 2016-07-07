@@ -7,7 +7,6 @@ Template.ModuleImpression.events({
     'click .delete-selection-impression'(event) {
         event.preventDefault();
         document.getElementById("TableChoixImpression").deleteRow(0);
-        console.log("test");
     }
 });
 

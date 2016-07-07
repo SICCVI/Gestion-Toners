@@ -27,8 +27,18 @@ getGrandParentDataId = function (element) {
 },
 
 getParentDataId = function (element) {
-	var parent = elementparentNode.getAttribute('data-id');
+	var parent = element.parentNode.getAttribute('data-id');
 	element.setAttribute('data-id' , parent);
+},
+
+getGrandParentDataSite = function (element) {
+	var parent = element.parentNode.parentNode.getAttribute('data-site');
+	element.setAttribute('data-site' , parent);
+},
+
+getGrandParentDataService = function (element) {
+	var parent = element.parentNode.parentNode.getAttribute('data-service');
+	element.setAttribute('data-service' , parent);
 },
 
 scrollto = function (module) {
