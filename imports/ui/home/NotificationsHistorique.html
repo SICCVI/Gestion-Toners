@@ -16,54 +16,54 @@
             <div class="tab-content">
               <div id="historiquecomplet" class="tab-pane fade in active">
                 <table>
-		            {{#each historiqueComplet}}
+                {{#each historiqueComplet}}
                       <tr>
                         <td>{{date}}</td>
-                        <td style="color:{{#if compare categorie 'Retrait'}}red;{{/if}}{{#if compare categorie 'Entrée'}}green;{{/if}}{{#if compare categorie 'Commande'}}yellow;{{/if}}">
+                        <td style="color:{{#if compare categorie 'Retrait'}}red;{{/if}}{{#if compare categorie 'Entrée'}}green;{{/if}}{{#if compare categorie 'Commande'}}blue;{{/if}}">
                           <i class="glyphicon glyphicon-certificate"></i>
                         </td>
                         <td>{{tonerNom}}</td>
                       </tr>
-		            {{else}}
+                {{else}}
                   <tr></tr>
-		            	<tr colspan="2">Pas de résultat</tr>
-		            {{/each}}
+                  <tr colspan="2">Pas de résultat</tr>
+                {{/each}}
                 </table>
               </div>
               <div id="historiquecommandes" class="tab-pane fade">
                 <table>
-		            {{#each historiqueCommandes}}
-		            	<tr>
-		            		<td>{{date}}</td>
-		            		<td>{{tonerNom}}</td>
-		            	</tr>
-		            	{{else}}
-		            	<tr colspan="2">Pas de résultat</tr>
-		            {{/each}}
+                {{#each historiqueCommandes}}
+                  <tr>
+                    <td>{{date}}</td>
+                    <td>{{tonerNom}}</td>
+                  </tr>
+                  {{else}}
+                  <tr colspan="2">Pas de résultat</tr>
+                {{/each}}
                 </table>
               </div>
               <div id="historiqueentrees" class="tab-pane fade">
                 <table>
-		            {{#each historiqueEntrees}}
-		            	<tr>
-		            		<td>{{date}}</td>
-		            		<td>{{tonerNom}}</td>
-		            	</tr>
-		            	{{else}}
-		            	<tr colspan="2">Pas de résultat</tr>
-		            {{/each}}
+                {{#each historiqueEntrees}}
+                  <tr>
+                    <td>{{date}}</td>
+                    <td>{{tonerNom}}</td>
+                  </tr>
+                  {{else}}
+                  <tr colspan="2">Pas de résultat</tr>
+                {{/each}}
                 </table>
               </div>
               <div id="historiquesorties" class="tab-pane fade">
                 <table>
-		            {{#each historiqueSorties}}
-		            	<tr>
-		            		<td>{{date}}</td>
-		            		<td>{{tonerNom}}</td>
-		            	</tr>
-		            	{{else}}
-		            	<tr colspan="2">Pas de résultat</tr>
-		            {{/each}}
+                {{#each historiqueSorties}}
+                  <tr>
+                    <td>{{date}}</td>
+                    <td>{{tonerNom}}</td>
+                  </tr>
+                  {{else}}
+                  <tr colspan="2">Pas de résultat</tr>
+                {{/each}}
                 </table>
               </div>
             </div>

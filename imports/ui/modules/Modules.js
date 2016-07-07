@@ -6,6 +6,7 @@ import "./ModuleSite.js";
 import "./ModuleContact.js";
 import "./ModuleService.js";
 
+import { Stocks } from '../../api/stocksCollection.js';
 import '../../scripts/myFunctions.js';
 
 Template.Modules.events({
@@ -31,9 +32,13 @@ Template.Modules.events({
             const siteId = $('#ResultatSiteId').val();
             const contactId = $('#ResultatContactId').val();
             const serviceId = $('#ResultatServiceId').val();
-            Meteor.call('stocks.insert', tonerId, siteId, contactId, serviceId, function(error, result){
-                stockId = result;
-                $('#NewStockId').val(result);
+            let checkToner = Stocks.find({toner: tonerId}).count();
+            console.log("checkToner = " + checkToner);
+            if (checkToner > 0) {
+              console.log("checkToner > 0 --- update");
+              const stockExistant = Stocks.findOne({toner: tonerId});
+              const stockId = stockExistant._id;
+              Meteor.call('stocks.update', stockId, siteId, contactId, serviceId);
                 const oTable = document.getElementById('TableResultatImpression');
                 const rowLength = oTable.rows.length;
                 let cell1;
@@ -42,7 +47,7 @@ Template.Modules.events({
                 for (let i = 0; i < rowLength; i++) { 
                    const oCells = oTable.rows.item(i).cells;
                    const cellLength = oCells.length;
-                   for(let  j = 0; j < cellLength; j++){
+                   for(let  j = 0; j < cellLength; j++) {
                           cell1 = oCells.item(0).innerHTML;
                           cell2 = oCells.item(1).innerHTML;
                           cell3 = oCells.item(2).textContent;
@@ -53,11 +58,36 @@ Template.Modules.events({
                   const index = [ $('#ResultatToner').val(), impressionIndex, $('#ResultatSite').val(), $('#ResultatContact').val(), $('#ResultatService').val()];
                   Meteor.call('stocks.add-index', stockId, index);
                 }
-            });
-            $('#ResultatTonerId').val("");
-            $('#ResultatSiteId').val("");
-            $('#ResultatContactId').val("");
-            $('#ResultatServiceId').val("");
+            } else {
+              console.log("checkToner = 0 --- insert");
+              Meteor.call('stocks.insert', tonerId, siteId, contactId, serviceId, function(error, result){
+                  stockId = result;
+                  $('#NewStockId').val(result);
+                  const oTable = document.getElementById('TableResultatImpression');
+                  const rowLength = oTable.rows.length;
+                  let cell1;
+                  let cell2;  
+                  let cell3;   
+                  for (let i = 0; i < rowLength; i++) { 
+                     const oCells = oTable.rows.item(i).cells;
+                     const cellLength = oCells.length;
+                     for(let  j = 0; j < cellLength; j++){
+                            cell1 = oCells.item(0).innerHTML;
+                            cell2 = oCells.item(1).innerHTML;
+                            cell3 = oCells.item(2).textContent;
+                      }
+                    let impressionIndex = cell1 + " " + cell2;
+                    let impressionId = cell3;
+                    Meteor.call('stocks.add-impression', stockId, siteId, serviceId, impressionId);
+                    const index = [ $('#ResultatToner').val(), impressionIndex, $('#ResultatSite').val(), $('#ResultatContact').val(), $('#ResultatService').val()];
+                    Meteor.call('stocks.add-index', stockId, index);
+                  }
+              });
+              $('#ResultatTonerId').val("");
+              $('#ResultatSiteId').val("");
+              $('#ResultatContactId').val("");
+              $('#ResultatServiceId').val("");
+            }
         }
       $("#LabelSuccess").show().delay(5000).queue(function(n) {
         $(this).hide(); n();
@@ -71,7 +101,7 @@ Template.Modules.events({
             const contactId = $('#ResultatContactId').val();
             const serviceId = $('#ResultatServiceId').val();
             const stockId = $('#NewStockId').val();
-            Meteor.call('stocks.update', stockId, tonerId, siteId, contactId, serviceId);
+            Meteor.call('stocks.update', stockId, siteId, contactId, serviceId);
                 const oTable = document.getElementById('TableResultatImpression');
                 const rowLength = oTable.rows.length;
                 let cell1;
@@ -157,6 +187,9 @@ Template.Modules.events({
 Template.Modules.onCreated(function(){
   this.reactiveVarModule = new ReactiveVar(false);
   this.ajouterElements = new ReactiveVar(false);
+  this.autorun(() => {
+    this.subscribe('stocks');
+  });
 });
 
 Template.Modules.helpers({

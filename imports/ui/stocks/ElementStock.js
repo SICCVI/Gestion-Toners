@@ -177,6 +177,21 @@ Template.ElementStock.events({
 	'click .show-fournisseurs': function(event, template) {
 	template.showFournisseurs.set(!template.showFournisseurs.get());
 	},
+	'click .remove-site': function () {
+		const stock = event.target.getAttribute('data-id');
+		const site = this.site;
+		const service = this.service;
+		console.log(this);
+		console.log(stock + " " +site + " "+ service);
+		/*Meteor.call('stocks.remove-site', stock, site, service);*/
+	},
+	'click .remove-impression': function () {
+		const stock = event.target.getAttribute('data-id');
+		const site = event.target.getAttribute('data-site')
+		const service = event.target.getAttribute('data-service')
+		const impression = this._id;
+		Meteor.call('stocks.remove-impression', stock, site, service, impression);
+	},
 });
 
 checkStock = function (quantite, seuil, avertissement, id) {
@@ -271,4 +286,128 @@ Template.ElementConsommateur.events({
 	'click .show-contacts': function(event, template) {
 	template.showContacts.set(!template.showContacts.get());
 	},
+});
+
+
+Template.ModalAddImpression.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('impressions');
+  });
+});
+
+Template.ModalAddImpression.helpers({
+	impressions: ()=> {
+		return Impressions.find({});
+	},
+	totalCount() {
+  		return Impressions.find({ _id: {$ne: true }}).count();
+  	},
+  impressionsIndex: function () {
+	    return ImpressionsIndex;   
+	},
+	resultsCount: function () {
+      return ImpressionsIndex.getComponentDict().get('count');
+    },
+});
+
+Template.ModalAddImpression.events({
+    'click .table-donnees .row-donnees':function(evt){
+    	const stock = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-id');
+		const site = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-site');
+		const service = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-service');
+        if (!$(evt.currentTarget).hasClass("highlight")) {
+          $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
+        const NomTable = "TableChoixImpression"+"-"+stock+"-"+site+"-"+service;
+        const table = document.getElementById(NomTable);
+        const row = table.insertRow(0);
+        const cell1 = row.insertCell(0);
+        const cell2 = row.insertCell(1);
+        const cell3 = row.insertCell(2);
+        cell1.innerHTML = this.marque;
+        cell2.innerHTML = this.modele;
+        cell3.innerHTML = "<label hidden>"+ this._id +"</label>";
+        }
+    },
+    'click .add-impression': function(evt){
+    	const stock = evt.target.getAttribute('data-id');
+		const site = evt.target.getAttribute('data-site');
+		const service = evt.target.getAttribute('data-service');
+		const NomTable = "TableChoixImpression"+"-"+stock+"-"+site+"-"+service;
+	    const oTable = document.getElementById(NomTable);
+	    const rowLength = oTable.rows.length;
+	    let cell1;
+	    let cell2;  
+	    let cell3;   
+	    for (let i = 0; i < rowLength; i++) { 
+	       const oCells = oTable.rows.item(i).cells;
+	       const cellLength = oCells.length;
+	       for(let  j = 0; j < cellLength; j++) {
+	              cell1 = oCells.item(0).innerHTML;
+	              cell2 = oCells.item(1).innerHTML;
+	              cell3 = oCells.item(2).textContent;
+	        }
+	      let impressionIndex = cell1 + " " + cell2;
+	      let impressionId = cell3;
+	      Meteor.call('stocks.add-impression', stock, site, service, impressionId);
+	      const index = impressionIndex;
+	      Meteor.call('stocks.update-index', stock, index);
+	  	}
+	},
+	  'click .delete-selection-impression'(evt) {
+        event.preventDefault();
+        const stock = evt.target.parentNode.parentNode.getAttribute('data-id');
+		const site = evt.target.parentNode.parentNode.getAttribute('data-site');
+		const service = evt.target.parentNode.parentNode.getAttribute('data-service');
+		const NomTable = "TableChoixImpression"+"-"+stock+"-"+site+"-"+service;
+        document.getElementById(NomTable).deleteRow(0);
+	},
+});
+
+Template.ModalAddContact.onCreated(function() {
+  this.autorun(() => {
+    this.subscribe('contacts');
+  });
+});
+
+Template.ModalAddContact.helpers({
+	contacts: ()=> {
+		return Contacts.find({});
+	},
+	totalCount() {
+  		return Contacts.find({ _id: {$ne: true }}).count();
+  	},
+  contactsIndex: function () {
+	    return ContactsIndex;   
+	},
+	resultsCount: function () {
+      return ContactsIndex.getComponentDict().get('count');
+    },
+});
+
+Template.ModalAddContact.events({
+    'click .table-donnees .row-donnees':function(evt){
+    	const stock = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-id');
+		const site = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-site');
+		const service = evt.target.parentNode.parentNode.parentNode.parentNode.getAttribute('data-service');
+        const NomInput = "ChoixContact"+"-"+stock+"-"+site+"-"+service;
+        const NomInputId = "ChoixContactId"+"-"+stock+"-"+site+"-"+service;
+        if (!$(evt.currentTarget).hasClass("highlight")) {
+          $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
+          document.getElementById(NomInput).value= this.nom + " " + this.prenom + " ( " + this.telephone + " )";
+          document.getElementById(NomInputId).value= this._id;
+        }
+        else {
+          $(evt.currentTarget).removeClass('highlight');
+          document.getElementById(NomInput).value= "";
+          document.getElementById(NomInputId).value= "";
+        }
+    },
+    'click .update-contact': function(evt){
+    	const stock = evt.target.getAttribute('data-id');
+    	const site = evt.target.getAttribute('data-site');
+		const service = evt.target.getAttribute('data-service');
+        const NomInputId = "ChoixContactId"+"-"+stock+"-"+site+"-"+service;
+        const contact = document.getElementById(NomInputId).value;
+    	Meteor.call('stocks.update-contact', stock, site, service, contact);
+	}
 });
