@@ -26,7 +26,8 @@ Meteor.methods({
       avertissement : false,
       quantite : 0,
       consommateur : [
-        { site : siteId,
+        { consommateurId: Random.id(),
+          site : siteId,
           impression : [],
           contact : contactId,
           service : serviceId,
@@ -40,7 +41,8 @@ Meteor.methods({
     Stocks.update(stockId, {
     $addToSet: {
       consommateur :
-        { site : siteId,
+        { consommateurId: Random.id(),
+          site : siteId,
           impression : [],
           contact : contactId,
           service : serviceId,
@@ -163,18 +165,14 @@ Meteor.methods({
       }
   )
   },
-  'stocks.remove-site'(stockId, siteId, serviceId) {
-    check(stockId, String);
-    check(siteId, String);
-    check(serviceId, String);
+  'stocks.remove-site'(stockId, consommateurId) {
     Stocks.update(stockId, {
       $pull: {
         consommateur : {
-          site: siteId,
-          service: serviceId,
+          consommateurId: consommateurId
         }
       }
-    });
+    }, false, true );
   },
 });
 

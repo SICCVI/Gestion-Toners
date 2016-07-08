@@ -179,11 +179,26 @@ Template.ElementStock.events({
 	},
 	'click .remove-site': function () {
 		const stock = event.target.getAttribute('data-id');
-		const site = this.site;
-		const service = this.service;
-		console.log(this);
-		console.log(stock + " " +site + " "+ service);
-		/*Meteor.call('stocks.remove-site', stock, site, service);*/
+		const consommateur = event.target.getAttribute('data-consommateurId');
+/*		console.log("CONSOMMATEUR ID : " +consommateur);
+		console.log("STOCK ID : " +stock);
+		let objetStock = Stocks.findOne(id=stock);
+		console.log("OBJET STOCK : " + objetStock);
+		let objetConsommateur = objetStock.consommateur
+		console.log("OBJET CONSO : " + objetConsommateur);
+		for (const key of Object.keys(objetConsommateur)) {
+		    const values = objetConsommateur[key];
+		    console.log(values);
+		    let indexOfConsommateur = objetConsommateur.indexOf(values);
+		    console.log("ID DU CONSOMMATEUR POUR CET OBJET : "+values.consommateurId);
+		    if (values.consommateurId === consommateur) {
+		    	console.log("PRESENT DANS L'INDEX " +indexOfConsommateur);
+		    }
+		    else {
+		    	console.log("ABSENT DANS L'INDEX " +indexOfConsommateur);
+		    }  
+		}*/
+		Meteor.call('stocks.remove-site', stock, consommateur);
 	},
 	'click .remove-impression': function () {
 		const stock = event.target.getAttribute('data-id');
