@@ -100,13 +100,22 @@
 			<li><i><strong>Imprimante(s) concernée(s) :</strong></i></li>
 			{{#each impression}}
 				{{#with getImpression this}}
-				<li><i>[&nbsp;{{gabarit}}&nbsp;]&nbsp;{{marque}}&nbsp;-&nbsp;{{modele}}</i>&nbsp;&nbsp;<button class="btn btn-default btn-sm remove-impression glyphicon glyphicon-remove-sign" onClick="getGrandParentDataId(this); getGrandParentDataSite(this);  getGrandParentDataService(this);"></button></li>
+				<li><button class="btn btn-default btn-sm remove-impression glyphicon glyphicon-remove-sign" onClick="getGrandParentDataId(this); getGrandParentDataSite(this);  getGrandParentDataService(this);"></button><i>[&nbsp;&nbsp;&nbsp;{{gabarit}}&nbsp;]&nbsp;{{marque}}&nbsp;-&nbsp;{{modele}}</i></li>
 				{{/with}}
 			{{/each}}
 			<li><button type="button" class="btn btn-default btn-sm glyphicon glyphicon-plus" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddImpression-{{../_id}}-{{site}}-{{service}}"></button></li>
 		</ul>
 		</span>&nbsp;
-		<!-- <button class="remove-site">DELETE</button> -->
+		<span class="dropdown impression">
+        <i class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><span class="glyphicon glyphicon-trash"></span></i>
+	        <ul class="dropdown-menu suppression">
+	            <li>Etes-vous sûrs de vouloir supprimer cet élément?</li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="" class="remove-site" data-id="{{../_id}}" data-consommateurId="{{consommateurId}}">Oui, je veux le supprimer.</a></li>
+	            <li role="separator" class="divider"></li>
+	            <li><a href="" data-toggle="dropdown">Non</a></li>
+	        </ul>
+    	</span>&nbsp;
 		{{#with getSite site}}{{nom}}{{/with}}
 		&nbsp;/&nbsp;
 		{{#with getService service}}{{nom}}{{/with}}
