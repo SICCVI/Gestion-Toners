@@ -13,8 +13,9 @@ Template.EditContact.events({
         const updateNom = target.nom.value;
         const updatePrenom = target.prenom.value;
         const updateTelephone = target.telephone.value;
+        const updateMobile = target.mobile.value;
         const contactId = this._id;
-        Meteor.call('contacts.update', contactId, updateNom, updatePrenom, updateTelephone);
+        Meteor.call('contacts.update', contactId, updateNom, updatePrenom, updateTelephone, updateMobile);
         document.getElementById('modalClose-'+this._id).click();
     },
 });

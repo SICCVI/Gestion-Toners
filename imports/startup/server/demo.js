@@ -1,4 +1,4 @@
-import { Impressions } from '../../api/impressionsCollection.js';
+/*import { Impressions } from '../../api/impressionsCollection.js';
 import { Marques } from '../../api/marquesCollection.js';
 import { Toners } from '../../api/tonersCollection.js';
 import { Fournisseurs } from '../../api/fournisseursCollection.js';
@@ -293,3 +293,4 @@ if (Stocks.find().count() < 3) {
     });
   }
 });
+*/

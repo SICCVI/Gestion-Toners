@@ -25,6 +25,10 @@ ContactSchema = new SimpleSchema({
     type: String,
     label: "Téléphone",
   },
+  mobile: {
+    type: String,
+    label: "Mobile",
+  },
   note : {
     type: String,
     label: "Note",
@@ -44,33 +48,37 @@ Meteor.methods({
     check(contactId, String);
     Contacts.remove(contactId);
   },
-  'contacts.insert'(nom, prenom, telephone) {
+  'contacts.insert'(nom, prenom, telephone, mobile) {
     check(nom, String);
     check(prenom, String);
     check(telephone, String);
+    check(mobile, String);
     Contacts.insert({
-      nom, prenom, telephone,
+      nom, prenom, telephone, mobile,
     });
   },
-  'contacts.alt-insert'(nom, prenom, telephone) {
+  'contacts.alt-insert'(nom, prenom, telephone, mobile) {
     check(nom, String);
     check(prenom, String);
     check(telephone, String);
+    check(mobile, String);
     const newElement = Contacts.insert({
-      nom, prenom, telephone,
+      nom, prenom, telephone, mobile,
     });
     return newElement;
   },
-  'contacts.update'(contactId, updateNom, updatePrenom, updateTelephone) {
+  'contacts.update'(contactId, updateNom, updatePrenom, updateTelephone, updateMobile) {
     check(contactId, String);
     check(updateNom, String);
     check(updatePrenom, String);
     check(updateTelephone, String);
+    check(updateMobile, String);
     Contacts.update(contactId, {
     $set: {
       nom: updateNom,
       prenom: updatePrenom,
       telephone: updateTelephone,
+      mobile: updateMobile,
     }});
   },
     'contacts.note'(contactId, updateNote) {
@@ -94,14 +102,14 @@ Meteor.methods({
 
 ContactsIndex = new EasySearch.Index({
   collection: Contacts,
-  fields: ['nom', 'prenom', 'telephone', 'note'],
+  fields: ['nom', 'prenom', 'telephone', 'mobile', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 25}
 });
 
 ModuleContactsIndex = new EasySearch.Index({
   collection: Contacts,
-  fields: ['nom', 'prenom', 'telephone', 'note'],
+  fields: ['nom', 'prenom', 'telephone', 'mobile', 'note'],
   engine: new EasySearch.Minimongo(),
   defaultSearchOptions : {limit: 5}
 });
