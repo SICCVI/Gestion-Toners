@@ -167,7 +167,7 @@ TonersIndex = new EasySearch.Index({
   collection: Toners,
   fields: ['modele', 'constructeur', 'referenceC', 'couleur', 'referenceF', 'note'],
   engine: new EasySearch.Minimongo(),
-  defaultSearchOptions : {limit: 25}
+  defaultSearchOptions : {limit: 100}
 });
 
 

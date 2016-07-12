@@ -79,7 +79,7 @@ ServicesIndex = new EasySearch.Index({
   collection: Services,
   fields: ['nom', 'note'],
   engine: new EasySearch.Minimongo(),
-  defaultSearchOptions : {limit: 25}
+  defaultSearchOptions : {limit: 100}
 });
 
 ModuleServicesIndex = new EasySearch.Index({
