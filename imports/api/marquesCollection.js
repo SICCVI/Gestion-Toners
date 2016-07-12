@@ -77,5 +77,5 @@ MarquesIndex = new EasySearch.Index({
   collection: Marques,
   fields: ['nom', 'note'],
   engine: new EasySearch.Minimongo(),
-  defaultSearchOptions : {limit: 25}
+  defaultSearchOptions : {limit: 100}
 });

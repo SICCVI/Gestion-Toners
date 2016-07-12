@@ -180,5 +180,5 @@ StocksIndex = new EasySearch.Index({
   collection: Stocks,
   fields: ['index'],
   engine: new EasySearch.Minimongo(),
-  defaultSearchOptions : {}
+  defaultSearchOptions : {limit: 100}
 });
