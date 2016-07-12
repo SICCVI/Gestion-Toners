@@ -45,7 +45,8 @@ html, body {
     width: auto;
     max-width: 60%;
     height: auto;
-    max-height: 50px;
+    max-height: 30px;
+    margin-top: 10px;
 }
 
 #Content {
@@ -56,6 +57,7 @@ html, body {
     height:auto;
     min-height: 700px;
 }
+
  
 #Footer {
     background-color: #154360;

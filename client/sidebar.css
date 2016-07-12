@@ -189,3 +189,7 @@
 .sidebar-nav .sidebar-brand {
     text-indent: 0px !important;
 }
+
+.sidebar-brand label {
+    font-size: 0.8em;
+}

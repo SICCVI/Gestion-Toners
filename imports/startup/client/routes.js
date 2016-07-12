@@ -21,6 +21,7 @@ import '../../ui/modules/Modules.js';
 
 FlowRouter.route('/', {
 	name: 'home',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'Home'})
 	}
@@ -28,6 +29,7 @@ FlowRouter.route('/', {
 
 FlowRouter.route('/impressions', {
 	name: 'impressions',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeImpressions'});
 	}
@@ -42,6 +44,7 @@ FlowRouter.route('/impressions', {
 
 FlowRouter.route('/marques', {
 	name: 'marques',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeMarques'});
 	}
@@ -49,6 +52,7 @@ FlowRouter.route('/marques', {
 
 FlowRouter.route('/toners', {
 	name: 'toners',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeToners'});
 	}
@@ -56,6 +60,7 @@ FlowRouter.route('/toners', {
 
 FlowRouter.route('/fournisseurs', {
 	name: 'fournisseurs',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeFournisseurs'});
 	}
@@ -63,6 +68,7 @@ FlowRouter.route('/fournisseurs', {
 
 FlowRouter.route('/contacts', {
 	name: 'contacts',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeContacts'});
 	}
@@ -70,6 +76,7 @@ FlowRouter.route('/contacts', {
 
 FlowRouter.route('/sites', {
 	name: 'sites',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeSites'});
 	}
@@ -77,6 +84,7 @@ FlowRouter.route('/sites', {
 
 FlowRouter.route('/stocks', {
 	name: 'stocks',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeStocks'});
 	}
@@ -84,6 +92,7 @@ FlowRouter.route('/stocks', {
 
 FlowRouter.route('/historiques', {
 	name: 'historiques',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeHistoriques'});
 	}
@@ -91,6 +100,7 @@ FlowRouter.route('/historiques', {
 
 FlowRouter.route('/services', {
 	name: 'services',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'ListeServices'});
 	}
@@ -99,7 +109,16 @@ FlowRouter.route('/services', {
 
 FlowRouter.route('/modules', {
 	name: 'modules',
+	triggersEnter: [trackRouteEntry],
 	action() {
 		BlazeLayout.render('MainLayout', {main: 'Modules'});
 	}
 });
+
+function trackRouteEntry() {
+  // context is the output of `FlowRouter.current()`
+    $('#Content').hide().fadeIn("slow");
+}
+
+function trackRouteClose(context) {
+}
