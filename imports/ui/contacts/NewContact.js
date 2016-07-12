@@ -11,10 +11,12 @@ Template.NewContact.events({
         const nom = target.nom.value;
         const prenom = target.prenom.value;
         const telephone = target.telephone.value;
-        Meteor.call('contacts.insert', nom, prenom, telephone);
+        const mobile = target.mobile.value;
+        Meteor.call('contacts.insert', nom, prenom, telephone, mobile);
         target.nom.value = "";
         target.prenom.value = "";
         target.telephone.value = "";
+        target.mobile.value = "";
         target.nom.focus();
         $("#closeModalNew").click();
     },

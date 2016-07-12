@@ -30,7 +30,7 @@ Template.SelectionContact.events({
     'click .table-donnees .row-donnees':function(evt){
         if (!$(evt.currentTarget).hasClass("highlight")) {
           $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
-          $('#ChoixContact').val(this.nom + " " + this.prenom + " ( " + this.telephone + " )");
+          $('#ChoixContact').val(this.nom + " " + this.prenom + " ( " + this.telephone + " / " + this.mobile + " )");
           $('#ChoixContactId').val(this._id);
         }
         else {
@@ -39,7 +39,7 @@ Template.SelectionContact.events({
           $('#ChoixContactId').val("");
         }
     },
-    'click .envoi-selection1':function(){
+/*    'click .envoi-selection1':function(){
       console.log('insertion1');
       Meteor.call('items.insert', selected);
     },
@@ -79,7 +79,7 @@ Template.SelectionContact.events({
       for (index = 0; index < selected.length; ++index) {
           Meteor.call('items.insert', selected[index]._id);
       }
-    },
+    },*/
 });
 
 Template.CreationContact.events({
@@ -89,9 +89,10 @@ Template.CreationContact.events({
         const nom = target.nom.value;
         const prenom = target.prenom.value;
         const telephone = target.telephone.value;
-        Meteor.call('contacts.alt-insert', nom, prenom, telephone, function(error, result){
+        const mobile = target.mobile.value;
+        Meteor.call('contacts.alt-insert', nom, prenom, telephone, mobile, function(error, result){
         $('#ChoixContactId').val(result);
         });
-        $('#ChoixContact').val(nom + " " + prenom + " ( " + telephone + " )");
+        $('#ChoixContact').val(nom + " " + prenom + " ( " + telephone + " / " + mobile + " )");
     },
 });
