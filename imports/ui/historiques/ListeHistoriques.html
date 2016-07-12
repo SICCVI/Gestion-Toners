@@ -98,7 +98,7 @@
 					</table>
 				{{> EasySearch.Pagination index=historiquesIndex customRenderPagination="Pagination"}}
 		{{else}}
-			<p>En attente</p>
+			{{> spinner}}
 		{{/if}}
 	</section>
 </template>

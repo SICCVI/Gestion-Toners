@@ -30,3 +30,5 @@ random
 xolvio:cleaner
 practicalmeteor:mocha 
 dispatch:mocha-phantomjs
+
+sacha:spin
