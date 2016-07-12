@@ -31,6 +31,12 @@
             e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         });
+        $(window).load(function() {
+            console.log('test');
+          $('#Content').fadeIn(5000, function() {
+            // Animation complete
+          });
+        });
     </script>
     
 </template>
