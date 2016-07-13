@@ -89,8 +89,9 @@
 			<ul class="dropdown-menu contact" aria-labelledby="dropdownMenu1"  data-id="{{../_id}}">
 				{{#with getContact contact}}
 					<li><i><strong>Contact&nbsp;:</strong></i>&nbsp;{{nom}}&nbsp;{{prenom}}</li>
-					<li><i class="glyphicon glyphicon-phone-alt">&nbsp;:</i>&nbsp;&nbsp;{{telephone}}</li>
+					<li><i class="glyphicon glyphicon-phone-alt">&nbsp;:</i>&nbsp;&nbsp;{{telephone}} <i class="glyphicon glyphicon-phone">&nbsp;:</i>&nbsp;&nbsp;{{mobile}}</li>
 				{{/with}}
+				<br />
 				<li><button type="button" class="btn btn-default btn-sm glyphicon glyphicon-edit" data-id="{{_id}}" data-toggle="modal" data-target="#ModalAddContact-{{../_id}}-{{site}}-{{service}}"></button></li>
 			</ul>
 		</span>&nbsp;
@@ -119,6 +120,8 @@
 		{{#with getSite site}}{{nom}}{{/with}}
 		&nbsp;/&nbsp;
 		{{#with getService service}}{{nom}}{{/with}}
+		&nbsp;/&nbsp;
+		{{#with getContact contact}}( {{nom}} {{prenom}} ){{/with}}
 		{{> ModalAddImpression}}
 		{{> ModalAddContact}}
 	</div>

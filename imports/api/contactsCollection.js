@@ -16,6 +16,7 @@ ContactSchema = new SimpleSchema({
   nom: {
     type: String,
     label: "Nom",
+    optional: true,
   },
   prenom: {
     type: String,
@@ -24,10 +25,12 @@ ContactSchema = new SimpleSchema({
   telephone: {
     type: String,
     label: "Téléphone",
+    optional: true,
   },
   mobile: {
     type: String,
     label: "Mobile",
+    optional: true,
   },
   note : {
     type: String,

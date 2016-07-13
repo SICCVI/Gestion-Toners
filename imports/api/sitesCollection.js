@@ -20,18 +20,22 @@ SiteSchema = new SimpleSchema({
   adresse: {
     type: String,
     label: "Adresse",
+    optional: true,
   },
   codepostal: {
     type: String,
     label: "Code Postal",
+    optional: true,
   },
   ville: {
     type: String,
     label: "Ville",
+    optional: true,
   },
   telephone: {
     type: String,
     label: "Téléphone",
+    optional: true,
   },
   note: {
     type: String,

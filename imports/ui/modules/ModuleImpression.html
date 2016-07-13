@@ -65,7 +65,7 @@
 		    </div><!-- /input-group -->
 		    <div class="input-group">
 		    	<span class="input-group-addon" id="sizing-addon2">Marque</span>
-		    	<input id="new-inputmarque" type="text" name="marque" class="form-control" aria-label="..." placeholder="Ajouter une marque..." required>
+		    	<input id="new-inputmarque" type="text" name="marque" value="" class="form-control" aria-label="..." placeholder="... (Obligatoire)" required>
 		      	<div class="input-group-btn">
 			      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle select-reduce" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
 		 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
@@ -78,7 +78,7 @@
 
 		    <div class="input-group">
 			  <span class="input-group-addon" id="sizing-addon2">Modèle</span>
-			  <input type="text" name="modele" class="form-control" placeholder="Ajouter un modèle..." aria-describedby="sizing-addon2" required>
+			  <input type="text" name="modele" value="" class="form-control" placeholder="... (Obligatoire)" aria-describedby="sizing-addon2" required>
 			</div>
 
 	 		<button id="SubmitNew" class="btn btn-success" type="submit">Ajouter</button>
