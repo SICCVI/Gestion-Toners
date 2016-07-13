@@ -11,8 +11,9 @@ Template.EditMarque.events({
         event.preventDefault();
         const target = event.target;
         const updateNom = target.nom.value;
+        const marque = updateNom.toUpperCase();
         const marqueId = this._id;
-        Meteor.call('marques.update', marqueId, updateNom);
+        Meteor.call('marques.update', marqueId, marque);
         document.getElementById('modalClose-'+this._id).click();
     },
 });

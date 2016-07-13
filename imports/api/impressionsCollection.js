@@ -17,7 +17,7 @@ ImpressionSchema = new SimpleSchema({
   gabarit: {
     type: String,
     label: "Gabarit",
-    allowedValues: ['Imprimante', 'Photocopieur'],
+    allowedValues: ['Imprimante', 'Photocopieur', 'Fax'],
   },
   marque: {
     type: String,

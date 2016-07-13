@@ -29,7 +29,7 @@ Template.SelectionSite.events({
     'click .table-donnees .row-donnees':function(evt){
         if (!$(evt.currentTarget).hasClass("highlight")) {
           $(evt.currentTarget).addClass('highlight').siblings().removeClass("highlight");
-          $('#ChoixSite').val(this.nom + "   //   " + this.codepostal + " " + this.ville + " ( " + this.telephone + " )");
+          $('#ChoixSite').val(this.nom + "   //   " + this.ville + " ( " + this.telephone + " )");
           $('#ChoixSiteId').val(this._id);
         }
         else {
@@ -52,6 +52,6 @@ Template.CreationSite.events({
         Meteor.call('sites.alt-insert', nom, adresse, codepostal, ville, telephone, function(error, result){
         $('#ChoixSiteId').val(result);
         });
-        $('#ChoixSite').val(nom + "   //   " + codepostal + " " + ville + " ( " + telephone + " )");
+        $('#ChoixSite').val(nom + "   //   " + ville + " ( " + telephone + " )");
     },
 });

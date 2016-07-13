@@ -490,7 +490,12 @@ button .glyphicon {
 
 .panel-footer.choix {
     font-weight: bold !important;
-    background-color: rgba(240, 173, 78, 1.0);
+    background-color: rgba(190, 75, 75, 1.0);
+}
+
+.panel-footer.choix .input-group-addon {
+    color:darkred;
+    font-weight: bold;
 }
 
 #Resultats {

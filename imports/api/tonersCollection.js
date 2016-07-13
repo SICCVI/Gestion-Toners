@@ -44,6 +44,7 @@ TonerSchema = new SimpleSchema({
   couleur: {
     type: String,
     label: "Couleur",
+    optional: true,
   },
   note: {
     type: String,

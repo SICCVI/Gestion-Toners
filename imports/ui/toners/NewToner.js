@@ -19,38 +19,11 @@ Template.NewToner.events({
         const couleur = target.couleur.value;
         const verification = Marques.find({nom: constructeurUpper}, {limit: 1}).count()>0;
 
-        Meteor.call('toners.alt-insert-simple', modele, constructeurUpper, referenceC, couleur, function(error, result){
-            tonerId = result;
-
-            const oTable = document.getElementById('TableFournisseur');
-            const rowLength = oTable.rows.length;
-            let cell1;
-            let cell2;  
-            let cell3;   
-            for (let i = 0; i < rowLength; i++) { 
-               const oCells = oTable.rows.item(i).cells;
-               const cellLength = oCells.length;
-               for(let  j = 0; j < cellLength; j++){
-                      cell1 = oCells.item(0).innerHTML;
-                      cell2 = oCells.item(1).innerHTML;
-                      cell3 = oCells.item(2).textContent;
-                }
-              let fournisseurId = cell3;
-              let referenceF = cell2;
-              Meteor.call('toners.add-fournisseur', tonerId, fournisseurId, referenceF);
-            }
-        });
+        Meteor.call('toners.insert-simple', modele, constructeurUpper, referenceC, couleur);
         target.modele.value="";
         target.constructeur.value="";
         target.referenceC.value="";
         target.couleur.value="";
-        $("#SelectFournisseur").val("");
-        $("#InputFournisseur").val("");
-        const deleteTable = document.getElementById('TableFournisseur');
-        const rowLength = deleteTable.rows.length;  
-        for (let i = 0; i < rowLength; i++) { 
-           deleteTable.deleteRow(0);
-        }
         $("#closeModalNew").click();
             if (verification === true) {
                 throw new Meteor.Error('Cette élément existe déjà dans la collection et ne sera donc pas insérée.');
@@ -59,7 +32,7 @@ Template.NewToner.events({
                 Meteor.call('marques.add', constructeurUpper);
             }
     },
-    'click .selection-fournisseur'(event) {
+/*    'click .selection-fournisseur'(event) {
         event.preventDefault();
         const target = event.target;
         const table = document.getElementById("TableFournisseur");
@@ -74,7 +47,7 @@ Template.NewToner.events({
     'click .delete-selection-fournisseur'(event) {
         event.preventDefault();
         document.getElementById("TableFournisseur").deleteRow(0);
-    }/*,
+    }*//*,
     'click #CHECK' (event) {
         event.preventDefault();
         var oTable = document.getElementById('TableFournisseur');
@@ -112,17 +85,17 @@ Template.NewToner.onCreated(function() {
   this.autorun(() => {
     this.subscribe('marques');
   });
-  this.autorun(() => {
+/*  this.autorun(() => {
     this.subscribe('fournisseurs');
-  });
+  });*/
 });
 
 Template.NewToner.helpers({
     marques: ()=> {
         return Marques.find({}, {sort: { nom: 1 }}); 
     },
-    fournisseurs: ()=> {
+/*    fournisseurs: ()=> {
         return Fournisseurs.find({}, {sort: { nom: 1 }}); 
-    },
+    },*/
 });
 

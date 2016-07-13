@@ -9,6 +9,39 @@ import "./ModuleService.js";
 import { Stocks } from '../../api/stocksCollection.js';
 import '../../scripts/myFunctions.js';
 
+
+Template.Modules.onCreated(function(){
+  this.reactiveVarModule = new ReactiveVar(false);
+  this.ajouterElements = new ReactiveVar(false);
+  this.autorun(() => {
+    this.subscribe('stocks');
+  });
+  this.autorun(() => {
+    this.subscribe('sites');
+  });
+  this.autorun(() => {
+    this.subscribe('services');
+  });
+  this.autorun(() => {
+    this.subscribe('contacts');
+  });
+  this.autorun(() => {
+    this.subscribe('toners');
+  });
+  this.autorun(() => {
+    this.subscribe('impressions');
+  });
+});
+
+Template.Modules.helpers({
+    reactiveVarModule: function() {
+      return Template.instance().reactiveVarModule.get();
+  },
+    ajouterElements: function() {
+      return Template.instance().ajouterElements.get();
+  },
+});
+
 Template.Modules.events({
     'click #ToSectionFin':function(evt){
         $('#ResultatToner').val($('#ChoixToner').val());
@@ -184,19 +217,3 @@ Template.Modules.events({
   },
 });
 
-Template.Modules.onCreated(function(){
-  this.reactiveVarModule = new ReactiveVar(false);
-  this.ajouterElements = new ReactiveVar(false);
-  this.autorun(() => {
-    this.subscribe('stocks');
-  });
-});
-
-Template.Modules.helpers({
-    reactiveVarModule: function() {
-      return Template.instance().reactiveVarModule.get();
-  },
-    ajouterElements: function() {
-      return Template.instance().ajouterElements.get();
-  },
-});

@@ -37,33 +37,6 @@
 				    </select>
 			</div>
 
-			<fieldset class="toner-fournisseur">
-
-			    <div class="input-group">
-					<span class="input-group-addon" id="sizing-addon2">Fournisseur</span>
-					<select type="button" id="SelectFournisseur" class="formselect btn btn-default dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-			 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
-					        {{#each fournisseurs}}
-					          <option value="{{_id}}">{{nom}}</option>
-					        {{/each}}
-					</select>
-		    	</div><!-- /input-group -->
-
-				<div class="input-group">
-				  <span class="input-group-addon" id="sizing-addon2">Référence Fournisseur</span>
-				  <input type="text" id="InputFournisseur" class="form-control" placeholder="Ajouter une référence" aria-describedby="sizing-addon2">
-				</div>
-
-				<button class="btn btn-default selection-fournisseur">Cliquez ici pour selectionner ce fournisseur&ensp;<span class="glyphicon glyphicon-arrow-down"></span></button>
-
-				<table id="TableFournisseur" class="table-donnees">
-					<th>Fournisseur</th>
-					<th>Référence</th>
-					<th width="10px"><button class="btn btn-default btn-danger delete-selection-fournisseur">X</button></th>
-				</table>
-
-			</fieldset>
-
 	 		<button id="SubmitNew" class="btn btn-success" type="submit">Ajouter</button>
 	 	</form>
 	</div>
