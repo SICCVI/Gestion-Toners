@@ -51,7 +51,7 @@ Template.ListeHistoriques.helpers({
 
 Template.ListeHistoriques.events({
   'click .supprimer': function() {
-    Meteor.call('historiques.remove', this._id);
+    Meteor.call('historiques.remove', this.__originalId);
   },
   'submit .add-note'(event) {
         event.preventDefault();

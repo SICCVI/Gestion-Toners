@@ -318,10 +318,10 @@ Template.ModalAddImpression.helpers({
   		return Impressions.find({ _id: {$ne: true }}).count();
   	},
   impressionsIndex: function () {
-	    return ImpressionsIndex;   
+	    return ModuleImpressionsIndex;   
 	},
 	resultsCount: function () {
-      return ImpressionsIndex.getComponentDict().get('count');
+      return ModuleImpressionsIndex.getComponentDict().get('count');
     },
 });
 
@@ -392,10 +392,10 @@ Template.ModalAddContact.helpers({
   		return Contacts.find({ _id: {$ne: true }}).count();
   	},
   contactsIndex: function () {
-	    return ContactsIndex;   
+	    return ModuleContactsIndex;   
 	},
 	resultsCount: function () {
-      return ContactsIndex.getComponentDict().get('count');
+      return ModuleContactsIndex.getComponentDict().get('count');
     },
 });
 

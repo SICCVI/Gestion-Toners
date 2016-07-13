@@ -7,6 +7,7 @@
 				<select type="button" id="editGabarit-{{_id}}" class="btn btn-default dropdown-toggle formselect edit-impression-{{_id}}" aria-haspopup="true" aria-expanded="false" name="gabarit" value="{{gabarit}}" onChange="editCheck('#editGabarit-{{_id}}', '{{gabarit}}', this.value);">
 	 		    	<option value="Imprimante" selected="{{compare gabarit 'Imprimante'}}">Imprimante</option>
 			        <option value="Photocopieur" selected="{{compare gabarit 'Photocopieur'}}">Photocopieur</option>
+			        <option value="Fax" selected="{{compare gabarit 'Fax'}}">Fax</option>
 			    </select>
 	    	</div><!-- /input-group -->
 

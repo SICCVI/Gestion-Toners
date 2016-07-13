@@ -3,13 +3,12 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading titre-module"><span class="glyphicon glyphicon-print float-gauche" aria-hidden="true"></span><label>Module Choix Impression</label></div>
+                <div class="panel-heading titre-module"><h4>Créez ou Sélectionnez votre choix</h4></div>
                 <div class="panel-body">
                     <div class="col-lg-6 bordure-droite">
-                        <div class="panel-heading">Création</div>
                         {{>CreationImpression}}
                     </div>
                     <div class="col-lg-6 bordure-gauche">
-                        <div class="panel-heading">Sélection</div>
                         {{>SelectionImpression}}
                     </div>
                 </div>
@@ -49,6 +48,7 @@
 				<select type="button" id="selectgabarit" class="btn btn-default dropdown-toggle formselect" aria-haspopup="true" aria-expanded="false" name="gabarit">
 	 		    	<option value="Imprimante" selected>Imprimante</option>
 			        <option value="Photocopieur">Photocopieur</option>
+			        <option value="Fax">Fax</option>
 			    </select>
 	    	</div><!-- /input-group -->
 

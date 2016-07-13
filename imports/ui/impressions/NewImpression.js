@@ -17,6 +17,7 @@ Template.NewImpression.events({
         const nombretoner = Number(target.nombretoner.value);
         Meteor.call('impressions.insert', gabarit, nom, modele, nombretoner);
         target.marque.value='';
+        $("#insert-selectmarque").val("");
         target.modele.value='';
         target.nombretoner.value='1';
         $("#closeModalNew").click();

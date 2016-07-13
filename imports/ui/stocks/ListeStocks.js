@@ -13,6 +13,21 @@ Template.ListeStocks.onCreated(function() {
   this.autorun(() => {
     this.subscribe('stocks');
   });
+    this.autorun(() => {
+    this.subscribe('sites');
+  });
+  this.autorun(() => {
+    this.subscribe('services');
+  });
+  this.autorun(() => {
+    this.subscribe('contacts');
+  });
+  this.autorun(() => {
+    this.subscribe('toners');
+  });
+    this.autorun(() => {
+    this.subscribe('impressions');
+  });
   this.showStockOk = new ReactiveVar(true);
   this.showStockAlerte = new ReactiveVar(true);
   this.showStockAvertissement = new ReactiveVar(true);

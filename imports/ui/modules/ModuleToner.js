@@ -61,24 +61,6 @@ Template.CreationToner.events({
         Meteor.call('toners.alt-insert-simple', modele, constructeurUpper, referenceC, couleur, function(error, result){
             tonerId = result;
             $('#ChoixTonerId').val(result);
-
-            const oTable = document.getElementById('TableFournisseur');
-            const rowLength = oTable.rows.length;
-            let cell1;
-            let cell2;  
-            let cell3;   
-            for (let i = 0; i < rowLength; i++) { 
-               const oCells = oTable.rows.item(i).cells;
-               const cellLength = oCells.length;
-               for(let  j = 0; j < cellLength; j++){
-                      cell1 = oCells.item(0).innerHTML;
-                      cell2 = oCells.item(1).innerHTML;
-                      cell3 = oCells.item(2).textContent;
-                }
-              let fournisseurId = cell3;
-              let referenceF = cell2;
-              Meteor.call('toners.add-fournisseur', tonerId, fournisseurId, referenceF);
-            }
         });
         $('#ChoixToner').val(modele + " / " + constructeur + " " + referenceC + " ( " + couleur + " )");
         if (verification === true) {
@@ -87,7 +69,7 @@ Template.CreationToner.events({
         else {
                 Meteor.call('marques.add', constructeurUpper);
             }
-    },
+    },/*
     'click .selection-fournisseur'(event) {
         event.preventDefault();
         const target = event.target;
@@ -103,7 +85,7 @@ Template.CreationToner.events({
     'click .delete-selection-fournisseur'(event) {
         event.preventDefault();
         document.getElementById("TableFournisseur").deleteRow(0);
-    }
+    }*/
 });
 
 Template.CreationToner.onCreated(function() {

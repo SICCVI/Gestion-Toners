@@ -3,13 +3,12 @@
         <div class="col-lg-12">
             <div class="panel panel-default">
                 <div class="panel-heading titre-module"><span class="glyphicon glyphicon-tint float-gauche" aria-hidden="true"></span><label>Module Choix Toner</label></div>
+                <div class="panel-heading titre-module"><h4>Créez ou Sélectionnez votre choix</h4></div>
                 <div class="panel-body">
                     <div class="col-lg-6 bordure-droite">
-                        <div class="panel-heading">Création</div>
                         {{>CreationToner}}
                     </div>
                     <div class="col-lg-6 bordure-gauche">
-                        <div class="panel-heading">Sélection</div>
                         {{>SelectionToner}}
                     </div>
                 </div>
@@ -54,11 +53,11 @@
 
  			<div class="input-group">
 			  <span class="input-group-addon" id="sizing-addon2">Modèle</span>
-			  <input type="text" name="modele" class="form-control" placeholder="..." aria-describedby="sizing-addon2" required>
+			  <input type="text" name="modele" class="form-control" placeholder="... (Obligatoire)" aria-describedby="sizing-addon2" required>
 			</div>
 		    <div class="input-group">
 		    	<span class="input-group-addon" id="sizing-addon2" >Constructeur</span>
-		    	<input id="new-inputmarque" type="text" name="constructeur" class="form-control" aria-label="..." placeholder="..." required>
+		    	<input id="new-inputmarque" type="text" name="constructeur" class="form-control" placeholder="... (Obligatoire)" required>
 		      	<div class="input-group-btn">
 			      	<select type="button" id="insert-selectmarque" class="formselect btn btn-default dropdown-toggle select-reduce" aria-haspopup="true" aria-expanded="false" onChange="reporterSelect('insert-selectmarque', 'new-inputmarque');">
 		 		    	<option value="" disabled selected>Sélectionner dans la liste</option>
@@ -71,7 +70,7 @@
 
 		    <div class="input-group">
 			  <span class="input-group-addon" id="sizing-addon2">Référence Constructeur</span>
-			  <input type="text" name="referenceC" class="form-control" placeholder="..." aria-describedby="sizing-addon2" required>
+			  <input type="text" name="referenceC" class="form-control" placeholder="... (Obligatoire)" aria-describedby="sizing-addon2" required>
 			</div>
 
 		    <div class="input-group">
@@ -85,33 +84,6 @@
 				        <option value="Couleur">Couleur</option>
 				    </select>
 			</div>
-
-			<fieldset class="toner-fournisseur">
-
-			    <div class="input-group">
-					<span class="input-group-addon" id="sizing-addon2">Fournisseur</span>
-					<select type="button" id="SelectFournisseur" class="formselect btn btn-default dropdown-toggle select-max" aria-haspopup="true" aria-expanded="false">
-			 		    	<option value="" disabled selected><i>Sélectionner dans la liste</i></option>
-					        {{#each fournisseurs}}
-					          <option value="{{_id}}">{{nom}}</option>
-					        {{/each}}
-					</select>
-		    	</div><!-- /input-group -->
-
-				<div class="input-group">
-				  <span class="input-group-addon" id="sizing-addon2">Référence Fournisseur</span>
-				  <input type="text" id="InputFournisseur" class="form-control" placeholder="..." aria-describedby="sizing-addon2">
-				</div>
-
-				<button class="btn btn-default selection-fournisseur">Cliquez ici pour selectionner ce fournisseur&ensp;<span class="glyphicon glyphicon-arrow-down"></span></button>
-
-				<table id="TableFournisseur" class="table-donnees">
-						<th>Fournisseur</th>
-						<th>Référence</th>
-						<th width="10px"><button class="btn btn-default btn-danger delete-selection-fournisseur">X</button></th>
-				</table>
-
-			</fieldset>
 
 	 		<button id="SubmitNew" class="btn btn-success" type="submit">Ajouter</button>
 	 	</form>
@@ -132,6 +104,7 @@
 			<table class="table-donnees">
 				<thead>
 					<tr>
+						<th class="colonne-toner">Modèle</th>
 						<th class="colonne-toner">Constructeur</th>
 						<th class="colonne-toner">Référence</th>
 						<th class="colonne-toner">Couleur</th>
@@ -145,6 +118,9 @@
 					{{/EasySearch.IfNoResults}}
 					{{#EasySearch.Each index=tonersIndex }}
 						<tr class="row-donnees" data-mongoId="{{_id}}">
+							<td>
+								<div class="cellule">{{modele}}</div>
+							</td> 
 							<td>
 								<div class="cellule">{{constructeur}}</div>
 							</td> 
