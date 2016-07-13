@@ -20,22 +20,27 @@ FournisseurSchema = new SimpleSchema({
   adresse: {
     type: String,
     label: "Adresse",
+    optional: true,
   },
   codepostal: {
     type: String,
     label: "Code Postal",
+    optional: true,
   },
   ville: {
     type: String,
     label: "Ville",
+    optional: true,
   },
   telephone: {
     type: String,
     label: "Téléphone",
+    optional: true,
   },
   website: {
     type: String,
     label: "Website",
+    optional: true,
   },
   note : {
     type: String,
