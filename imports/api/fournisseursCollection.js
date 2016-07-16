@@ -124,5 +124,5 @@ FournisseursIndex = new EasySearch.Index({
   collection: Fournisseurs,
   fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone', 'website', 'note'],
   engine: new EasySearch.Minimongo(),
-  defaultSearchOptions : {limit: 100}
+  defaultSearchOptions : {limit: 7}
 });
