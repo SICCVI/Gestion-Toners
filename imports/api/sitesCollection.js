@@ -115,7 +115,7 @@ SitesIndex = new EasySearch.Index({
   collection: Sites,
   fields: ['nom', 'adresse', 'codepostal', 'ville', 'telephone', 'note'],
   engine: new EasySearch.Minimongo(),
-  defaultSearchOptions : {limit: 100}
+  defaultSearchOptions : {limit: 7}
 });
 
 ModuleSitesIndex = new EasySearch.Index({

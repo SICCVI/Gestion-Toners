@@ -117,7 +117,7 @@ FlowRouter.route('/modules', {
 
 function trackRouteEntry() {
   // context is the output of `FlowRouter.current()`
-    $('#Content').hide().fadeIn(1500);
+    $('#Content').hide().fadeIn(750);
 }
 
 function trackRouteClose(context) {
