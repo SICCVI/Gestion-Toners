@@ -22,6 +22,7 @@ Template.NewToner.events({
         Meteor.call('toners.insert-simple', modele, constructeurUpper, referenceC, couleur);
         target.modele.value="";
         target.constructeur.value="";
+        $("#insert-selectmarque").val("");
         target.referenceC.value="";
         target.couleur.value="";
         $("#closeModalNew").click();
