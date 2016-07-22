@@ -65,9 +65,12 @@ Template.ElementStock.events({
 		const toner = Toners.findOne({_id: this.toner});
 		const date = getDate();
 		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / " + toner.referenceC;
+		const tonerModele = toner.modele;
+		const tonerConstructeur = toner.constructeur;
+		const tonerReference = toner.referenceC;
 		const tonerId = toner._id;
 		const categorie = "Entrée";
-		Meteor.call('historiques.insert-entree', date, tonerId, tonerNom, categorie);
+		Meteor.call('historiques.insert-entree', date, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie);
 		Meteor.call('historiques.fin-commande', tonerId);
 	},
 	'click .diminue-quantite': function () {
@@ -127,6 +130,9 @@ Template.ElementStock.events({
 
 		const toner = Toners.findOne({_id: parent.toner});
 		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / " + toner.referenceC;
+		const tonerModele = toner.modele;
+		const tonerConstructeur = toner.constructeur;
+		const tonerReference = toner.referenceC;
 		const tonerId = toner._id;
 		const date = getDate();
 		const siteId = site;
@@ -134,7 +140,7 @@ Template.ElementStock.events({
 		const serviceId = service;
 		const serviceNom = Services.findOne({_id: serviceId}).nom;
 		const categorie = "Retrait";
-		Meteor.call('historiques.insert-retrait', date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerNom, categorie, function(error, result){
+		Meteor.call('historiques.insert-retrait', date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie, function(error, result){
 	  		const historiqueId = result;
 	  		Meteor.call('stocks.add-historique', parent._id, site, service, historiqueId);
   		});
@@ -166,10 +172,13 @@ Template.ElementStock.events({
 	'click .commander': function () {
 		const toner = Toners.findOne({_id: this.toner});
 		const tonerNom = "Modèle : " + toner.modele + " / Constructeur : " + toner.constructeur + " / " + toner.referenceC;
+		const tonerModele = toner.modele;
+		const tonerConstructeur = toner.constructeur;
+		const tonerReference = toner.referenceC;
 		const tonerId = toner._id;
 		const date = getDate();
 		const categorie = "Commande";
-		Meteor.call('historiques.insert-commande', date, tonerId, tonerNom, categorie);	
+		Meteor.call('historiques.insert-commande', date, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie);	
 	},
 	'click .supprimer': function() {
 		Meteor.call('stocks.remove', this._id);

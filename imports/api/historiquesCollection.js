@@ -13,20 +13,20 @@ Historiques.allow({
 });
 
 Meteor.methods({
-  'historiques.insert-retrait'(date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerNom, categorie) {
+  'historiques.insert-retrait'(date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie) {
     const newElement = Historiques.insert({
-      date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerNom, categorie
+      date, siteId, siteNom, serviceId, serviceNom, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie
     });
     return newElement;
   },
-  'historiques.insert-entree'(date, tonerId, tonerNom, categorie) {
+  'historiques.insert-entree'(date, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie) {
     Historiques.insert({
-      date, tonerId, tonerNom, categorie
+      date, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie
     });
   },
-  'historiques.insert-commande'(date, tonerId, tonerNom, categorie) {
+  'historiques.insert-commande'(date, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie) {
     Historiques.insert({
-      date, tonerId, tonerNom, categorie
+      date, tonerId, tonerModele, tonerConstructeur, tonerReference, tonerNom, categorie
     });
   },
   'historiques.remove'(historiqueId) {
@@ -121,7 +121,7 @@ HistoriquesIndex = new EasySearch.Index({
     }
   }),
   collection: Historiques,
-  fields: ['date', 'siteNom', 'serviceNom', 'tonerNom', 'categorie', 'tonerId', 'siteId', 'serviceId', 'note'],
+  fields: ['date', 'siteNom', 'serviceNom', 'tonerNom', 'tonerModele', 'tonerConstructeur', 'tonerReference', 'categorie', 'tonerId', 'siteId', 'serviceId', 'note'],
   defaultSearchOptions: {
     limit: 30
   },

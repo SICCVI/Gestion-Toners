@@ -1,8 +1,8 @@
 import { FlowRouter } from 'meteor/kadira:flow-router';
 import { BlazeLayout } from 'meteor/kadira:blaze-layout';
-
+import { Accounts } from 'meteor/accounts-base';
 import '../../ui/layouts/MainLayout.js';
-
+import '../../ui/layouts/Wall.html';
 import '../../ui/impressions/ListeImpressions.js';
 import '../../ui/toners/ListeToners.js';
 import '../../ui/marques/ListeMarques.js';
@@ -18,12 +18,43 @@ import '../../ui/historiques/ListeHistoriques.js';
 
 import '../../ui/modules/Modules.js';
 
+if (Meteor.isClient) {
+	Accounts.onLogin(function() {
+	FlowRouter.go('home');
+	console.log('onLogin');
+	});
+
+	Accounts.onLogout(function() {
+		FlowRouter.go('wall');
+		console.log('onLogout');
+	});
+}
+
+FlowRouter.triggers.enter([function(context, redirect) {
+	if(!Meteor.userId()) {
+		FlowRouter.go('wall');
+		console.log('go wall');
+	}
+}]);
 
 FlowRouter.route('/', {
-	name: 'home',
-	triggersEnter: [trackRouteEntry],
+	name: 'wall',
 	action() {
-		BlazeLayout.render('MainLayout', {main: 'Home'})
+		/*if(Meteor.userId()) {
+			FlowRouter.go('home');
+			console.log('go home');
+		}*/
+		BlazeLayout.render('Wall');
+		console.log('render Wall');
+	}
+});
+
+FlowRouter.route('/home', {
+	name: 'home',
+/*	triggersEnter: [trackRouteEntry],*/
+	action() {
+		BlazeLayout.render('MainLayout', {main: 'Home'});
+		console.log('render Home');
 	}
 });
 

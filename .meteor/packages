@@ -22,9 +22,11 @@ kadira:blaze-layout
 
 aldeed:collection2
 aldeed:autoform
+
 twbs:bootstrap
 
 easy:search
+
 random
 
 xolvio:cleaner
@@ -32,3 +34,6 @@ practicalmeteor:mocha
 dispatch:mocha-phantomjs
 
 sacha:spin
+
+accounts-ui
+accounts-password
