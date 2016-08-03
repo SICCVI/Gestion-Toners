@@ -122,7 +122,7 @@ Meteor.methods({
     });
   },
   //AJOUT DE NOTE
-  'contacts.note'(contactId, updateNote) {
+  'contacts.add-note'(contactId, updateNote) {
     check(contactId, String);
     check(updateNote, String);
     ContactsCollection.update(contactId, {
@@ -132,7 +132,7 @@ Meteor.methods({
     });
   },
   //MODE EDITION
-  'contacts.toggle_editMode'(contactId, currentState) {
+  'contacts.toggle-editMode'(contactId, currentState) {
     check(contactId, String);
     check(currentState, Boolean);
     ContactsCollection.update(contactId, {

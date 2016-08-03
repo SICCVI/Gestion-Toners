@@ -1,81 +1,113 @@
+//IMPORT
 import { Mongo } from 'meteor/mongo';
 import { SimpleSchema } from 'meteor/aldeed:simple-schema';
 import { check } from 'meteor/check';
 import { Meteor } from 'meteor/meteor';
+import { EasySearch } from 'meteor/easy:search';
 
-export const Marques = new Mongo.Collection('marques');
+//EXPORT
+export const MarquesCollection = new Mongo.Collection('marques');
 
-Marques.allow({
+//PERMISSIONS
+MarquesCollection.allow({
   insert:function(){return true;},
   remove:function(){return true;},
   update:function(){return true;},
 });
 
+//SCHEMA
 MarqueSchema = new SimpleSchema({
-  nom: {
+  marque_nom: {
     type: String,
     label: "Nom",
   },
-  note: {
+  marque_note: {
     type: String,
     label: "Note",
     optional: true,
   },
-  editMode: {
+  marque_editMode: {
     type: Boolean,
     defaultValue: false,
     optional: true,
   },
+  marque_createdAt: {
+    type: Date,
+    label: "Créé le",
+    autoValue: function() {
+      return new Date()
+    },
+    autoform: {
+      type: "hidden",
+    }
+  },
+  marque_modifiedAt: {
+    type: Date,
+    label: "Dernière modification le",
+    autoValue: function() {
+      return new Date()
+    },
+    autoform: {
+      type: "hidden",
+    }
+  },
+});
+MarquesCollection.attachSchema( MarqueSchema );
+
+//INDEX EASY SEARCH
+//INDEX POUR LA BIBLIOTHEQUE DE DONNEES
+MarquesIndex = new EasySearch.Index({
+  collection: MarquesCollection,
+  fields: ['marque_nom', 'marque_note'],
+  engine: new EasySearch.Minimongo(),
+  defaultSearchOptions : {limit: 7}
 });
 
-Marques.attachSchema( MarqueSchema );
-
+//METHODES
 Meteor.methods({
+  //SUPPRESSION
   'marques.remove'(marqueId) {
     check(marqueId, String);
-    Marques.remove(marqueId);
+    MarquesCollection.remove(marqueId);
   },
+  //INSERTION
   'marques.insert'(nom) {
     check(nom, String);
-    Marques.insert({
+    const newID = MarquesCollection.insert({
       nom,
     });
+    return newID;
   },
-  'marques.add'(nom) {
-    check(nom, String);
-    Marques.insert({
-      nom,
-    });
-  },
+  //UPDATE
   'marques.update'(marqueId, updateNom) {
     check(marqueId, String);
     check(updateNom, String);
-    Marques.update(marqueId, {
-    $set: {
-      nom: updateNom,
-    }});
+    const updateDate = new Date();
+    MarquesCollection.update(marqueId, {
+      $set: {
+        marque_nom: updateNom,
+        marque_modifiedAt: updateDate,
+      }
+    });
   },
-  'marques.note'(marqueId, updateNote) {
+  //AJOUT DE NOTE
+  'marques.add-note'(marqueId, updateNote) {
     check(marqueId, String);
     check(updateNote, String);
-    Marques.update(marqueId, {
-    $set: {
-      note: updateNote,
-    }});
+    MarquesCollection.update(marqueId, {
+      $set: {
+        marque_note: updateNote,
+      }
+    });
   },
-  'toggleEditMarque'(marqueId, currentState) {
+  //MODE EDITION
+  'marques.toggle-editMode'(marqueId, currentState) {
     check(marqueId, String);
     check(currentState, Boolean);
-    Marques.update(marqueId, {
+    MarquesCollection.update(marqueId, {
       $set: {
-        editMode: !currentState
-      }});
+        marque_editMode: !currentState
+      }
+    });
   },
-});
-
-MarquesIndex = new EasySearch.Index({
-  collection: Marques,
-  fields: ['nom', 'note'],
-  engine: new EasySearch.Minimongo(),
-  defaultSearchOptions : {limit: 7}
 });

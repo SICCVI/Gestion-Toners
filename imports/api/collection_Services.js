@@ -98,7 +98,7 @@ Meteor.methods({
     });
   },
   //AJOUT DE NOTE
-  'services.note'(serviceId, updateNote) {
+  'services.add-note'(serviceId, updateNote) {
     check(serviceId, String);
     check(updateNote, String);
     ServicesCollection.update(serviceId, {
@@ -108,7 +108,7 @@ Meteor.methods({
     });
   },
   //MODE EDITION
-  'services.toggle_editMode'(serviceId, currentState) {
+  'services.toggle-editMode'(serviceId, currentState) {
     check(serviceId, String);
     check(currentState, Boolean);
     ServicesCollection.update(serviceId, {

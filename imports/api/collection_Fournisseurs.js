@@ -131,7 +131,7 @@ Meteor.methods({
     });
   },
   //AJOUT DE NOTE
-  'fournisseurs.note'(fournisseurId, updateNote) {
+  'fournisseurs.add-note'(fournisseurId, updateNote) {
     check(fournisseurId, String);
     check(updateNote, String);
     FournisseursCollection.update(fournisseurId, {
@@ -141,7 +141,7 @@ Meteor.methods({
     });
   },
   //MODE EDITION
-  'fournisseurs.toggle_editMode'(fournisseurId, currentState) {
+  'fournisseurs.toggle-editMode'(fournisseurId, currentState) {
     check(fournisseurId, String);
     check(currentState, Boolean);
     FournisseursCollection.update(fournisseurId, {
