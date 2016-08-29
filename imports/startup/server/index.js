@@ -1,14 +1,14 @@
-import { Impressions } from '../../api/impressionsCollection.js';
-import { Marques } from '../../api/marquesCollection.js';
-import { Toners } from '../../api/tonersCollection.js';
-import { Fournisseurs } from '../../api/fournisseursCollection.js';
+import { ImpressionsCollection } from '../../api/collection_Impressions.js';
+import { MarquesCollection } from '../../api/collection_Marques.js';
+import { TonersCollection } from '../../api/collection_Toners.js';
+import { FournisseursCollection } from '../../api/collection_Fournisseurs.js';
 
-import { Contacts } from '../../api/contactsCollection.js';
-import { Sites } from '../../api/sitesCollection.js';
-import { Services } from '../../api/servicesCollection.js';
+import { ContactsCollection } from '../../api/collection_Contacts.js';
+import { SitesCollection } from '../../api/collection_Sites.js';
+import { ServicesCollection } from '../../api/collection_Services.js';
 
-import { Stocks } from '../../api/stocksCollection.js';
-import { Historiques } from '../../api/historiquesCollection.js';
+import { StocksCollection } from '../../api/collection_Stocks.js';
+import { HistoriquesCollection } from '../../api/collection_Historiques.js';
 
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
@@ -17,7 +17,7 @@ import { check } from 'meteor/check';
 //
 Meteor.startup(() => {
 	Meteor.publish('impressions', function (){
-		return Impressions.find({});
+		return ImpressionsCollection.find({});
 	});
 /*
 	Meteor.publish('detailImpression', function (id){
@@ -26,49 +26,45 @@ Meteor.startup(() => {
 	});*/
 
 	Meteor.publish('marques', function (){
-		return Marques.find({});
+		return MarquesCollection.find({});
 	});
 
 	Meteor.publish('toners', function (){
-		return Toners.find({});
+		return TonersCollection.find({});
 	});
 
 	Meteor.publish('fournisseurs', function (){
-		return Fournisseurs.find({});
+		return FournisseursCollection.find({});
 	});
 
 	Meteor.publish('contacts', function (){
-		return Contacts.find({});
+		return ContactsCollection.find({});
 	});
 
 	Meteor.publish('sites', function (){
-		return Sites.find({});
-	});
-
-	Meteor.publish('items', function (){
-	return Items.find({});
+		return SitesCollection.find({});
 	});
 
 	Meteor.publish('stocks', function (){
-	return Stocks.find({});
+	return StocksCollection.find({});
 	});
 
-	Meteor.publish('stocks-alerte', function (){
-	return Stocks.find({alerte: true});
+	Meteor.publish('stocks-critique', function (){
+	return StocksCollection.find({stock_critique: true});
 	});
 
 	Meteor.publish('stocks-avertissement', function (){
-	return Stocks.find({alerte: false, avertissement: true});
+	return StocksCollection.find({stock_critique: false, stock_avertissement: true});
 	});
 
 	Meteor.publish('services', function (){
-	return Services.find({});
+	return ServicesCollection.find({});
 	});
 
 	Meteor.publish('historiques', function (){
-	return Historiques.find({});
+	return HistoriquesCollection.find({});
 	});
   
 });
 
-import './demo.js';
+//import './demo.js';
