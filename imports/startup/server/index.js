@@ -19,11 +19,11 @@ Meteor.startup(() => {
 	Meteor.publish('impressions', function (){
 		return ImpressionsCollection.find({});
 	});
-/*
-	Meteor.publish('detailImpression', function (id){
+
+/*	Meteor.publish('detailImpression', function (id){
 	check(id, String);
 		return Impressions.find({_id: id});
-	});*/
+	});
 
 	Meteor.publish('marques', function (){
 		return MarquesCollection.find({});
@@ -63,7 +63,7 @@ Meteor.startup(() => {
 
 	Meteor.publish('historiques', function (){
 	return HistoriquesCollection.find({});
-	});
+	});*/
   
 });
 

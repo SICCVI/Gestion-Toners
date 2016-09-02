@@ -17,10 +17,8 @@ StocksCollection.allow({
 
 //SCHEMA
 HistoriqueConsommateur = new SimpleSchema({
-  type: String
 });
 ImpressionConsommateur = new SimpleSchema({
-  type: String
 });
 Consommateur = new SimpleSchema({
   consommateur_id: {

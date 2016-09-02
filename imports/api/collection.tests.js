@@ -223,16 +223,21 @@ if (Meteor.isServer) {
 		});
 		it("modification de l'élément", () => {
 			const modele = 'testUpdateModele';
-			const constructeurNom = 'testUpdateConstrcuteur';
+			const constructeurNom = 'testUpdateConstructeur';
 			const constructeurRef ='testUpdateReference';
 			const couleur = 'testUpdateCouleur';
 			Meteor.call('toners.update', tonerId, modele, constructeurNom, constructeurRef, couleur);
+			console.log("1 " + tonerId);
+			console.log('2 ' + modele);
+			console.log('3 ' + constructeurNom);
+			console.log('4 ' + constructeurRef);
+			console.log('5 ' + couleur);
 			assert.equal(TonersCollection.find({toner_modele: 'testUpdateModele'}).count(), 1);
 			assert.equal(TonersCollection.find({toner_constructeurNom: 'testUpdateConstructeur'}).count(), 1);
 			assert.equal(TonersCollection.find({toner_constructeurRef: 'testUpdateReference'}).count(), 1);
 			assert.equal(TonersCollection.find({toner_couleur: 'testUpdateCouleur'}).count(), 1);
 			assert.equal(TonersCollection.find({toner_modele: 'testModele'}).count(), 0);
-			assert.equal(TonersCollection.find({toner_constructeurNom: 'testConstrcuteur'}).count(), 0);
+			assert.equal(TonersCollection.find({toner_constructeurNom: 'testConstructeur'}).count(), 0);
 			assert.equal(TonersCollection.find({toner_constructeurRef: 'testReference'}).count(), 0);
 			assert.equal(TonersCollection.find({toner_couleur: 'testCouleur'}).count(), 0);
 		});
